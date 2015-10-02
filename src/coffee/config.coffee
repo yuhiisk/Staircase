@@ -2,7 +2,14 @@ do (win = window, doc = window.document) ->
 
     'use strict'
 
-    win.Staircase = win.Staircase || {}
+    class Staircase
+        constructor: (option) ->
+            @settings = $.extend( Staircase.defaults, option )
+            @initialize()
+
+        initialize: ->
+
+    win.Staircase = Staircase
 
     Staircase.defaults =
         # image size
@@ -18,7 +25,7 @@ do (win = window, doc = window.document) ->
         params: {},
         path: 'image_path',
         uuid: 'image_uuid',
-        # elments
+        # elements
         modal: '#Modal',
         modalPage: '.wrapper'
         camera: '#Video',
