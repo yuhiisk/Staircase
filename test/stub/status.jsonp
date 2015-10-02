@@ -1,0 +1,9 @@
+callback({
+    "is_recogition_finished": true,
+    "image_path": "/stub/kayac.png",
+    "result_url": "/recognition/result/3086ae4b459f4dbabe0d0801d5d96352",
+    "result": {
+        "is_legal": false,
+        "description": "終わったよ"
+    }
+})

@@ -1,0 +1,9 @@
+{
+    "status": "ok",
+    "code": 200,
+    "response": {
+        "is_uploaded": true,
+        "result_path": "/stub/status.jsonp",
+        "image_path": "/stub/kayac.png"
+    }
+}

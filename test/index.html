@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja" class="no-js">
+    <head prefix="og: http://ogp.me/ns# fb: http://www.facebook.com/2008/fbml">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Staircase</title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta property="og:title" content="">
+        <meta property="og:type" content="">
+        <meta property="og:url" content="">
+        <meta property="og:image" content="">
+        <meta property="og:site_name" content="">
+        <meta property="og:description" content="">
+        <meta property="fb:app_id" content="">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="">
+        <link rel="shortcut icon" href="/favicon.ico">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="js/vendor/modernizr.min.js"></script>
+    </head>
+    <body>
+        <header class="global-header">
+            <div class="container">
+                <h1 style="text-align: center; font-size: 24px; font-weight: bold;">Upload::Template</h1>
+            </div>
+        </header>
+
+        <main class="contents">
+            <ul class="btn btn-start">
+                <li id="StartUpload" class="btn__item">
+                    <iframe id="PostIframe" name="PostIframe" class="is-hidden"></iframe>
+                    <form id="Upload" method="post" action="/api/***" target="PostIframe" enctype="multipart/form-data">
+                        <span class="btn__item--upload">画像をアップロード</span>
+                        <input id="BtnPhoto" class="btn__item--input" name="image" type="file" accept="image/jpeg, image/png">
+                    </form>
+                </li>
+                <li class="btn__item"><a href="#Camera" id="StartCamera" class="btn__item--camera">WEBカメラで撮影</a></li>
+            </ul>
+
+            <div id="Modal" class="modal is-hidden">
+                <div class="modal__bg"></div>
+                <div class="modal__content">
+                    <div id="Camera" class="scene camera is-hidden">
+                        <div class="scene__field">
+                            <h3 class="scene__text"><span class="scene__text--sprite">目の位置を合わせて撮影ボタンを押して下さい。</span></h3>
+                            <div class="scene__wrap">
+                                <video id="Video"></video>
+                            </div>
+                            <img class="scene__cover" src="img/img_eye_overlay.png" alt="" width="640" height="480">
+                        </div>
+                        <div class="btn">
+                            <div class="btn__item"><a href="#" id="Capture" class="btn__item--capture">撮影する</a></div>
+                        </div>
+                    </div>
+
+                    <div id="Preview" class="scene preview is-hidden">
+                        <div id="PreviewContainer" class="is-hidden">
+                            <div class="canvas scene__field">
+                                <h3 class="scene__text"><span class="scene__text--sprite">この画像で診断しますか?</span></h3>
+                                <div class="scene__wrap">
+                                    <canvas id="Canvas" class="preview__canvas"></canvas>
+                                </div>
+                                <img class="scene__cover" src="img/img_guide_overlay.png" alt="" width="640" height="480">
+                            </div>
+                            <ul class="btn preview__btns">
+                                <li class="btn__item"><a href="#" id="Retake" class="btn__item--retake">撮り直す</a></li>
+                                <li class="btn__item"><a href="#" id="PostWebCamera" class="btn__item--post">診断する</a></li>
+                            </ul>
+                        </div>
+
+                        <div id="Transform" class="scene transform is-hidden">
+                            <div class="scene__field transform__preview">
+                                <h3 class="scene__text"><span class="scene__text--sprite">目の位置を合わせて下さい。</span></h3>
+                                <img class="scene__cover" src="img/img_eye_overlay.png" alt="" width="640" height="480">
+                                <div class="scene__wrap transform__wrap">
+                                    <div class="transform__image">
+                                        <img class="preview-image" alt="">
+                                    </div>
+                                </div>
+                                <div class="transform__touch"></div>
+
+                                <ul class="transform__control">
+                                    <li id="AdjustUp" class="btn__item--up">↑</li>
+                                    <li id="AdjustDown" class="btn__item--down">↓</li>
+                                    <li id="AdjustLeft" class="btn__item--left">←</li>
+                                    <li id="AdjustRight" class="btn__item--right">→</li>
+                                    <li id="ZoomIn" class="btn__item--zoomin">+</li>
+                                    <li id="ZoomOut" class="btn__item--zoomout">-</li>
+                                </ul>
+                            </div>
+
+                            <ul class="btn transform__btns">
+                                <li class="btn__item"><a href="#" id="Reselect" class="btn__item--reselect">選び直す</a></li>
+                                <li class="btn__item"><a href="#" id="PostPhoto" class="btn__item--post">診断する</a></li>
+                            </ul>
+
+                            <form id="Adjust" class="is-hidden" name="adjust-form" method="post" action="/api/***">
+                                <!--
+                                <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                                -->
+                            </form>
+
+                            <div id="Loading" class="scene loading is-hidden">
+                                <div class="scene__field">
+                                    <div class="loading__upload"></div>
+                                    <img class="scene__cover" src="img/img_overlay.png" alt="" width="640" height="480">
+                                    <div class="loading__icon"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="global-footer">
+            <div class="container">
+                <p class="copyright"><small>Copyright &copy; Youhei Isokawa All rights reserved.</small></p>
+            </div>
+        </footer>
+
+        <script src="/js/vendor/eventemitter2.js"></script>
+        <script src="/js/vendor/jquery.min.js"></script>
+
+        <script src="/js/staircase.js"></script>
+        <script src="/js/script.js"></script>
+
+    </body>
+</html>

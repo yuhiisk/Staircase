@@ -1,0 +1,3 @@
+[submodule "src/scss"]
+	path = src/scss
+	url = https://github.com/yuhiisk/orange-tabby.git

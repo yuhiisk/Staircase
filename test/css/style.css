@@ -1,0 +1,2100 @@
+@charset "UTF-8";
+/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+/**
+* 1. Set default font family to sans-serif.
+* 2. Prevent iOS and IE text size adjust after device orientation change,
+*    without disabling user zoom.
+*/
+html {
+  font-family: sans-serif;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+}
+
+/**
+* Remove default margin.
+*/
+body {
+  margin: 0;
+}
+
+/* HTML5 display definitions
+========================================================================== */
+/**
+* Correct `block` display not defined for any HTML5 element in IE 8/9.
+* Correct `block` display not defined for `details` or `summary` in IE 10/11
+* and Firefox.
+* Correct `block` display not defined for `main` in IE 11.
+*/
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+
+/**
+* 1. Correct `inline-block` display not defined in IE 8/9.
+* 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+*/
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  /* 1 */
+  vertical-align: baseline;
+  /* 2 */
+}
+
+/**
+* Prevent modern browsers from displaying `audio` without controls.
+* Remove excess height in iOS 5 devices.
+*/
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+/**
+* Address `[hidden]` styling not present in IE 8/9/10.
+* Hide the `template` element in IE 8/9/10/11, Safari, and Firefox < 22.
+*/
+[hidden],
+template {
+  display: none;
+}
+
+/* Links
+========================================================================== */
+/**
+* Remove the gray background color from active links in IE 10.
+*/
+a {
+  background-color: transparent;
+}
+
+/**
+* Improve readability of focused elements when they are also in an
+* active/hover state.
+*/
+a:active,
+a:hover {
+  outline: 0;
+}
+
+/* Text-level semantics
+========================================================================== */
+/**
+* Address styling not present in IE 8/9/10/11, Safari, and Chrome.
+*/
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+/**
+* Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
+*/
+b,
+strong {
+  font-weight: bold;
+}
+
+/**
+* Address styling not present in Safari and Chrome.
+*/
+dfn {
+  font-style: italic;
+}
+
+/**
+* Address variable `h1` font-size and margin within `section` and `article`
+* contexts in Firefox 4+, Safari, and Chrome.
+*/
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/**
+* Address styling not present in IE 8/9.
+*/
+mark {
+  background: #ff0;
+  color: #000;
+}
+
+/**
+* Address inconsistent and variable font size in all browsers.
+*/
+small {
+  font-size: 80%;
+}
+
+/**
+* Prevent `sub` and `sup` affecting `line-height` in all browsers.
+*/
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+/* Embedded content
+========================================================================== */
+/**
+* Remove border when inside `a` element in IE 8/9/10.
+*/
+img {
+  border: 0;
+}
+
+/**
+* Correct overflow not hidden in IE 9/10/11.
+*/
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/* Grouping content
+========================================================================== */
+/**
+* Address margin not present in IE 8/9 and Safari.
+*/
+figure {
+  margin: 1em 40px;
+}
+
+/**
+* Address differences between Firefox and other browsers.
+*/
+hr {
+  box-sizing: content-box;
+  height: 0;
+}
+
+/**
+* Contain overflow in all browsers.
+*/
+pre {
+  overflow: auto;
+}
+
+/**
+* Address odd `em`-unit font size rendering in all browsers.
+*/
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+/* Forms
+========================================================================== */
+/**
+* Known limitation: by default, Chrome and Safari on OS X allow very limited
+* styling of `select`, unless a `border` property is set.
+*/
+/**
+* 1. Correct color not being inherited.
+*    Known issue: affects color of disabled elements.
+* 2. Correct font properties not being inherited.
+* 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
+*/
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+  margin: 0;
+  /* 3 */
+}
+
+/**
+* Address `overflow` set to `hidden` in IE 8/9/10/11.
+*/
+button {
+  overflow: visible;
+}
+
+/**
+* Address inconsistent `text-transform` inheritance for `button` and `select`.
+* All other form control elements do not inherit `text-transform` values.
+* Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
+* Correct `select` style inheritance in Firefox.
+*/
+button,
+select {
+  text-transform: none;
+}
+
+/**
+* 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+*    and `video` controls.
+* 2. Correct inability to style clickable `input` types in iOS.
+* 3. Improve usability and consistency of cursor style between image-type
+*    `input` and others.
+*/
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */
+}
+
+/**
+* Re-set default cursor for disabled elements.
+*/
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+/**
+* Remove inner padding and border in Firefox 4+.
+*/
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/**
+* Address Firefox 4+ setting `line-height` on `input` using `!important` in
+* the UA stylesheet.
+*/
+input {
+  line-height: normal;
+}
+
+/**
+* It's recommended that you don't attempt to style these elements.
+* Firefox's implementation doesn't respect box-sizing, padding, or width.
+*
+* 1. Address box sizing set to `content-box` in IE 8/9/10.
+* 2. Remove excess padding in IE 8/9/10.
+*/
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+* Fix the cursor style for Chrome's increment/decrement buttons. For certain
+* `font-size` values of the `input`, it causes the cursor style of the
+* decrement button to change from `default` to `text`.
+*/
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+* 1. Address `appearance` set to `searchfield` in Safari and Chrome.
+* 2. Address `box-sizing` set to `border-box` in Safari and Chrome.
+*/
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  box-sizing: content-box;
+  /* 2 */
+}
+
+/**
+* Remove inner padding and search cancel button in Safari and Chrome on OS X.
+* Safari (but not Chrome) clips the cancel button when the search input has
+* padding (and `textfield` appearance).
+*/
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+* Define consistent border, margin, and padding.
+*/
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+* 1. Correct `color` not being inherited in IE 8/9/10/11.
+* 2. Remove padding so people aren't caught out if they zero out fieldsets.
+*/
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+* Remove default vertical scrollbar in IE 8/9/10/11.
+*/
+textarea {
+  overflow: auto;
+}
+
+/**
+* Don't inherit the `font-weight` (applied by a rule above).
+* NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
+*/
+optgroup {
+  font-weight: bold;
+}
+
+/* Tables
+========================================================================== */
+/**
+* Remove most spacing between table cells.
+*/
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+/* ==========================================================================
+   Reset
+   ========================================================================== */
+/* HTML5 display definitions
+   ========================================================================== */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, main, menu, nav,
+section, summary {
+  display: block;
+}
+
+audio, canvas, progress, video {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+/* Resetting default margin and padding
+   ========================================================================== */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* HTML, Body, Anchor
+   ========================================================================== */
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  line-height: 1;
+}
+
+body {
+  min-width: 0;
+  background-color: #fff;
+  color: #000;
+  font-size: 14px;
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", sans-serif;
+  line-height: 1.5;
+}
+
+/* Font-size (base: 14px) */
+a {
+  color: #0072ff;
+  outline: 0;
+  text-decoration: none;
+}
+
+a:link, a:visited {
+  outline: 0;
+}
+
+a:hover, a:active {
+  color: #0072ff;
+  text-decoration: underline;
+}
+
+/* Paragraph
+   ========================================================================== */
+p {
+  margin-bottom: 0;
+}
+
+/* List
+   ========================================================================== */
+ol, ul {
+  list-style: none;
+}
+
+/* Table
+   ========================================================================== */
+table {
+  font-size: inherit;
+  font-family: inherit;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  padding: 0;
+  text-align: left;
+  font-weight: normal;
+  vertical-align: top;
+}
+
+/* Form
+   ========================================================================== */
+fieldset {
+  border: none;
+}
+
+input, textarea, select, label {
+  vertical-align: middle;
+}
+
+textarea {
+  overflow: auto;
+}
+
+legend {
+  display: none;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+}
+
+/* Embedded
+   ========================================================================== */
+img {
+  vertical-align: bottom;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -moz-user-drag: none;
+  -ms-user-drag: none;
+}
+
+a img {
+  border: none;
+}
+
+object {
+  vertical-align: middle;
+  outline: none;
+}
+
+audio,
+canvas,
+video {
+  vertical-align: middle;
+}
+
+/* Other
+   ========================================================================== */
+em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+abbr {
+  border: none;
+  font-variant: normal;
+}
+
+q, blockquote {
+  quotes: none;
+}
+
+q:before,
+q:after,
+blockquote:before,
+blockquote:after {
+  content: "";
+  content: none;
+}
+
+address, caption, cite, code, dfn, var {
+  font-weight: normal;
+  font-style: normal;
+}
+
+code, pre {
+  font-family: monospace;
+}
+
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+*/
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+*/
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+*/
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+*/
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+*/
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+*/
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+.btn__item--upload, .btn__item--camera, .btn__item--about, .btn__item--capture, .btn__item--retake, .btn__item--reselect, .btn__item--post, .btn__item--up, .btn__item--down, .btn__item--left, .btn__item--right, .btn__item--zoomin, .btn__item--zoomout, .btn__item--entry, .btn__item--retry, .btn__item--challenge, .btn__item--download, .btn__item--close, .btn__item--facebook, .btn__item--twitter, .btn__item--error, .btn__item--apply, .btn__item--top {
+  display: block;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 110%;
+  line-height: 1;
+}
+
+.btn__item--upload {
+  background-image: url(../img/spr-button.png);
+  background-position: 0px -390px;
+  width: 266px;
+  height: 60px;
+}
+
+.btn__item--camera {
+  background-image: url(../img/spr-button.png);
+  background-position: -470px 0px;
+  width: 266px;
+  height: 60px;
+}
+
+.btn__item--about {
+  background-image: url(../img/spr-button.png);
+  background-position: -282px -452px;
+  width: 280px;
+  height: 48px;
+}
+
+.btn__item--capture {
+  background-image: url(../img/spr-button.png);
+  background-position: -470px -244px;
+  width: 230px;
+  height: 60px;
+}
+
+.btn__item--retake {
+  background-image: url(../img/spr-button.png);
+  background-position: -470px -368px;
+  width: 230px;
+  height: 60px;
+}
+
+.btn__item--reselect {
+  background-image: url(../img/spr-button.png);
+  background-position: -470px -306px;
+  width: 230px;
+  height: 60px;
+}
+
+.btn__item--post {
+  background-image: url(../img/spr-button.png);
+  background-position: -470px -182px;
+  width: 230px;
+  height: 60px;
+}
+
+.btn__item--up {
+  background-image: url(../img/spr-button.png);
+  background-position: -188px -502px;
+  width: 60px;
+  height: 61px;
+}
+
+.btn__item--down {
+  background-image: url(../img/spr-button.png);
+  background-position: -126px -502px;
+  width: 60px;
+  height: 61px;
+}
+
+.btn__item--left {
+  background-image: url(../img/spr-button.png);
+  background-position: -63px -502px;
+  width: 61px;
+  height: 61px;
+}
+
+.btn__item--right {
+  background-image: url(../img/spr-button.png);
+  background-position: 0px -502px;
+  width: 61px;
+  height: 61px;
+}
+
+.btn__item--zoomin {
+  background-image: url(../img/spr-button.png);
+  background-position: -282px -204px;
+  width: 53px;
+  height: 53px;
+}
+
+.btn__item--zoomout {
+  background-image: url(../img/spr-button.png);
+  background-position: -337px -204px;
+  width: 53px;
+  height: 53px;
+}
+
+.btn__item--entry {
+  background-image: url(../img/spr-button.png);
+  background-position: 0px -77px;
+  width: 468px;
+  height: 75px;
+}
+
+.btn__item--retry {
+  background-image: url(../img/spr-button.png);
+  background-position: 0px -154px;
+  width: 468px;
+  height: 48px;
+}
+
+.btn__item--challenge {
+  background-image: url(../img/spr-button.png);
+  background-position: 0px 0px;
+  width: 468px;
+  height: 75px;
+}
+
+.btn__item--download {
+  background-image: url(../img/spr-button.png);
+  background-position: 0px -328px;
+  width: 266px;
+  height: 60px;
+}
+
+.btn__item--close {
+  background-image: url(../img/spr-button.png);
+  background-position: -392px -204px;
+  width: 40px;
+  height: 52px;
+}
+
+.btn__item--facebook {
+  background-image: url(../img/spr-button.png);
+  background-position: -470px -122px;
+  width: 260px;
+  height: 58px;
+}
+
+.btn__item--twitter {
+  background-image: url(../img/spr-button.png);
+  background-position: -470px -62px;
+  width: 260px;
+  height: 58px;
+}
+
+.btn__item--error {
+  background-image: url(../img/spr-button.png);
+  background-position: 0px -266px;
+  width: 267px;
+  height: 60px;
+}
+
+.btn__item--apply {
+  background-image: url(../img/spr-button.png);
+  background-position: 0px -204px;
+  width: 280px;
+  height: 60px;
+}
+
+.btn__item--top {
+  background-image: url(../img/spr-button.png);
+  background-position: 0px -452px;
+  width: 280px;
+  height: 48px;
+}
+
+.icon-n0, .icon-n1, .icon-n2, .icon-n3, .icon-n4, .icon-n5, .icon-n6, .icon-n7, .icon-n8, .icon-n9, .icon-page-logo {
+  display: inline-block;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 110%;
+  line-height: 1;
+}
+
+.icon-n0 {
+  background-image: url(../img/spr-number.png);
+  background-position: 0px 0px;
+  width: 30px;
+  height: 52px;
+}
+
+.icon-n1 {
+  background-image: url(../img/spr-number.png);
+  background-position: -32px 0px;
+  width: 30px;
+  height: 52px;
+}
+
+.icon-n2 {
+  background-image: url(../img/spr-number.png);
+  background-position: -64px 0px;
+  width: 30px;
+  height: 52px;
+}
+
+.icon-n3 {
+  background-image: url(../img/spr-number.png);
+  background-position: -96px 0px;
+  width: 30px;
+  height: 52px;
+}
+
+.icon-n4 {
+  background-image: url(../img/spr-number.png);
+  background-position: 0px -54px;
+  width: 30px;
+  height: 52px;
+}
+
+.icon-n5 {
+  background-image: url(../img/spr-number.png);
+  background-position: -32px -54px;
+  width: 30px;
+  height: 52px;
+}
+
+.icon-n6 {
+  background-image: url(../img/spr-number.png);
+  background-position: -64px -54px;
+  width: 30px;
+  height: 52px;
+}
+
+.icon-n7 {
+  background-image: url(../img/spr-number.png);
+  background-position: -96px -54px;
+  width: 30px;
+  height: 52px;
+}
+
+.icon-n8 {
+  background-image: url(../img/spr-number.png);
+  background-position: -128px 0px;
+  width: 30px;
+  height: 52px;
+}
+
+.icon-n9 {
+  background-image: url(../img/spr-number.png);
+  background-position: -128px -54px;
+  width: 30px;
+  height: 52px;
+}
+
+.icon-page-logo {
+  background-image: url(../img/spr-icon.png);
+  background-position: 0px 0px;
+  width: 166px;
+  height: 43px;
+}
+
+.loading-n1, .loading-n2, .loading-n3, .loading-n4, .loading-n5, .loading-n6, .loading-n7, .loading-n8, .loading-n9, .loading-n10, .loading-n11, .loading-n12, .loading-n13, .loading-n14, .loading-n15, .loading-n16, .loading-n17, .loading-n18, .loading-n19, .loading-n20, .loading-n21, .loading-n22, .loading-n23, .loading-n24, .loading-n25, .loading-n26, .loading-n27, .loading-n28, .loading-n29, .loading-n30, .loading-n31, .loading-n32, .loading-n33, .loading-n34, .loading-n35, .loading-n36 {
+  display: inline-block;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 110%;
+  line-height: 1;
+}
+
+.loading-n1 {
+  background-image: url(../img/spr-loading.png);
+  background-position: -112px 0px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n2 {
+  background-image: url(../img/spr-loading.png);
+  background-position: -336px -178px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n3 {
+  background-image: url(../img/spr-loading.png);
+  background-position: -448px -178px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n4 {
+  background-image: url(../img/spr-loading.png);
+  background-position: -560px 0px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n5 {
+  background-image: url(../img/spr-loading.png);
+  background-position: -560px -89px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n6 {
+  background-image: url(../img/spr-loading.png);
+  background-position: -560px -178px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n7 {
+  background-image: url(../img/spr-loading.png);
+  background-position: -560px -267px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n8 {
+  background-image: url(../img/spr-loading.png);
+  background-position: -560px -356px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n9 {
+  background-image: url(../img/spr-loading.png);
+  background-position: -560px -445px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n10 {
+  background-image: url(../img/spr-loading.png);
+  background-position: -224px -356px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n11 {
+  background-image: url(../img/spr-loading.png);
+  background-position: 0px -89px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n12 {
+  background-image: url(../img/spr-loading.png);
+  background-position: -112px -89px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n13 {
+  background-image: url(../img/spr-loading.png);
+  background-position: -224px 0px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n14 {
+  background-image: url(../img/spr-loading.png);
+  background-position: -224px -89px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n15 {
+  background-image: url(../img/spr-loading.png);
+  background-position: 0px -178px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n16 {
+  background-image: url(../img/spr-loading.png);
+  background-position: -112px -178px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n17 {
+  background-image: url(../img/spr-loading.png);
+  background-position: -224px -178px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n18 {
+  background-image: url(../img/spr-loading.png);
+  background-position: -336px 0px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n19 {
+  background-image: url(../img/spr-loading.png);
+  background-position: -336px -89px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n20 {
+  background-image: url(../img/spr-loading.png);
+  background-position: 0px -267px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n21 {
+  background-image: url(../img/spr-loading.png);
+  background-position: -112px -267px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n22 {
+  background-image: url(../img/spr-loading.png);
+  background-position: -224px -267px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n23 {
+  background-image: url(../img/spr-loading.png);
+  background-position: -336px -267px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n24 {
+  background-image: url(../img/spr-loading.png);
+  background-position: 0px -356px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n25 {
+  background-image: url(../img/spr-loading.png);
+  background-position: -112px -356px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n26 {
+  background-image: url(../img/spr-loading.png);
+  background-position: 0px 0px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n27 {
+  background-image: url(../img/spr-loading.png);
+  background-position: -336px -356px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n28 {
+  background-image: url(../img/spr-loading.png);
+  background-position: -448px 0px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n29 {
+  background-image: url(../img/spr-loading.png);
+  background-position: -448px -89px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n30 {
+  background-image: url(../img/spr-loading.png);
+  background-position: -448px -267px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n31 {
+  background-image: url(../img/spr-loading.png);
+  background-position: -448px -356px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n32 {
+  background-image: url(../img/spr-loading.png);
+  background-position: 0px -445px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n33 {
+  background-image: url(../img/spr-loading.png);
+  background-position: -112px -445px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n34 {
+  background-image: url(../img/spr-loading.png);
+  background-position: -224px -445px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n35 {
+  background-image: url(../img/spr-loading.png);
+  background-position: -336px -445px;
+  width: 110px;
+  height: 87px;
+}
+
+.loading-n36 {
+  background-image: url(../img/spr-loading.png);
+  background-position: -448px -445px;
+  width: 110px;
+  height: 87px;
+}
+
+.container {
+  width: 950px;
+  margin: 0 auto;
+}
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  min-width: 1200px;
+  height: 100%;
+}
+
+.modal__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+  width: 640px;
+  height: 596px;
+  margin: -298px 0 0 -320px;
+  padding: 7px;
+  background: url(../img/bg_modal.png) no-repeat;
+}
+
+.modal__close {
+  position: absolute;
+  top: 34px;
+  right: 37px;
+  z-index: 10;
+  cursor: pointer;
+}
+
+/* clearfix */
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+
+body {
+  min-width: 1280px;
+  background: url(../img/bg_body.png) repeat;
+}
+
+.sample {
+  position: relative;
+  width: 1280px;
+  margin: auto;
+}
+.sample:before, .sample:after {
+  content: " ";
+  display: table;
+}
+.sample:after {
+  clear: both;
+}
+.sample .scene {
+  float: left;
+  margin-bottom: 200px;
+}
+
+.global-header {
+  padding: 30px 35px 25px;
+}
+.global-header:before, .global-header:after {
+  content: " ";
+  display: table;
+}
+.global-header:after {
+  clear: both;
+}
+
+.global-header__logo {
+  float: left;
+}
+.global-header__logo a {
+  display: block;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 110%;
+  line-height: 1;
+  background-image: url(../img/spr-icon.png);
+  background-position: -168px 0px;
+  width: 173px;
+  height: 29px;
+}
+
+.global-header__sns {
+  float: right;
+}
+
+.global-header__sns--fb {
+  float: left;
+  margin-right: 10px;
+}
+
+.global-header__sns--tw {
+  float: left;
+}
+
+.global-footer {
+  padding: 20px 40px;
+  color: #00a29a;
+  font-size: 86%;
+  text-align: center;
+}
+.global-footer:before, .global-footer:after {
+  content: " ";
+  display: table;
+}
+.global-footer:after {
+  clear: both;
+}
+.global-footer a {
+  color: #00a29a;
+}
+
+.global-footer__info {
+  margin: 0 auto 50px;
+  padding: 6px;
+  width: 414px;
+  background-color: #e1f4f3;
+}
+.global-footer__info p {
+  text-align: center;
+  color: #00a29a;
+  font-weight: normal;
+}
+.global-footer__info a {
+  color: #00a29a;
+  text-decoration: none;
+}
+
+.global-footer__info-inner {
+  padding: 12px 0;
+  border: 1px solid #00a29a;
+  background-color: #fff;
+}
+
+.global-footer__support {
+  margin-bottom: 10px;
+}
+
+.global-footer__caution {
+  margin-bottom: 30px;
+}
+
+.global-footer__links {
+  margin-bottom: 8px;
+}
+.global-footer__links li {
+  padding: 0 5px 0 7px;
+  line-height: 1.3em;
+  display: inline-block;
+}
+.global-footer__links .last {
+  border-left: 1px solid #00a29a;
+}
+.global-footer__links a {
+  text-decoration: none;
+}
+
+.global-footer__copyright {
+  margin-top: 8px;
+}
+
+.is-hidden {
+  display: none;
+}
+
+.is-fixed {
+  position: fixed;
+  width: 100%;
+}
+
+.page-title {
+  margin: 182px 0 38px;
+  text-align: center;
+}
+
+.btn {
+  text-align: center;
+}
+
+.btn__item {
+  display: inline-block;
+  position: relative;
+}
+
+.btn-start {
+  margin-bottom: 100px;
+}
+.btn-start li {
+  overflow: hidden;
+  margin-left: 41px;
+}
+.btn-start li:first-child {
+  margin-left: 0;
+}
+.btn-start label {
+  cursor: pointer;
+}
+
+.btn__item--input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  cursor: pointer;
+  font-size: 85px;
+  outline: 0;
+}
+
+.contents-description {
+  margin-bottom: 110px;
+  color: #00a29a;
+  font-size: 115%;
+  font-weight: bold;
+  text-align: center;
+}
+.contents-description span {
+  font-size: 75%;
+  font-weight: normal;
+}
+
+.diagnosis-note {
+  width: 682px;
+  margin: 0 auto 40px;
+  padding: 30px 44px 37px 44px;
+  background-color: #fff;
+}
+
+.diagnosis-note__heading {
+  margin-bottom: 12px;
+  color: #00a29a;
+  font-size: 129%;
+  font-weight: bold;
+}
+
+.diagnosis-note__text {
+  margin-bottom: 30px;
+  font-size: 115%;
+  line-height: 1.8em;
+}
+
+.diagnosis-note__list:before, .diagnosis-note__list:after {
+  content: " ";
+  display: table;
+}
+.diagnosis-note__list:after {
+  clear: both;
+}
+
+.diagnosis-note__item {
+  float: left;
+  margin-left: 21px;
+}
+.diagnosis-note__item:first-child {
+  margin-left: 0;
+}
+
+.flash-message {
+  color: red;
+  text-align: center;
+}
+
+.btn-about {
+  margin-bottom: 15px;
+}
+
+.scene {
+  width: 640px;
+  height: 480px;
+}
+.scene .btn {
+  margin-top: 25px;
+}
+.scene .btn__item:first-child {
+  margin-right: 20px;
+}
+
+.scene__field {
+  position: relative;
+  width: 640px;
+  height: 480px;
+}
+
+.scene__text {
+  position: absolute;
+  top: 66px;
+  left: 0;
+  z-index: 20;
+  width: 100%;
+  text-align: center;
+}
+
+.scene__text--sprite {
+  display: inline-block;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 110%;
+  line-height: 1;
+}
+
+.scene__cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 15;
+}
+
+.scene__wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  width: 640px;
+  height: 480px;
+}
+
+.camera video, .preview__canvas {
+  -webkit-transform: scale(-2.2, 2.2);
+      -ms-transform: scale(-2.2, 2.2);
+          transform: scale(-2.2, 2.2);
+  -webkit-filter: FlipH;
+          filter: FlipH;
+  -ms-filter: "FlipH";
+}
+
+.camera video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 640px;
+  height: 480px;
+}
+.camera .scene__text--sprite {
+  background-image: url(../img/spr-title.png);
+  background-position: 0px 0px;
+  width: 509px;
+  height: 23px;
+}
+
+.canvas .scene__text--sprite {
+  background-image: url(../img/spr-title.png);
+  background-position: 0px -50px;
+  width: 274px;
+  height: 23px;
+}
+
+.preview__canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.transform {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -moz-user-drag: none;
+  -ms-user-drag: none;
+}
+.transform .scene__text--sprite {
+  background-image: url(../img/spr-title.png);
+  background-position: 0px -25px;
+  width: 297px;
+  height: 23px;
+}
+.transform .btn {
+  margin-top: 50px;
+}
+
+.transform__preview {
+  position: relative;
+  width: 640px;
+  height: 480px;
+}
+
+.transform__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 640px;
+  height: 480px;
+}
+
+.transform__bounding-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: .4;
+}
+
+.transform__touch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  cursor: move;
+  background-color: #000;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0.001;
+}
+
+.transform__control {
+  position: relative;
+  z-index: 110;
+}
+.transform__control li {
+  position: absolute;
+  cursor: pointer;
+}
+.transform__control .btn__item--up {
+  top: -33px;
+  left: 50%;
+  margin-left: -30.5px;
+}
+.transform__control .btn__item--down {
+  top: 452px;
+  left: 50%;
+  margin-left: -30.5px;
+}
+.transform__control .btn__item--left {
+  top: 207px;
+  left: -33px;
+}
+.transform__control .btn__item--right {
+  top: 207px;
+  left: 612px;
+}
+.transform__control .btn__item--zoomin {
+  top: 407px;
+  left: 507px;
+}
+.transform__control .btn__item--zoomout {
+  top: 407px;
+  left: 567px;
+}
+
+.loading {
+  position: relative;
+}
+
+.loading__icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 100;
+  margin: -33px 0 0 -47px;
+}
+
+.loading__image {
+  overflow: hidden;
+  width: 640px;
+  height: 480px;
+}
+.loading__image img {
+  width: 100%;
+  height: auto;
+}
+
+.wrapper--result {
+  background: url(../img/bg_body2.png);
+}
+
+.page-title--result {
+  margin: 0;
+}
+
+.diagnosis {
+  width: 884px;
+  margin: 0 auto 44px;
+  color: #333;
+}
+.diagnosis:before, .diagnosis:after {
+  content: " ";
+  display: table;
+}
+.diagnosis:after {
+  clear: both;
+}
+
+.diagnosis__block {
+  background-color: #fff;
+}
+
+.diagnosis__header {
+  margin-bottom: 11px;
+  padding: 35px 46px 31px 43px;
+}
+.diagnosis__header:before, .diagnosis__header:after {
+  content: " ";
+  display: table;
+}
+.diagnosis__header:after {
+  clear: both;
+}
+.diagnosis__header .page-title {
+  float: left;
+}
+.diagnosis__header .page-logo {
+  float: right;
+}
+
+.diagnosis__image {
+  position: relative;
+  overflow: hidden;
+  height: 236px;
+  margin-bottom: 9px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+
+.diagnosis__image-processed {
+  overflow: hidden;
+  width: 0;
+  height: 236px;
+}
+.diagnosis__image-processed img {
+  width: 886px;
+  height: auto;
+}
+
+.diagnosis__image-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.diagnosis__image-effect {
+  position: absolute;
+  top: 0;
+  left: -537px;
+  width: 542px;
+  height: 236px;
+  background: url(../img/img_effect.png) no-repeat;
+}
+
+.diagnosis__left {
+  float: left;
+  width: 668px;
+}
+
+.diagnosis__right {
+  float: right;
+  width: 206px;
+}
+
+.diagnosis__comment {
+  min-height: 362px;
+  padding: 28px 30px 38px 40px;
+}
+
+.diagnosis__comment-heading {
+  display: inline-block;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 110%;
+  line-height: 1;
+  background-image: url(../img/spr-text.png);
+  background-position: 0px 0px;
+  width: 216px;
+  height: 27px;
+  margin-bottom: 21px;
+}
+.opacity .diagnosis__comment-heading {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+}
+
+.diagnosis__comment-title {
+  margin: 0 auto 16px;
+  font-size: 193%;
+}
+.opacity .diagnosis__comment-title {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+}
+
+.diagnosis__comment-text {
+  font-size: 129%;
+  font-weight: bold;
+  line-height: 2.14;
+}
+.opacity .diagnosis__comment-text {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+}
+
+.diagnosis__score {
+  position: relative;
+  width: 127px;
+  height: 162px;
+  margin-bottom: 10px;
+  padding: 20px 37px 26px 42px;
+  text-align: center;
+}
+
+.diagnosis__score-graph {
+  position: absolute;
+  top: 53px;
+  left: 42px;
+  width: 127px;
+  height: 127px;
+  background: url(../img/bg_score.png) no-repeat center center;
+}
+.opacity .diagnosis__score-graph {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+}
+
+.diagnosis__score-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.diagnosis__score-text {
+  margin-left: -27px;
+  margin-bottom: 15px;
+  font-size: 143%;
+}
+.opacity .diagnosis__score-text {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+}
+
+.diagnosis__score-value {
+  margin-top: 36px;
+  text-align: center;
+}
+
+.diagnosis__score-number {
+  position: relative;
+  z-index: 10;
+  margin-right: 2px;
+  vertical-align: bottom;
+}
+
+.diagnosis__score-point {
+  position: relative;
+  z-index: 10;
+  display: inline-block;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 110%;
+  line-height: 1;
+  background-image: url(../img/spr-text.png);
+  background-position: 0px -29px;
+  width: 16px;
+  height: 15px;
+  vertical-align: bottom;
+}
+
+.diagnosis__graph {
+  padding: 28px 16px 30px 15px;
+  background: url(../img/bg_graph.png) no-repeat center center #fff;
+}
+.opacity .diagnosis__graph {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+}
+
+.diagnosis__canvas {
+  position: relative;
+  top: 6px;
+  left: -24px;
+}
+
+.diagnosis__share {
+  position: relative;
+  text-align: center;
+}
+.mode-share .diagnosis__share {
+  display: none;
+}
+
+.diagnosis__share-text {
+  margin-bottom: 18px;
+}
+
+.diagnosis__share-btn {
+  width: 527px;
+  margin: 0 auto 20px;
+}
+.diagnosis__share-btn:before, .diagnosis__share-btn:after {
+  content: " ";
+  display: table;
+}
+.diagnosis__share-btn:after {
+  clear: both;
+}
+.diagnosis__share-btn li {
+  float: left;
+  margin-left: 7px;
+}
+.diagnosis__share-btn li:first-child {
+  margin-left: 0;
+}
+
+.diagnosis__entry {
+  margin-bottom: 40px;
+  text-align: center;
+}
+.diagnosis__entry .caution {
+  margin-top: 36px;
+  color: #000;
+  font-size: 86%;
+  font-weight: bold;
+}
+.mode-share .diagnosis__entry {
+  display: none;
+}
+
+.diagnosis__challenge {
+  display: none;
+  margin-bottom: 30px;
+}
+.mode-share .diagnosis__challenge {
+  display: block;
+}
+
+.modal__content--download {
+  width: 640px;
+  height: 292px;
+  margin: -146px 0 0 -320px;
+  padding: 0;
+  background: url(../img/bg_body.png) repeat;
+}
+
+.download__text {
+  margin: 96px auto 36px;
+  color: #333;
+  font-size: 115%;
+  text-align: center;
+}
+
+.download__btn a {
+  margin: 0 auto;
+}
+
+.download__close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.error {
+  padding: 195px 0 138px;
+  text-align: center;
+}
+
+.error__text {
+  margin-bottom: 24px;
+  color: #009999;
+  font-size: 172%;
+  font-weight: bold;
+}
+
+.error__description {
+  margin-bottom: 50px;
+  color: #333;
+  font-size: 129%;
+}
+
+.btn-about--error {
+  margin-bottom: 25px;
+}
+
+.error-system {
+  padding: 73px 0 40px;
+  text-align: center;
+}
+.error-system .btn {
+  margin-bottom: 10px;
+}
+
+.error-system__title {
+  margin-bottom: 30px;
+}
+
+.error-system__text {
+  margin-bottom: 25px;
+  color: #009999;
+  font-size: 165%;
+  font-weight: bold;
+}
+
+.error-system__description {
+  margin-bottom: 30px;
+  font-size: 115%;
+}
