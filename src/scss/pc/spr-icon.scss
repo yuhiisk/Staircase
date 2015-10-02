@@ -1,0 +1,92 @@
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+$logo-contest-name: 'logo_contest';
+$logo-contest-x: 0px;
+$logo-contest-y: 0px;
+$logo-contest-offset-x: 0px;
+$logo-contest-offset-y: 0px;
+$logo-contest-width: 166px;
+$logo-contest-height: 43px;
+$logo-contest-total-width: 341px;
+$logo-contest-total-height: 43px;
+$logo-contest-image: '../img/spr-icon.png';
+$logo-contest: (0px, 0px, 0px, 0px, 166px, 43px, 341px, 43px, '../img/spr-icon.png', 'logo_contest', );
+$logo-yahoo-name: 'logo_yahoo';
+$logo-yahoo-x: 168px;
+$logo-yahoo-y: 0px;
+$logo-yahoo-offset-x: -168px;
+$logo-yahoo-offset-y: 0px;
+$logo-yahoo-width: 173px;
+$logo-yahoo-height: 29px;
+$logo-yahoo-total-width: 341px;
+$logo-yahoo-total-height: 43px;
+$logo-yahoo-image: '../img/spr-icon.png';
+$logo-yahoo: (168px, 0px, -168px, 0px, 173px, 29px, 341px, 43px, '../img/spr-icon.png', 'logo_yahoo', );
+$spritesheet-width: 341px;
+$spritesheet-height: 43px;
+$spritesheet-image: '../img/spr-icon.png';
+$spritesheet-sprites: ($logo-contest, $logo-yahoo, );
+$spritesheet: (341px, 43px, '../img/spr-icon.png', $spritesheet-sprites, );
+
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+*/
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 5);
+}
+
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 6);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 3);
+  $sprite-offset-y: nth($sprite, 4);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image($sprite) {
+  $sprite-image: nth($sprite, 9);
+  background-image: url(#{$sprite-image});
+}
+
+@mixin sprite($sprite) {
+  @include sprite-image($sprite);
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+@mixin sprites($sprites) {
+  @each $sprite in $sprites {
+    $sprite-name: nth($sprite, 10);
+    .#{$sprite-name} {
+      @include sprite($sprite);
+    }
+  }
+}

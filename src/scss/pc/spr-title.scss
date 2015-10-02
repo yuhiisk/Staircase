@@ -1,0 +1,103 @@
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+$ttl-adjust-name: 'ttl_adjust';
+$ttl-adjust-x: 0px;
+$ttl-adjust-y: 25px;
+$ttl-adjust-offset-x: 0px;
+$ttl-adjust-offset-y: -25px;
+$ttl-adjust-width: 297px;
+$ttl-adjust-height: 23px;
+$ttl-adjust-total-width: 509px;
+$ttl-adjust-total-height: 73px;
+$ttl-adjust-image: '../img/spr-title.png';
+$ttl-adjust: (0px, 25px, 0px, -25px, 297px, 23px, 509px, 73px, '../img/spr-title.png', 'ttl_adjust', );
+$ttl-camera-name: 'ttl_camera';
+$ttl-camera-x: 0px;
+$ttl-camera-y: 0px;
+$ttl-camera-offset-x: 0px;
+$ttl-camera-offset-y: 0px;
+$ttl-camera-width: 509px;
+$ttl-camera-height: 23px;
+$ttl-camera-total-width: 509px;
+$ttl-camera-total-height: 73px;
+$ttl-camera-image: '../img/spr-title.png';
+$ttl-camera: (0px, 0px, 0px, 0px, 509px, 23px, 509px, 73px, '../img/spr-title.png', 'ttl_camera', );
+$ttl-confirm-name: 'ttl_confirm';
+$ttl-confirm-x: 0px;
+$ttl-confirm-y: 50px;
+$ttl-confirm-offset-x: 0px;
+$ttl-confirm-offset-y: -50px;
+$ttl-confirm-width: 274px;
+$ttl-confirm-height: 23px;
+$ttl-confirm-total-width: 509px;
+$ttl-confirm-total-height: 73px;
+$ttl-confirm-image: '../img/spr-title.png';
+$ttl-confirm: (0px, 50px, 0px, -50px, 274px, 23px, 509px, 73px, '../img/spr-title.png', 'ttl_confirm', );
+$spritesheet-width: 509px;
+$spritesheet-height: 73px;
+$spritesheet-image: '../img/spr-title.png';
+$spritesheet-sprites: ($ttl-adjust, $ttl-camera, $ttl-confirm, );
+$spritesheet: (509px, 73px, '../img/spr-title.png', $spritesheet-sprites, );
+
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+*/
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 5);
+}
+
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 6);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 3);
+  $sprite-offset-y: nth($sprite, 4);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image($sprite) {
+  $sprite-image: nth($sprite, 9);
+  background-image: url(#{$sprite-image});
+}
+
+@mixin sprite($sprite) {
+  @include sprite-image($sprite);
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+@mixin sprites($sprites) {
+  @each $sprite in $sprites {
+    $sprite-name: nth($sprite, 10);
+    .#{$sprite-name} {
+      @include sprite($sprite);
+    }
+  }
+}

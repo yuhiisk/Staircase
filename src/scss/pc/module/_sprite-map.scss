@@ -1,0 +1,130 @@
+// ==========================================================================
+// sprite-map
+// ==========================================================================
+
+// @import "star";
+//
+%button {
+    @include sprite-icon;
+}
+
+.btn__item--upload {
+    @extend %button;
+    @include sprite($btn_upload);
+}
+.btn__item--camera {
+    @extend %button;
+    @include sprite($btn_camera);
+}
+.btn__item--about {
+    @extend %button;
+    @include sprite($btn_about);
+}
+.btn__item--capture {
+    @extend %button;
+    @include sprite($btn_capture);
+}
+.btn__item--retake {
+    @extend %button;
+    @include sprite($btn_retake);
+}
+.btn__item--reselect {
+    @extend %button;
+    @include sprite($btn_reselect);
+}
+.btn__item--post {
+    @extend %button;
+    @include sprite($btn_diagnosis);
+}
+.btn__item--up {
+    @extend %button;
+    @include sprite($btn_up);
+}
+.btn__item--down {
+    @extend %button;
+    @include sprite($btn_down);
+}
+.btn__item--left {
+    @extend %button;
+    @include sprite($btn_left);
+}
+.btn__item--right {
+    @extend %button;
+    @include sprite($btn_right);
+}
+.btn__item--zoomin {
+    @extend %button;
+    @include sprite($btn_zoomin);
+}
+.btn__item--zoomout {
+    @extend %button;
+    @include sprite($btn_zoomout);
+}
+.btn__item--entry {
+    @extend %button;
+    @include sprite($btn_entry);
+}
+.btn__item--retry {
+    @extend %button;
+    @include sprite($btn_retry);
+}
+.btn__item--challenge {
+    @extend %button;
+    @include sprite($btn_challenge);
+}
+.btn__item--download {
+    @extend %button;
+    @include sprite($btn_download);
+}
+.btn__item--close {
+    @extend %button;
+    @include sprite($btn_close);
+}
+.btn__item--facebook {
+    @extend %button;
+    @include sprite($btn_facebook);
+}
+.btn__item--twitter {
+    @extend %button;
+    @include sprite($btn_twitter);
+}
+.btn__item--error {
+    @extend %button;
+    @include sprite($btn_error);
+}
+.btn__item--apply {
+    @extend %button;
+    @include sprite($btn_apply);
+}
+.btn__item--top {
+    @extend %button;
+    @include sprite($btn_top);
+}
+
+
+%icon {
+    @include sprite-icon-inline;
+}
+$sprite-number: $n0, $n1, $n2, $n3, $n4, $n5, $n6, $n7, $n8, $n9;
+@for $i from 1 through 10 {
+    .icon-n#{$i - 1} {
+        @extend %icon;
+        @include sprite(nth($sprite-number, $i));
+    }
+}
+.icon-page-logo {
+    @extend %icon;
+    @include sprite($logo_contest);
+}
+
+
+%circle {
+    @include sprite-icon-inline;
+}
+$sprite-circle: $circle_1, $circle_2, $circle_3, $circle_4, $circle_5, $circle_6, $circle_7, $circle_8, $circle_9, $circle_10, $circle_11, $circle_12, $circle_13, $circle_14, $circle_15, $circle_16, $circle_17, $circle_18, $circle_19, $circle_20, $circle_21, $circle_22, $circle_23, $circle_24, $circle_25, $circle_26, $circle_27, $circle_28, $circle_29, $circle_30, $circle_31, $circle_32, $circle_33, $circle_34, $circle_35, $circle_36;
+@for $i from 1 through 36 {
+    .loading-n#{$i} {
+        @extend %circle;
+        @include sprite(nth($sprite-circle, $i));
+    }
+}

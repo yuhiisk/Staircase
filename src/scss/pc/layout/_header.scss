@@ -1,0 +1,27 @@
+// ==========================================================================
+// Header
+// ==========================================================================
+.global-header {
+    @include clearfix;
+    padding: 30px 35px 25px;
+}
+
+.global-header__logo {
+    float: left;
+
+    a {
+        @include sprite-icon;
+        @include sprite($logo_yahoo);
+    }
+}
+
+.global-header__sns {
+    float: right;
+}
+.global-header__sns--fb {
+    float: left;
+    margin-right: 10px;
+}
+.global-header__sns--tw {
+    float: left;
+}

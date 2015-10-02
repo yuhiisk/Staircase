@@ -1,0 +1,466 @@
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+$circle-1-name: 'circle_1';
+$circle-1-x: 112px;
+$circle-1-y: 0px;
+$circle-1-offset-x: -112px;
+$circle-1-offset-y: 0px;
+$circle-1-width: 110px;
+$circle-1-height: 87px;
+$circle-1-total-width: 670px;
+$circle-1-total-height: 532px;
+$circle-1-image: '../img/spr-loading.png';
+$circle-1: (112px, 0px, -112px, 0px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_1', );
+$circle-10-name: 'circle_10';
+$circle-10-x: 224px;
+$circle-10-y: 356px;
+$circle-10-offset-x: -224px;
+$circle-10-offset-y: -356px;
+$circle-10-width: 110px;
+$circle-10-height: 87px;
+$circle-10-total-width: 670px;
+$circle-10-total-height: 532px;
+$circle-10-image: '../img/spr-loading.png';
+$circle-10: (224px, 356px, -224px, -356px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_10', );
+$circle-11-name: 'circle_11';
+$circle-11-x: 0px;
+$circle-11-y: 89px;
+$circle-11-offset-x: 0px;
+$circle-11-offset-y: -89px;
+$circle-11-width: 110px;
+$circle-11-height: 87px;
+$circle-11-total-width: 670px;
+$circle-11-total-height: 532px;
+$circle-11-image: '../img/spr-loading.png';
+$circle-11: (0px, 89px, 0px, -89px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_11', );
+$circle-12-name: 'circle_12';
+$circle-12-x: 112px;
+$circle-12-y: 89px;
+$circle-12-offset-x: -112px;
+$circle-12-offset-y: -89px;
+$circle-12-width: 110px;
+$circle-12-height: 87px;
+$circle-12-total-width: 670px;
+$circle-12-total-height: 532px;
+$circle-12-image: '../img/spr-loading.png';
+$circle-12: (112px, 89px, -112px, -89px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_12', );
+$circle-13-name: 'circle_13';
+$circle-13-x: 224px;
+$circle-13-y: 0px;
+$circle-13-offset-x: -224px;
+$circle-13-offset-y: 0px;
+$circle-13-width: 110px;
+$circle-13-height: 87px;
+$circle-13-total-width: 670px;
+$circle-13-total-height: 532px;
+$circle-13-image: '../img/spr-loading.png';
+$circle-13: (224px, 0px, -224px, 0px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_13', );
+$circle-14-name: 'circle_14';
+$circle-14-x: 224px;
+$circle-14-y: 89px;
+$circle-14-offset-x: -224px;
+$circle-14-offset-y: -89px;
+$circle-14-width: 110px;
+$circle-14-height: 87px;
+$circle-14-total-width: 670px;
+$circle-14-total-height: 532px;
+$circle-14-image: '../img/spr-loading.png';
+$circle-14: (224px, 89px, -224px, -89px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_14', );
+$circle-15-name: 'circle_15';
+$circle-15-x: 0px;
+$circle-15-y: 178px;
+$circle-15-offset-x: 0px;
+$circle-15-offset-y: -178px;
+$circle-15-width: 110px;
+$circle-15-height: 87px;
+$circle-15-total-width: 670px;
+$circle-15-total-height: 532px;
+$circle-15-image: '../img/spr-loading.png';
+$circle-15: (0px, 178px, 0px, -178px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_15', );
+$circle-16-name: 'circle_16';
+$circle-16-x: 112px;
+$circle-16-y: 178px;
+$circle-16-offset-x: -112px;
+$circle-16-offset-y: -178px;
+$circle-16-width: 110px;
+$circle-16-height: 87px;
+$circle-16-total-width: 670px;
+$circle-16-total-height: 532px;
+$circle-16-image: '../img/spr-loading.png';
+$circle-16: (112px, 178px, -112px, -178px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_16', );
+$circle-17-name: 'circle_17';
+$circle-17-x: 224px;
+$circle-17-y: 178px;
+$circle-17-offset-x: -224px;
+$circle-17-offset-y: -178px;
+$circle-17-width: 110px;
+$circle-17-height: 87px;
+$circle-17-total-width: 670px;
+$circle-17-total-height: 532px;
+$circle-17-image: '../img/spr-loading.png';
+$circle-17: (224px, 178px, -224px, -178px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_17', );
+$circle-18-name: 'circle_18';
+$circle-18-x: 336px;
+$circle-18-y: 0px;
+$circle-18-offset-x: -336px;
+$circle-18-offset-y: 0px;
+$circle-18-width: 110px;
+$circle-18-height: 87px;
+$circle-18-total-width: 670px;
+$circle-18-total-height: 532px;
+$circle-18-image: '../img/spr-loading.png';
+$circle-18: (336px, 0px, -336px, 0px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_18', );
+$circle-19-name: 'circle_19';
+$circle-19-x: 336px;
+$circle-19-y: 89px;
+$circle-19-offset-x: -336px;
+$circle-19-offset-y: -89px;
+$circle-19-width: 110px;
+$circle-19-height: 87px;
+$circle-19-total-width: 670px;
+$circle-19-total-height: 532px;
+$circle-19-image: '../img/spr-loading.png';
+$circle-19: (336px, 89px, -336px, -89px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_19', );
+$circle-2-name: 'circle_2';
+$circle-2-x: 336px;
+$circle-2-y: 178px;
+$circle-2-offset-x: -336px;
+$circle-2-offset-y: -178px;
+$circle-2-width: 110px;
+$circle-2-height: 87px;
+$circle-2-total-width: 670px;
+$circle-2-total-height: 532px;
+$circle-2-image: '../img/spr-loading.png';
+$circle-2: (336px, 178px, -336px, -178px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_2', );
+$circle-20-name: 'circle_20';
+$circle-20-x: 0px;
+$circle-20-y: 267px;
+$circle-20-offset-x: 0px;
+$circle-20-offset-y: -267px;
+$circle-20-width: 110px;
+$circle-20-height: 87px;
+$circle-20-total-width: 670px;
+$circle-20-total-height: 532px;
+$circle-20-image: '../img/spr-loading.png';
+$circle-20: (0px, 267px, 0px, -267px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_20', );
+$circle-21-name: 'circle_21';
+$circle-21-x: 112px;
+$circle-21-y: 267px;
+$circle-21-offset-x: -112px;
+$circle-21-offset-y: -267px;
+$circle-21-width: 110px;
+$circle-21-height: 87px;
+$circle-21-total-width: 670px;
+$circle-21-total-height: 532px;
+$circle-21-image: '../img/spr-loading.png';
+$circle-21: (112px, 267px, -112px, -267px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_21', );
+$circle-22-name: 'circle_22';
+$circle-22-x: 224px;
+$circle-22-y: 267px;
+$circle-22-offset-x: -224px;
+$circle-22-offset-y: -267px;
+$circle-22-width: 110px;
+$circle-22-height: 87px;
+$circle-22-total-width: 670px;
+$circle-22-total-height: 532px;
+$circle-22-image: '../img/spr-loading.png';
+$circle-22: (224px, 267px, -224px, -267px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_22', );
+$circle-23-name: 'circle_23';
+$circle-23-x: 336px;
+$circle-23-y: 267px;
+$circle-23-offset-x: -336px;
+$circle-23-offset-y: -267px;
+$circle-23-width: 110px;
+$circle-23-height: 87px;
+$circle-23-total-width: 670px;
+$circle-23-total-height: 532px;
+$circle-23-image: '../img/spr-loading.png';
+$circle-23: (336px, 267px, -336px, -267px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_23', );
+$circle-24-name: 'circle_24';
+$circle-24-x: 0px;
+$circle-24-y: 356px;
+$circle-24-offset-x: 0px;
+$circle-24-offset-y: -356px;
+$circle-24-width: 110px;
+$circle-24-height: 87px;
+$circle-24-total-width: 670px;
+$circle-24-total-height: 532px;
+$circle-24-image: '../img/spr-loading.png';
+$circle-24: (0px, 356px, 0px, -356px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_24', );
+$circle-25-name: 'circle_25';
+$circle-25-x: 112px;
+$circle-25-y: 356px;
+$circle-25-offset-x: -112px;
+$circle-25-offset-y: -356px;
+$circle-25-width: 110px;
+$circle-25-height: 87px;
+$circle-25-total-width: 670px;
+$circle-25-total-height: 532px;
+$circle-25-image: '../img/spr-loading.png';
+$circle-25: (112px, 356px, -112px, -356px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_25', );
+$circle-26-name: 'circle_26';
+$circle-26-x: 0px;
+$circle-26-y: 0px;
+$circle-26-offset-x: 0px;
+$circle-26-offset-y: 0px;
+$circle-26-width: 110px;
+$circle-26-height: 87px;
+$circle-26-total-width: 670px;
+$circle-26-total-height: 532px;
+$circle-26-image: '../img/spr-loading.png';
+$circle-26: (0px, 0px, 0px, 0px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_26', );
+$circle-27-name: 'circle_27';
+$circle-27-x: 336px;
+$circle-27-y: 356px;
+$circle-27-offset-x: -336px;
+$circle-27-offset-y: -356px;
+$circle-27-width: 110px;
+$circle-27-height: 87px;
+$circle-27-total-width: 670px;
+$circle-27-total-height: 532px;
+$circle-27-image: '../img/spr-loading.png';
+$circle-27: (336px, 356px, -336px, -356px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_27', );
+$circle-28-name: 'circle_28';
+$circle-28-x: 448px;
+$circle-28-y: 0px;
+$circle-28-offset-x: -448px;
+$circle-28-offset-y: 0px;
+$circle-28-width: 110px;
+$circle-28-height: 87px;
+$circle-28-total-width: 670px;
+$circle-28-total-height: 532px;
+$circle-28-image: '../img/spr-loading.png';
+$circle-28: (448px, 0px, -448px, 0px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_28', );
+$circle-29-name: 'circle_29';
+$circle-29-x: 448px;
+$circle-29-y: 89px;
+$circle-29-offset-x: -448px;
+$circle-29-offset-y: -89px;
+$circle-29-width: 110px;
+$circle-29-height: 87px;
+$circle-29-total-width: 670px;
+$circle-29-total-height: 532px;
+$circle-29-image: '../img/spr-loading.png';
+$circle-29: (448px, 89px, -448px, -89px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_29', );
+$circle-3-name: 'circle_3';
+$circle-3-x: 448px;
+$circle-3-y: 178px;
+$circle-3-offset-x: -448px;
+$circle-3-offset-y: -178px;
+$circle-3-width: 110px;
+$circle-3-height: 87px;
+$circle-3-total-width: 670px;
+$circle-3-total-height: 532px;
+$circle-3-image: '../img/spr-loading.png';
+$circle-3: (448px, 178px, -448px, -178px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_3', );
+$circle-30-name: 'circle_30';
+$circle-30-x: 448px;
+$circle-30-y: 267px;
+$circle-30-offset-x: -448px;
+$circle-30-offset-y: -267px;
+$circle-30-width: 110px;
+$circle-30-height: 87px;
+$circle-30-total-width: 670px;
+$circle-30-total-height: 532px;
+$circle-30-image: '../img/spr-loading.png';
+$circle-30: (448px, 267px, -448px, -267px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_30', );
+$circle-31-name: 'circle_31';
+$circle-31-x: 448px;
+$circle-31-y: 356px;
+$circle-31-offset-x: -448px;
+$circle-31-offset-y: -356px;
+$circle-31-width: 110px;
+$circle-31-height: 87px;
+$circle-31-total-width: 670px;
+$circle-31-total-height: 532px;
+$circle-31-image: '../img/spr-loading.png';
+$circle-31: (448px, 356px, -448px, -356px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_31', );
+$circle-32-name: 'circle_32';
+$circle-32-x: 0px;
+$circle-32-y: 445px;
+$circle-32-offset-x: 0px;
+$circle-32-offset-y: -445px;
+$circle-32-width: 110px;
+$circle-32-height: 87px;
+$circle-32-total-width: 670px;
+$circle-32-total-height: 532px;
+$circle-32-image: '../img/spr-loading.png';
+$circle-32: (0px, 445px, 0px, -445px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_32', );
+$circle-33-name: 'circle_33';
+$circle-33-x: 112px;
+$circle-33-y: 445px;
+$circle-33-offset-x: -112px;
+$circle-33-offset-y: -445px;
+$circle-33-width: 110px;
+$circle-33-height: 87px;
+$circle-33-total-width: 670px;
+$circle-33-total-height: 532px;
+$circle-33-image: '../img/spr-loading.png';
+$circle-33: (112px, 445px, -112px, -445px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_33', );
+$circle-34-name: 'circle_34';
+$circle-34-x: 224px;
+$circle-34-y: 445px;
+$circle-34-offset-x: -224px;
+$circle-34-offset-y: -445px;
+$circle-34-width: 110px;
+$circle-34-height: 87px;
+$circle-34-total-width: 670px;
+$circle-34-total-height: 532px;
+$circle-34-image: '../img/spr-loading.png';
+$circle-34: (224px, 445px, -224px, -445px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_34', );
+$circle-35-name: 'circle_35';
+$circle-35-x: 336px;
+$circle-35-y: 445px;
+$circle-35-offset-x: -336px;
+$circle-35-offset-y: -445px;
+$circle-35-width: 110px;
+$circle-35-height: 87px;
+$circle-35-total-width: 670px;
+$circle-35-total-height: 532px;
+$circle-35-image: '../img/spr-loading.png';
+$circle-35: (336px, 445px, -336px, -445px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_35', );
+$circle-36-name: 'circle_36';
+$circle-36-x: 448px;
+$circle-36-y: 445px;
+$circle-36-offset-x: -448px;
+$circle-36-offset-y: -445px;
+$circle-36-width: 110px;
+$circle-36-height: 87px;
+$circle-36-total-width: 670px;
+$circle-36-total-height: 532px;
+$circle-36-image: '../img/spr-loading.png';
+$circle-36: (448px, 445px, -448px, -445px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_36', );
+$circle-4-name: 'circle_4';
+$circle-4-x: 560px;
+$circle-4-y: 0px;
+$circle-4-offset-x: -560px;
+$circle-4-offset-y: 0px;
+$circle-4-width: 110px;
+$circle-4-height: 87px;
+$circle-4-total-width: 670px;
+$circle-4-total-height: 532px;
+$circle-4-image: '../img/spr-loading.png';
+$circle-4: (560px, 0px, -560px, 0px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_4', );
+$circle-5-name: 'circle_5';
+$circle-5-x: 560px;
+$circle-5-y: 89px;
+$circle-5-offset-x: -560px;
+$circle-5-offset-y: -89px;
+$circle-5-width: 110px;
+$circle-5-height: 87px;
+$circle-5-total-width: 670px;
+$circle-5-total-height: 532px;
+$circle-5-image: '../img/spr-loading.png';
+$circle-5: (560px, 89px, -560px, -89px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_5', );
+$circle-6-name: 'circle_6';
+$circle-6-x: 560px;
+$circle-6-y: 178px;
+$circle-6-offset-x: -560px;
+$circle-6-offset-y: -178px;
+$circle-6-width: 110px;
+$circle-6-height: 87px;
+$circle-6-total-width: 670px;
+$circle-6-total-height: 532px;
+$circle-6-image: '../img/spr-loading.png';
+$circle-6: (560px, 178px, -560px, -178px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_6', );
+$circle-7-name: 'circle_7';
+$circle-7-x: 560px;
+$circle-7-y: 267px;
+$circle-7-offset-x: -560px;
+$circle-7-offset-y: -267px;
+$circle-7-width: 110px;
+$circle-7-height: 87px;
+$circle-7-total-width: 670px;
+$circle-7-total-height: 532px;
+$circle-7-image: '../img/spr-loading.png';
+$circle-7: (560px, 267px, -560px, -267px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_7', );
+$circle-8-name: 'circle_8';
+$circle-8-x: 560px;
+$circle-8-y: 356px;
+$circle-8-offset-x: -560px;
+$circle-8-offset-y: -356px;
+$circle-8-width: 110px;
+$circle-8-height: 87px;
+$circle-8-total-width: 670px;
+$circle-8-total-height: 532px;
+$circle-8-image: '../img/spr-loading.png';
+$circle-8: (560px, 356px, -560px, -356px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_8', );
+$circle-9-name: 'circle_9';
+$circle-9-x: 560px;
+$circle-9-y: 445px;
+$circle-9-offset-x: -560px;
+$circle-9-offset-y: -445px;
+$circle-9-width: 110px;
+$circle-9-height: 87px;
+$circle-9-total-width: 670px;
+$circle-9-total-height: 532px;
+$circle-9-image: '../img/spr-loading.png';
+$circle-9: (560px, 445px, -560px, -445px, 110px, 87px, 670px, 532px, '../img/spr-loading.png', 'circle_9', );
+$spritesheet-width: 670px;
+$spritesheet-height: 532px;
+$spritesheet-image: '../img/spr-loading.png';
+$spritesheet-sprites: ($circle-1, $circle-10, $circle-11, $circle-12, $circle-13, $circle-14, $circle-15, $circle-16, $circle-17, $circle-18, $circle-19, $circle-2, $circle-20, $circle-21, $circle-22, $circle-23, $circle-24, $circle-25, $circle-26, $circle-27, $circle-28, $circle-29, $circle-3, $circle-30, $circle-31, $circle-32, $circle-33, $circle-34, $circle-35, $circle-36, $circle-4, $circle-5, $circle-6, $circle-7, $circle-8, $circle-9, );
+$spritesheet: (670px, 532px, '../img/spr-loading.png', $spritesheet-sprites, );
+
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+*/
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 5);
+}
+
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 6);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 3);
+  $sprite-offset-y: nth($sprite, 4);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image($sprite) {
+  $sprite-image: nth($sprite, 9);
+  background-image: url(#{$sprite-image});
+}
+
+@mixin sprite($sprite) {
+  @include sprite-image($sprite);
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+@mixin sprites($sprites) {
+  @each $sprite in $sprites {
+    $sprite-name: nth($sprite, 10);
+    .#{$sprite-name} {
+      @include sprite($sprite);
+    }
+  }
+}

@@ -1,0 +1,24 @@
+// ==========================================================================
+// Base
+// ==========================================================================
+
+body {
+    min-width: 1280px;
+    background: url(../img/bg_body.png) repeat;
+}
+
+.wrapper {}
+
+.contents {}
+
+.sample {
+    @include clearfix;
+    position: relative;
+    width: 1280px;
+    margin: auto;
+
+    .scene {
+        float: left;
+        margin-bottom: 200px;
+    }
+}

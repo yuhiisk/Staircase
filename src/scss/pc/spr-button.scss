@@ -1,0 +1,323 @@
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+$btn-about-name: 'btn_about';
+$btn-about-x: 282px;
+$btn-about-y: 452px;
+$btn-about-offset-x: -282px;
+$btn-about-offset-y: -452px;
+$btn-about-width: 280px;
+$btn-about-height: 48px;
+$btn-about-total-width: 736px;
+$btn-about-total-height: 563px;
+$btn-about-image: '../img/spr-button.png';
+$btn-about: (282px, 452px, -282px, -452px, 280px, 48px, 736px, 563px, '../img/spr-button.png', 'btn_about', );
+$btn-apply-name: 'btn_apply';
+$btn-apply-x: 0px;
+$btn-apply-y: 204px;
+$btn-apply-offset-x: 0px;
+$btn-apply-offset-y: -204px;
+$btn-apply-width: 280px;
+$btn-apply-height: 60px;
+$btn-apply-total-width: 736px;
+$btn-apply-total-height: 563px;
+$btn-apply-image: '../img/spr-button.png';
+$btn-apply: (0px, 204px, 0px, -204px, 280px, 60px, 736px, 563px, '../img/spr-button.png', 'btn_apply', );
+$btn-camera-name: 'btn_camera';
+$btn-camera-x: 470px;
+$btn-camera-y: 0px;
+$btn-camera-offset-x: -470px;
+$btn-camera-offset-y: 0px;
+$btn-camera-width: 266px;
+$btn-camera-height: 60px;
+$btn-camera-total-width: 736px;
+$btn-camera-total-height: 563px;
+$btn-camera-image: '../img/spr-button.png';
+$btn-camera: (470px, 0px, -470px, 0px, 266px, 60px, 736px, 563px, '../img/spr-button.png', 'btn_camera', );
+$btn-capture-name: 'btn_capture';
+$btn-capture-x: 470px;
+$btn-capture-y: 244px;
+$btn-capture-offset-x: -470px;
+$btn-capture-offset-y: -244px;
+$btn-capture-width: 230px;
+$btn-capture-height: 60px;
+$btn-capture-total-width: 736px;
+$btn-capture-total-height: 563px;
+$btn-capture-image: '../img/spr-button.png';
+$btn-capture: (470px, 244px, -470px, -244px, 230px, 60px, 736px, 563px, '../img/spr-button.png', 'btn_capture', );
+$btn-challenge-name: 'btn_challenge';
+$btn-challenge-x: 0px;
+$btn-challenge-y: 0px;
+$btn-challenge-offset-x: 0px;
+$btn-challenge-offset-y: 0px;
+$btn-challenge-width: 468px;
+$btn-challenge-height: 75px;
+$btn-challenge-total-width: 736px;
+$btn-challenge-total-height: 563px;
+$btn-challenge-image: '../img/spr-button.png';
+$btn-challenge: (0px, 0px, 0px, 0px, 468px, 75px, 736px, 563px, '../img/spr-button.png', 'btn_challenge', );
+$btn-close-name: 'btn_close';
+$btn-close-x: 392px;
+$btn-close-y: 204px;
+$btn-close-offset-x: -392px;
+$btn-close-offset-y: -204px;
+$btn-close-width: 40px;
+$btn-close-height: 52px;
+$btn-close-total-width: 736px;
+$btn-close-total-height: 563px;
+$btn-close-image: '../img/spr-button.png';
+$btn-close: (392px, 204px, -392px, -204px, 40px, 52px, 736px, 563px, '../img/spr-button.png', 'btn_close', );
+$btn-diagnosis-name: 'btn_diagnosis';
+$btn-diagnosis-x: 470px;
+$btn-diagnosis-y: 182px;
+$btn-diagnosis-offset-x: -470px;
+$btn-diagnosis-offset-y: -182px;
+$btn-diagnosis-width: 230px;
+$btn-diagnosis-height: 60px;
+$btn-diagnosis-total-width: 736px;
+$btn-diagnosis-total-height: 563px;
+$btn-diagnosis-image: '../img/spr-button.png';
+$btn-diagnosis: (470px, 182px, -470px, -182px, 230px, 60px, 736px, 563px, '../img/spr-button.png', 'btn_diagnosis', );
+$btn-down-name: 'btn_down';
+$btn-down-x: 126px;
+$btn-down-y: 502px;
+$btn-down-offset-x: -126px;
+$btn-down-offset-y: -502px;
+$btn-down-width: 60px;
+$btn-down-height: 61px;
+$btn-down-total-width: 736px;
+$btn-down-total-height: 563px;
+$btn-down-image: '../img/spr-button.png';
+$btn-down: (126px, 502px, -126px, -502px, 60px, 61px, 736px, 563px, '../img/spr-button.png', 'btn_down', );
+$btn-download-name: 'btn_download';
+$btn-download-x: 0px;
+$btn-download-y: 328px;
+$btn-download-offset-x: 0px;
+$btn-download-offset-y: -328px;
+$btn-download-width: 266px;
+$btn-download-height: 60px;
+$btn-download-total-width: 736px;
+$btn-download-total-height: 563px;
+$btn-download-image: '../img/spr-button.png';
+$btn-download: (0px, 328px, 0px, -328px, 266px, 60px, 736px, 563px, '../img/spr-button.png', 'btn_download', );
+$btn-entry-name: 'btn_entry';
+$btn-entry-x: 0px;
+$btn-entry-y: 77px;
+$btn-entry-offset-x: 0px;
+$btn-entry-offset-y: -77px;
+$btn-entry-width: 468px;
+$btn-entry-height: 75px;
+$btn-entry-total-width: 736px;
+$btn-entry-total-height: 563px;
+$btn-entry-image: '../img/spr-button.png';
+$btn-entry: (0px, 77px, 0px, -77px, 468px, 75px, 736px, 563px, '../img/spr-button.png', 'btn_entry', );
+$btn-error-name: 'btn_error';
+$btn-error-x: 0px;
+$btn-error-y: 266px;
+$btn-error-offset-x: 0px;
+$btn-error-offset-y: -266px;
+$btn-error-width: 267px;
+$btn-error-height: 60px;
+$btn-error-total-width: 736px;
+$btn-error-total-height: 563px;
+$btn-error-image: '../img/spr-button.png';
+$btn-error: (0px, 266px, 0px, -266px, 267px, 60px, 736px, 563px, '../img/spr-button.png', 'btn_error', );
+$btn-facebook-name: 'btn_facebook';
+$btn-facebook-x: 470px;
+$btn-facebook-y: 122px;
+$btn-facebook-offset-x: -470px;
+$btn-facebook-offset-y: -122px;
+$btn-facebook-width: 260px;
+$btn-facebook-height: 58px;
+$btn-facebook-total-width: 736px;
+$btn-facebook-total-height: 563px;
+$btn-facebook-image: '../img/spr-button.png';
+$btn-facebook: (470px, 122px, -470px, -122px, 260px, 58px, 736px, 563px, '../img/spr-button.png', 'btn_facebook', );
+$btn-left-name: 'btn_left';
+$btn-left-x: 63px;
+$btn-left-y: 502px;
+$btn-left-offset-x: -63px;
+$btn-left-offset-y: -502px;
+$btn-left-width: 61px;
+$btn-left-height: 61px;
+$btn-left-total-width: 736px;
+$btn-left-total-height: 563px;
+$btn-left-image: '../img/spr-button.png';
+$btn-left: (63px, 502px, -63px, -502px, 61px, 61px, 736px, 563px, '../img/spr-button.png', 'btn_left', );
+$btn-reselect-name: 'btn_reselect';
+$btn-reselect-x: 470px;
+$btn-reselect-y: 306px;
+$btn-reselect-offset-x: -470px;
+$btn-reselect-offset-y: -306px;
+$btn-reselect-width: 230px;
+$btn-reselect-height: 60px;
+$btn-reselect-total-width: 736px;
+$btn-reselect-total-height: 563px;
+$btn-reselect-image: '../img/spr-button.png';
+$btn-reselect: (470px, 306px, -470px, -306px, 230px, 60px, 736px, 563px, '../img/spr-button.png', 'btn_reselect', );
+$btn-retake-name: 'btn_retake';
+$btn-retake-x: 470px;
+$btn-retake-y: 368px;
+$btn-retake-offset-x: -470px;
+$btn-retake-offset-y: -368px;
+$btn-retake-width: 230px;
+$btn-retake-height: 60px;
+$btn-retake-total-width: 736px;
+$btn-retake-total-height: 563px;
+$btn-retake-image: '../img/spr-button.png';
+$btn-retake: (470px, 368px, -470px, -368px, 230px, 60px, 736px, 563px, '../img/spr-button.png', 'btn_retake', );
+$btn-retry-name: 'btn_retry';
+$btn-retry-x: 0px;
+$btn-retry-y: 154px;
+$btn-retry-offset-x: 0px;
+$btn-retry-offset-y: -154px;
+$btn-retry-width: 468px;
+$btn-retry-height: 48px;
+$btn-retry-total-width: 736px;
+$btn-retry-total-height: 563px;
+$btn-retry-image: '../img/spr-button.png';
+$btn-retry: (0px, 154px, 0px, -154px, 468px, 48px, 736px, 563px, '../img/spr-button.png', 'btn_retry', );
+$btn-right-name: 'btn_right';
+$btn-right-x: 0px;
+$btn-right-y: 502px;
+$btn-right-offset-x: 0px;
+$btn-right-offset-y: -502px;
+$btn-right-width: 61px;
+$btn-right-height: 61px;
+$btn-right-total-width: 736px;
+$btn-right-total-height: 563px;
+$btn-right-image: '../img/spr-button.png';
+$btn-right: (0px, 502px, 0px, -502px, 61px, 61px, 736px, 563px, '../img/spr-button.png', 'btn_right', );
+$btn-top-name: 'btn_top';
+$btn-top-x: 0px;
+$btn-top-y: 452px;
+$btn-top-offset-x: 0px;
+$btn-top-offset-y: -452px;
+$btn-top-width: 280px;
+$btn-top-height: 48px;
+$btn-top-total-width: 736px;
+$btn-top-total-height: 563px;
+$btn-top-image: '../img/spr-button.png';
+$btn-top: (0px, 452px, 0px, -452px, 280px, 48px, 736px, 563px, '../img/spr-button.png', 'btn_top', );
+$btn-twitter-name: 'btn_twitter';
+$btn-twitter-x: 470px;
+$btn-twitter-y: 62px;
+$btn-twitter-offset-x: -470px;
+$btn-twitter-offset-y: -62px;
+$btn-twitter-width: 260px;
+$btn-twitter-height: 58px;
+$btn-twitter-total-width: 736px;
+$btn-twitter-total-height: 563px;
+$btn-twitter-image: '../img/spr-button.png';
+$btn-twitter: (470px, 62px, -470px, -62px, 260px, 58px, 736px, 563px, '../img/spr-button.png', 'btn_twitter', );
+$btn-up-name: 'btn_up';
+$btn-up-x: 188px;
+$btn-up-y: 502px;
+$btn-up-offset-x: -188px;
+$btn-up-offset-y: -502px;
+$btn-up-width: 60px;
+$btn-up-height: 61px;
+$btn-up-total-width: 736px;
+$btn-up-total-height: 563px;
+$btn-up-image: '../img/spr-button.png';
+$btn-up: (188px, 502px, -188px, -502px, 60px, 61px, 736px, 563px, '../img/spr-button.png', 'btn_up', );
+$btn-upload-name: 'btn_upload';
+$btn-upload-x: 0px;
+$btn-upload-y: 390px;
+$btn-upload-offset-x: 0px;
+$btn-upload-offset-y: -390px;
+$btn-upload-width: 266px;
+$btn-upload-height: 60px;
+$btn-upload-total-width: 736px;
+$btn-upload-total-height: 563px;
+$btn-upload-image: '../img/spr-button.png';
+$btn-upload: (0px, 390px, 0px, -390px, 266px, 60px, 736px, 563px, '../img/spr-button.png', 'btn_upload', );
+$btn-zoomin-name: 'btn_zoomin';
+$btn-zoomin-x: 282px;
+$btn-zoomin-y: 204px;
+$btn-zoomin-offset-x: -282px;
+$btn-zoomin-offset-y: -204px;
+$btn-zoomin-width: 53px;
+$btn-zoomin-height: 53px;
+$btn-zoomin-total-width: 736px;
+$btn-zoomin-total-height: 563px;
+$btn-zoomin-image: '../img/spr-button.png';
+$btn-zoomin: (282px, 204px, -282px, -204px, 53px, 53px, 736px, 563px, '../img/spr-button.png', 'btn_zoomin', );
+$btn-zoomout-name: 'btn_zoomout';
+$btn-zoomout-x: 337px;
+$btn-zoomout-y: 204px;
+$btn-zoomout-offset-x: -337px;
+$btn-zoomout-offset-y: -204px;
+$btn-zoomout-width: 53px;
+$btn-zoomout-height: 53px;
+$btn-zoomout-total-width: 736px;
+$btn-zoomout-total-height: 563px;
+$btn-zoomout-image: '../img/spr-button.png';
+$btn-zoomout: (337px, 204px, -337px, -204px, 53px, 53px, 736px, 563px, '../img/spr-button.png', 'btn_zoomout', );
+$spritesheet-width: 736px;
+$spritesheet-height: 563px;
+$spritesheet-image: '../img/spr-button.png';
+$spritesheet-sprites: ($btn-about, $btn-apply, $btn-camera, $btn-capture, $btn-challenge, $btn-close, $btn-diagnosis, $btn-down, $btn-download, $btn-entry, $btn-error, $btn-facebook, $btn-left, $btn-reselect, $btn-retake, $btn-retry, $btn-right, $btn-top, $btn-twitter, $btn-up, $btn-upload, $btn-zoomin, $btn-zoomout, );
+$spritesheet: (736px, 563px, '../img/spr-button.png', $spritesheet-sprites, );
+
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+*/
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 5);
+}
+
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 6);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 3);
+  $sprite-offset-y: nth($sprite, 4);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image($sprite) {
+  $sprite-image: nth($sprite, 9);
+  background-image: url(#{$sprite-image});
+}
+
+@mixin sprite($sprite) {
+  @include sprite-image($sprite);
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+@mixin sprites($sprites) {
+  @each $sprite in $sprites {
+    $sprite-name: nth($sprite, 10);
+    .#{$sprite-name} {
+      @include sprite($sprite);
+    }
+  }
+}

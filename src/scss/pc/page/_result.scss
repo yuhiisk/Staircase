@@ -1,0 +1,244 @@
+// ==========================================================================
+//   result
+// ==========================================================================
+
+.wrapper--result {
+    background: url(../img/bg_body2.png);
+}
+
+.page-title--result {
+    margin: 0;
+}
+
+.diagnosis {
+    @include clearfix;
+    width: 884px;
+    margin: 0 auto 44px;
+    color: #333;
+}
+.diagnosis__block {
+    background-color: #fff;
+}
+.diagnosis__header {
+    @include clearfix;
+    margin-bottom: 11px;
+    padding: 35px 46px 31px 43px;
+
+    .page-title {
+        float: left;
+    }
+    .page-logo {
+        float: right;
+    }
+}
+
+.diagnosis__image {
+    position: relative;
+    overflow: hidden;
+    height: 236px;
+    margin-bottom: 9px;
+    box-shadow: 0 0 5px rgba(0,0,0,.15);
+}
+.diagnosis__image-processed {
+    overflow: hidden;
+    width: 0;
+    height: 236px;
+
+    img {
+        width: 886px;
+        height: auto;
+    }
+}
+.diagnosis__image-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.diagnosis__image-effect {
+    position: absolute;
+    top: 0;
+    left: -537px;
+    width: 542px;
+    height: 236px;
+    background: url(../img/img_effect.png) no-repeat;
+}
+
+.diagnosis__left {
+    float: left;
+    width: 668px;
+}
+.diagnosis__right {
+    float: right;
+    width: 206px;
+}
+
+.diagnosis__comment {
+    min-height: 362px;
+    padding: 28px 30px 38px 40px;
+}
+.diagnosis__comment-heading {
+    @include sprite-icon-inline;
+    @include sprite($h_result);
+    margin-bottom: 21px;
+    .opacity & {
+        @include opacity(0);
+    }
+}
+.diagnosis__comment-title {
+    margin: 0 auto 16px;
+    font-size: fz(27);
+    .opacity & {
+        @include opacity(0);
+    }
+}
+.diagnosis__comment-text {
+    font-size: fz(18);
+    font-weight: bold;
+    line-height: 2.14;
+    .opacity & {
+        @include opacity(0);
+    }
+}
+
+.diagnosis__score {
+    position: relative;
+    width: 127px;
+    height: 162px;
+    margin-bottom: 10px;
+    padding: 20px 37px 26px 42px;
+    text-align: center;
+}
+.diagnosis__score-graph {
+    position: absolute;
+    top: 53px;
+    left: 42px;
+    width: 127px;
+    height: 127px;
+    background: url(../img/bg_score.png) no-repeat center center;
+    .opacity & {
+        @include opacity(0);
+    }
+}
+.diagnosis__score-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.diagnosis__score-text {
+//    @include sprite-icon-inline;
+//     @include sprite($ttl_cute1);
+    margin-left: -27px;
+    margin-bottom: 15px;
+    font-size: fz(20);
+    .opacity & {
+        @include opacity(0);
+    }
+}
+.diagnosis__score-value {
+    margin-top: 36px;
+    text-align: center;
+}
+.diagnosis__score-number {
+    position: relative;
+    z-index: 10;
+    margin-right: 2px;
+    vertical-align: bottom;
+}
+.diagnosis__score-point {
+    position: relative;
+    z-index: 10;
+    @include sprite-icon-inline;
+    @include sprite($ttl_point);
+    vertical-align: bottom;
+}
+
+
+.diagnosis__graph {
+    padding: 28px 16px 30px 15px;
+    background: url(../img/bg_graph.png) no-repeat center center #fff;
+    .opacity & {
+        @include opacity(0);
+    }
+}
+.diagnosis__canvas {
+    position: relative;
+    top: 6px;
+    left: -24px;
+}
+.diagnosis__share {
+    position: relative;
+    text-align: center;
+
+    .mode-share & {
+        display: none;
+    }
+}
+.diagnosis__share-text {
+    margin-bottom: 18px;
+}
+.diagnosis__share-btn {
+    @include clearfix;
+    width: 527px;
+    margin: 0 auto 20px;
+
+    li {
+        float: left;
+        margin-left: 7px;
+
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+}
+
+.diagnosis__entry {
+    margin-bottom: 40px;
+    text-align: center;
+
+    .caution {
+        margin-top: 36px;
+        color: #000;
+        font-size: fz(12);
+        font-weight: bold;
+    }
+
+    .mode-share & {
+        display: none;
+    }
+}
+.diagnosis__challenge {
+    display: none;
+    margin-bottom: 30px;
+
+    .mode-share & {
+        display: block;
+    }
+}
+
+
+.modal__content--download {
+    width: 640px;
+    height: 292px;
+    margin: -146px 0 0 -320px;
+    padding: 0;
+    background: url(../img/bg_body.png) repeat;
+}
+.download__text {
+    margin: 96px auto 36px;
+    color: #333;
+    font-size: fz(16);
+    text-align: center;
+}
+.download__btn {
+    a {
+        margin: 0 auto;
+    }
+}
+.download__close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    cursor: pointer;
+}

@@ -1,0 +1,38 @@
+// ==========================================================================
+// media-queries
+// ==========================================================================
+
+// basic
+@mixin mq ($min: "", $max: "") {
+    @if $max == "" {
+        @media only screen and ($min) {
+            @content;
+        }
+    } @else {
+        @media only screen and ($min) and ($max) {
+            @content;
+        }
+    }
+}
+
+// for Desktop
+@mixin mq-pc ($breakpoint: $breakpoint) {
+    @media not all and (min-width: ($breakpoint + 1px)) {
+        @content;
+    }
+}
+
+// for Smartphone
+@mixin mq-sp ($breakpoint: $breakpoint) {
+    @media only screen and (max-width: $breakpoint) {
+        @content;
+    }
+}
+
+// for Landscape (Smartphone)
+@mixin mq-orientation ($breakpoint: 375px) {
+    @media only screen and (min-width: $breakpoint) {
+        @content;
+    }
+}
+

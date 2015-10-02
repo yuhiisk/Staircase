@@ -1,0 +1,44 @@
+@charset "utf-8";
+
+// ==========================================================================
+//   index
+// ==========================================================================
+
+// Core files
+// ==========================================================================
+// configuration file
+@import
+    "config/config-compass",
+    "config/config";
+// original mixins and functions
+@import
+    "mixin/all",
+    "function/func";
+// reset css
+$resetCSS: "normalize";
+@import "reset/reset";
+$resetCSS: "original";
+@import "reset/reset";
+
+// Component files
+// ==========================================================================
+// css sprite
+@import "spr-smartphone";
+
+// modules
+@import
+    "module/clearfix";
+
+// layouts
+// @import
+//     "layout/base",
+//     "layout/header",
+//     "layout/footer";
+
+// states
+@import "state/state";
+
+// Page files
+// ==========================================================================
+@import "page/sp";
+

@@ -1,0 +1,433 @@
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+$btn-about-name: 'btn_about';
+$btn-about-x: 592px;
+$btn-about-y: 180px;
+$btn-about-offset-x: -592px;
+$btn-about-offset-y: -180px;
+$btn-about-width: 450px;
+$btn-about-height: 88px;
+$btn-about-total-width: 1042px;
+$btn-about-total-height: 819px;
+$btn-about-image: '../img/spr-smartphone.png';
+$btn-about: (592px, 180px, -592px, -180px, 450px, 88px, 1042px, 819px, '../img/spr-smartphone.png', 'btn_about', );
+$btn-about2-name: 'btn_about2';
+$btn-about2-x: 592px;
+$btn-about2-y: 0px;
+$btn-about2-offset-x: -592px;
+$btn-about2-offset-y: 0px;
+$btn-about2-width: 450px;
+$btn-about2-height: 88px;
+$btn-about2-total-width: 1042px;
+$btn-about2-total-height: 819px;
+$btn-about2-image: '../img/spr-smartphone.png';
+$btn-about2: (592px, 0px, -592px, 0px, 450px, 88px, 1042px, 819px, '../img/spr-smartphone.png', 'btn_about2', );
+$btn-apply-name: 'btn_apply';
+$btn-apply-x: 390px;
+$btn-apply-y: 507px;
+$btn-apply-offset-x: -390px;
+$btn-apply-offset-y: -507px;
+$btn-apply-width: 280px;
+$btn-apply-height: 60px;
+$btn-apply-total-width: 1042px;
+$btn-apply-total-height: 819px;
+$btn-apply-image: '../img/spr-smartphone.png';
+$btn-apply: (390px, 507px, -390px, -507px, 280px, 60px, 1042px, 819px, '../img/spr-smartphone.png', 'btn_apply', );
+$btn-arrow-name: 'btn_arrow';
+$btn-arrow-x: 452px;
+$btn-arrow-y: 405px;
+$btn-arrow-offset-x: -452px;
+$btn-arrow-offset-y: -405px;
+$btn-arrow-width: 80px;
+$btn-arrow-height: 80px;
+$btn-arrow-total-width: 1042px;
+$btn-arrow-total-height: 819px;
+$btn-arrow-image: '../img/spr-smartphone.png';
+$btn-arrow: (452px, 405px, -452px, -405px, 80px, 80px, 1042px, 819px, '../img/spr-smartphone.png', 'btn_arrow', );
+$btn-back-name: 'btn_back';
+$btn-back-x: 292px;
+$btn-back-y: 599px;
+$btn-back-offset-x: -292px;
+$btn-back-offset-y: -599px;
+$btn-back-width: 290px;
+$btn-back-height: 100px;
+$btn-back-total-width: 1042px;
+$btn-back-total-height: 819px;
+$btn-back-image: '../img/spr-smartphone.png';
+$btn-back: (292px, 599px, -292px, -599px, 290px, 100px, 1042px, 819px, '../img/spr-smartphone.png', 'btn_back', );
+$btn-challenge-name: 'btn_challenge';
+$btn-challenge-x: 0px;
+$btn-challenge-y: 110px;
+$btn-challenge-offset-x: 0px;
+$btn-challenge-offset-y: -110px;
+$btn-challenge-width: 590px;
+$btn-challenge-height: 101px;
+$btn-challenge-total-width: 1042px;
+$btn-challenge-total-height: 819px;
+$btn-challenge-image: '../img/spr-smartphone.png';
+$btn-challenge: (0px, 110px, 0px, -110px, 590px, 101px, 1042px, 819px, '../img/spr-smartphone.png', 'btn_challenge', );
+$btn-entry-name: 'btn_entry';
+$btn-entry-x: 0px;
+$btn-entry-y: 0px;
+$btn-entry-offset-x: 0px;
+$btn-entry-offset-y: 0px;
+$btn-entry-width: 590px;
+$btn-entry-height: 108px;
+$btn-entry-total-width: 1042px;
+$btn-entry-total-height: 819px;
+$btn-entry-image: '../img/spr-smartphone.png';
+$btn-entry: (0px, 0px, 0px, 0px, 590px, 108px, 1042px, 819px, '../img/spr-smartphone.png', 'btn_entry', );
+$btn-error-name: 'btn_error';
+$btn-error-x: 0px;
+$btn-error-y: 213px;
+$btn-error-offset-x: 0px;
+$btn-error-offset-y: -213px;
+$btn-error-width: 590px;
+$btn-error-height: 100px;
+$btn-error-total-width: 1042px;
+$btn-error-total-height: 819px;
+$btn-error-image: '../img/spr-smartphone.png';
+$btn-error: (0px, 213px, 0px, -213px, 590px, 100px, 1042px, 819px, '../img/spr-smartphone.png', 'btn_error', );
+$btn-facebook-name: 'btn_facebook';
+$btn-facebook-x: 592px;
+$btn-facebook-y: 270px;
+$btn-facebook-offset-x: -592px;
+$btn-facebook-offset-y: -270px;
+$btn-facebook-width: 388px;
+$btn-facebook-height: 90px;
+$btn-facebook-total-width: 1042px;
+$btn-facebook-total-height: 819px;
+$btn-facebook-image: '../img/spr-smartphone.png';
+$btn-facebook: (592px, 270px, -592px, -270px, 388px, 90px, 1042px, 819px, '../img/spr-smartphone.png', 'btn_facebook', );
+$btn-forward-name: 'btn_forward';
+$btn-forward-x: 0px;
+$btn-forward-y: 599px;
+$btn-forward-offset-x: 0px;
+$btn-forward-offset-y: -599px;
+$btn-forward-width: 290px;
+$btn-forward-height: 100px;
+$btn-forward-total-width: 1042px;
+$btn-forward-total-height: 819px;
+$btn-forward-image: '../img/spr-smartphone.png';
+$btn-forward: (0px, 599px, 0px, -599px, 290px, 100px, 1042px, 819px, '../img/spr-smartphone.png', 'btn_forward', );
+$btn-line-name: 'btn_line';
+$btn-line-x: 592px;
+$btn-line-y: 362px;
+$btn-line-offset-x: -592px;
+$btn-line-offset-y: -362px;
+$btn-line-width: 388px;
+$btn-line-height: 90px;
+$btn-line-total-width: 1042px;
+$btn-line-total-height: 819px;
+$btn-line-image: '../img/spr-smartphone.png';
+$btn-line: (592px, 362px, -592px, -362px, 388px, 90px, 1042px, 819px, '../img/spr-smartphone.png', 'btn_line', );
+$btn-minus-name: 'btn_minus';
+$btn-minus-x: 656px;
+$btn-minus-y: 599px;
+$btn-minus-offset-x: -656px;
+$btn-minus-offset-y: -599px;
+$btn-minus-width: 70px;
+$btn-minus-height: 70px;
+$btn-minus-total-width: 1042px;
+$btn-minus-total-height: 819px;
+$btn-minus-image: '../img/spr-smartphone.png';
+$btn-minus: (656px, 599px, -656px, -599px, 70px, 70px, 1042px, 819px, '../img/spr-smartphone.png', 'btn_minus', );
+$btn-plus-name: 'btn_plus';
+$btn-plus-x: 584px;
+$btn-plus-y: 599px;
+$btn-plus-offset-x: -584px;
+$btn-plus-offset-y: -599px;
+$btn-plus-width: 70px;
+$btn-plus-height: 70px;
+$btn-plus-total-width: 1042px;
+$btn-plus-total-height: 819px;
+$btn-plus-image: '../img/spr-smartphone.png';
+$btn-plus: (584px, 599px, -584px, -599px, 70px, 70px, 1042px, 819px, '../img/spr-smartphone.png', 'btn_plus', );
+$btn-retry-name: 'btn_retry';
+$btn-retry-x: 0px;
+$btn-retry-y: 315px;
+$btn-retry-offset-x: 0px;
+$btn-retry-offset-y: -315px;
+$btn-retry-width: 590px;
+$btn-retry-height: 88px;
+$btn-retry-total-width: 1042px;
+$btn-retry-total-height: 819px;
+$btn-retry-image: '../img/spr-smartphone.png';
+$btn-retry: (0px, 315px, 0px, -315px, 590px, 88px, 1042px, 819px, '../img/spr-smartphone.png', 'btn_retry', );
+$btn-top-name: 'btn_top';
+$btn-top-x: 592px;
+$btn-top-y: 90px;
+$btn-top-offset-x: -592px;
+$btn-top-offset-y: -90px;
+$btn-top-width: 450px;
+$btn-top-height: 88px;
+$btn-top-total-width: 1042px;
+$btn-top-total-height: 819px;
+$btn-top-image: '../img/spr-smartphone.png';
+$btn-top: (592px, 90px, -592px, -90px, 450px, 88px, 1042px, 819px, '../img/spr-smartphone.png', 'btn_top', );
+$btn-twitter-name: 'btn_twitter';
+$btn-twitter-x: 0px;
+$btn-twitter-y: 507px;
+$btn-twitter-offset-x: 0px;
+$btn-twitter-offset-y: -507px;
+$btn-twitter-width: 388px;
+$btn-twitter-height: 90px;
+$btn-twitter-total-width: 1042px;
+$btn-twitter-total-height: 819px;
+$btn-twitter-image: '../img/spr-smartphone.png';
+$btn-twitter: (0px, 507px, 0px, -507px, 388px, 90px, 1042px, 819px, '../img/spr-smartphone.png', 'btn_twitter', );
+$btn-upload-name: 'btn_upload';
+$btn-upload-x: 0px;
+$btn-upload-y: 405px;
+$btn-upload-offset-x: 0px;
+$btn-upload-offset-y: -405px;
+$btn-upload-width: 450px;
+$btn-upload-height: 100px;
+$btn-upload-total-width: 1042px;
+$btn-upload-total-height: 819px;
+$btn-upload-image: '../img/spr-smartphone.png';
+$btn-upload: (0px, 405px, 0px, -405px, 450px, 100px, 1042px, 819px, '../img/spr-smartphone.png', 'btn_upload', );
+$h-result-name: 'h_result';
+$h-result-x: 592px;
+$h-result-y: 454px;
+$h-result-offset-x: -592px;
+$h-result-offset-y: -454px;
+$h-result-width: 264px;
+$h-result-height: 34px;
+$h-result-total-width: 1042px;
+$h-result-total-height: 819px;
+$h-result-image: '../img/spr-smartphone.png';
+$h-result: (592px, 454px, -592px, -454px, 264px, 34px, 1042px, 819px, '../img/spr-smartphone.png', 'h_result', );
+$icon-loading-name: 'icon_loading';
+$icon-loading-x: 0px;
+$icon-loading-y: 701px;
+$icon-loading-offset-x: 0px;
+$icon-loading-offset-y: -701px;
+$icon-loading-width: 118px;
+$icon-loading-height: 118px;
+$icon-loading-total-width: 1042px;
+$icon-loading-total-height: 819px;
+$icon-loading-image: '../img/spr-smartphone.png';
+$icon-loading: (0px, 701px, 0px, -701px, 118px, 118px, 1042px, 819px, '../img/spr-smartphone.png', 'icon_loading', );
+$icon-target-name: 'icon_target';
+$icon-target-x: 895px;
+$icon-target-y: 507px;
+$icon-target-offset-x: -895px;
+$icon-target-offset-y: -507px;
+$icon-target-width: 20px;
+$icon-target-height: 20px;
+$icon-target-total-width: 1042px;
+$icon-target-total-height: 819px;
+$icon-target-image: '../img/spr-smartphone.png';
+$icon-target: (895px, 507px, -895px, -507px, 20px, 20px, 1042px, 819px, '../img/spr-smartphone.png', 'icon_target', );
+$logo-yahoo-name: 'logo_yahoo';
+$logo-yahoo-x: 858px;
+$logo-yahoo-y: 454px;
+$logo-yahoo-offset-x: -858px;
+$logo-yahoo-offset-y: -454px;
+$logo-yahoo-width: 173px;
+$logo-yahoo-height: 29px;
+$logo-yahoo-total-width: 1042px;
+$logo-yahoo-total-height: 819px;
+$logo-yahoo-image: '../img/spr-smartphone.png';
+$logo-yahoo: (858px, 454px, -858px, -454px, 173px, 29px, 1042px, 819px, '../img/spr-smartphone.png', 'logo_yahoo', );
+$n0-name: 'n0';
+$n0-x: 982px;
+$n0-y: 270px;
+$n0-offset-x: -982px;
+$n0-offset-y: -270px;
+$n0-width: 40px;
+$n0-height: 72px;
+$n0-total-width: 1042px;
+$n0-total-height: 819px;
+$n0-image: '../img/spr-smartphone.png';
+$n0: (982px, 270px, -982px, -270px, 40px, 72px, 1042px, 819px, '../img/spr-smartphone.png', 'n0', );
+$n1-name: 'n1';
+$n1-x: 982px;
+$n1-y: 362px;
+$n1-offset-x: -982px;
+$n1-offset-y: -362px;
+$n1-width: 40px;
+$n1-height: 72px;
+$n1-total-width: 1042px;
+$n1-total-height: 819px;
+$n1-image: '../img/spr-smartphone.png';
+$n1: (982px, 362px, -982px, -362px, 40px, 72px, 1042px, 819px, '../img/spr-smartphone.png', 'n1', );
+$n2-name: 'n2';
+$n2-x: 534px;
+$n2-y: 405px;
+$n2-offset-x: -534px;
+$n2-offset-y: -405px;
+$n2-width: 40px;
+$n2-height: 72px;
+$n2-total-width: 1042px;
+$n2-total-height: 819px;
+$n2-image: '../img/spr-smartphone.png';
+$n2: (534px, 405px, -534px, -405px, 40px, 72px, 1042px, 819px, '../img/spr-smartphone.png', 'n2', );
+$n3-name: 'n3';
+$n3-x: 120px;
+$n3-y: 701px;
+$n3-offset-x: -120px;
+$n3-offset-y: -701px;
+$n3-width: 40px;
+$n3-height: 72px;
+$n3-total-width: 1042px;
+$n3-total-height: 819px;
+$n3-image: '../img/spr-smartphone.png';
+$n3: (120px, 701px, -120px, -701px, 40px, 72px, 1042px, 819px, '../img/spr-smartphone.png', 'n3', );
+$n4-name: 'n4';
+$n4-x: 162px;
+$n4-y: 701px;
+$n4-offset-x: -162px;
+$n4-offset-y: -701px;
+$n4-width: 40px;
+$n4-height: 72px;
+$n4-total-width: 1042px;
+$n4-total-height: 819px;
+$n4-image: '../img/spr-smartphone.png';
+$n4: (162px, 701px, -162px, -701px, 40px, 72px, 1042px, 819px, '../img/spr-smartphone.png', 'n4', );
+$n5-name: 'n5';
+$n5-x: 204px;
+$n5-y: 701px;
+$n5-offset-x: -204px;
+$n5-offset-y: -701px;
+$n5-width: 40px;
+$n5-height: 72px;
+$n5-total-width: 1042px;
+$n5-total-height: 819px;
+$n5-image: '../img/spr-smartphone.png';
+$n5: (204px, 701px, -204px, -701px, 40px, 72px, 1042px, 819px, '../img/spr-smartphone.png', 'n5', );
+$n6-name: 'n6';
+$n6-x: 246px;
+$n6-y: 701px;
+$n6-offset-x: -246px;
+$n6-offset-y: -701px;
+$n6-width: 40px;
+$n6-height: 72px;
+$n6-total-width: 1042px;
+$n6-total-height: 819px;
+$n6-image: '../img/spr-smartphone.png';
+$n6: (246px, 701px, -246px, -701px, 40px, 72px, 1042px, 819px, '../img/spr-smartphone.png', 'n6', );
+$n7-name: 'n7';
+$n7-x: 288px;
+$n7-y: 701px;
+$n7-offset-x: -288px;
+$n7-offset-y: -701px;
+$n7-width: 40px;
+$n7-height: 72px;
+$n7-total-width: 1042px;
+$n7-total-height: 819px;
+$n7-image: '../img/spr-smartphone.png';
+$n7: (288px, 701px, -288px, -701px, 40px, 72px, 1042px, 819px, '../img/spr-smartphone.png', 'n7', );
+$n8-name: 'n8';
+$n8-x: 330px;
+$n8-y: 701px;
+$n8-offset-x: -330px;
+$n8-offset-y: -701px;
+$n8-width: 40px;
+$n8-height: 72px;
+$n8-total-width: 1042px;
+$n8-total-height: 819px;
+$n8-image: '../img/spr-smartphone.png';
+$n8: (330px, 701px, -330px, -701px, 40px, 72px, 1042px, 819px, '../img/spr-smartphone.png', 'n8', );
+$n9-name: 'n9';
+$n9-x: 372px;
+$n9-y: 701px;
+$n9-offset-x: -372px;
+$n9-offset-y: -701px;
+$n9-width: 40px;
+$n9-height: 72px;
+$n9-total-width: 1042px;
+$n9-total-height: 819px;
+$n9-image: '../img/spr-smartphone.png';
+$n9: (372px, 701px, -372px, -701px, 40px, 72px, 1042px, 819px, '../img/spr-smartphone.png', 'n9', );
+$txt-loading-name: 'txt_loading';
+$txt-loading-x: 672px;
+$txt-loading-y: 507px;
+$txt-loading-offset-x: -672px;
+$txt-loading-offset-y: -507px;
+$txt-loading-width: 197px;
+$txt-loading-height: 20px;
+$txt-loading-total-width: 1042px;
+$txt-loading-total-height: 819px;
+$txt-loading-image: '../img/spr-smartphone.png';
+$txt-loading: (672px, 507px, -672px, -507px, 197px, 20px, 1042px, 819px, '../img/spr-smartphone.png', 'txt_loading', );
+$txt-point-name: 'txt_point';
+$txt-point-x: 871px;
+$txt-point-y: 507px;
+$txt-point-offset-x: -871px;
+$txt-point-offset-y: -507px;
+$txt-point-width: 22px;
+$txt-point-height: 20px;
+$txt-point-total-width: 1042px;
+$txt-point-total-height: 819px;
+$txt-point-image: '../img/spr-smartphone.png';
+$txt-point: (871px, 507px, -871px, -507px, 22px, 20px, 1042px, 819px, '../img/spr-smartphone.png', 'txt_point', );
+$spritesheet-width: 1042px;
+$spritesheet-height: 819px;
+$spritesheet-image: '../img/spr-smartphone.png';
+$spritesheet-sprites: ($btn-about, $btn-about2, $btn-apply, $btn-arrow, $btn-back, $btn-challenge, $btn-entry, $btn-error, $btn-facebook, $btn-forward, $btn-line, $btn-minus, $btn-plus, $btn-retry, $btn-top, $btn-twitter, $btn-upload, $h-result, $icon-loading, $icon-target, $logo-yahoo, $n0, $n1, $n2, $n3, $n4, $n5, $n6, $n7, $n8, $n9, $txt-loading, $txt-point, );
+$spritesheet: (1042px, 819px, '../img/spr-smartphone.png', $spritesheet-sprites, );
+
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+*/
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 5);
+}
+
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 6);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 3);
+  $sprite-offset-y: nth($sprite, 4);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image($sprite) {
+  $sprite-image: nth($sprite, 9);
+  background-image: url(#{$sprite-image});
+}
+
+@mixin sprite($sprite) {
+  @include sprite-image($sprite);
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+@mixin sprites($sprites) {
+  @each $sprite in $sprites {
+    $sprite-name: nth($sprite, 10);
+    .#{$sprite-name} {
+      @include sprite($sprite);
+    }
+  }
+}

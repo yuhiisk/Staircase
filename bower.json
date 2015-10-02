@@ -1,0 +1,16 @@
+{
+  "name": "bower-template",
+  "version": "1.0.0",
+  "authors": [
+    "Youhei Isokawa <youheiisokawa@gmail.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "2.1.4"
+  },
+  "overrides": {
+    "html5-boilerplate": {
+      "main": null
+    }
+  }
+}

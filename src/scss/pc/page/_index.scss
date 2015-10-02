@@ -1,0 +1,281 @@
+// ==========================================================================
+//   index
+// ==========================================================================
+
+$modal-width: 640px;
+$modal-height: 480px;
+
+.page-title {
+    margin: 182px 0 38px;
+    text-align: center;
+}
+
+.btn {
+    text-align: center;
+}
+.btn__item {
+    display: inline-block;
+    position: relative;
+}
+.btn-start {
+    margin-bottom: 100px;
+
+    li {
+        overflow: hidden;
+        margin-left: 41px;
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+    label {
+        cursor: pointer;
+    }
+}
+
+.btn__item--input {
+   position: absolute;
+   top: 0;
+   right: 0;
+   @include opacity(0);
+   cursor: pointer;
+   font-size: 85px;
+   outline: 0;
+}
+
+.contents-description {
+    margin-bottom: 110px;
+    color: #00a29a;
+    font-size: fz(16);
+    font-weight: bold;
+    text-align: center;
+
+    span {
+        font-size: fz(12, 16);
+        font-weight: normal;
+    }
+}
+
+.diagnosis-note {
+    width: 682px;
+    margin: 0 auto 40px;
+    padding: 30px 44px 37px 44px;
+    background-color: #fff;
+}
+.diagnosis-note__heading {
+    margin-bottom: 12px;
+    color: #00a29a;
+    font-size: fz(18);
+    font-weight: bold;
+}
+.diagnosis-note__text {
+    margin-bottom: 30px;
+    font-size: fz(16);
+    line-height: 1.8em;
+}
+.diagnosis-note__list {
+    @include clearfix;
+}
+.diagnosis-note__item {
+    float: left;
+    margin-left: 21px;
+    &:first-child {
+        margin-left: 0;
+    }
+}
+
+.flash-message {
+    color: red;
+    text-align: center;
+}
+
+.btn-about {
+    margin-bottom: 15px;
+}
+
+// Modal contents
+// ==========================================================================
+
+.scene {
+    width: $modal-width;
+    height: $modal-height;
+
+
+    .btn {
+        margin-top: 25px;
+    }
+    .btn__item {
+        &:first-child {
+            margin-right: 20px;
+        }
+    }
+}
+
+.scene__field {
+    position: relative;
+    width: $modal-width;
+    height: $modal-height;
+}
+.scene__text {
+    position: absolute;
+    top: 66px;
+    left: 0;
+    z-index: 20;
+    width: 100%;
+    text-align: center;
+}
+.scene__text--sprite {
+    @include sprite-icon-inline;
+}
+.scene__cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 15;
+}
+.scene__wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    width: $modal-width;
+    height: $modal-height;
+}
+
+%reversal {
+    transform: scale(-2.2, 2.2);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}
+// camera
+.camera {
+    video {
+        @extend %reversal;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: $modal-width;
+        height: $modal-height;
+    }
+    .scene__text--sprite {
+        @include sprite($ttl_camera);
+    }
+}
+
+
+// preview
+.canvas {
+    .scene__text--sprite {
+        @include sprite($ttl_confirm);
+    }
+}
+
+.preview__canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    @extend %reversal;
+}
+
+// transform
+.transform {
+    @include disabled-select-drag;
+
+    .scene__text--sprite {
+        @include sprite($ttl_adjust);
+    }
+    .btn {
+        margin-top: 50px;
+    }
+}
+
+.transform__preview {
+    position: relative;
+    width: $modal-width;
+    height: $modal-height;
+}
+.transform__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: $modal-width;
+    height: $modal-height;
+}
+
+.transform__bounding-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: .4;
+}
+
+.transform__touch {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    cursor: move;
+    background-color: #000;
+    @include opacity(0.001);
+}
+
+.transform__control {
+    position: relative;
+    z-index: 110;
+
+    li {
+        position: absolute;
+        cursor: pointer;
+    }
+
+    .btn__item--up {
+        top: -33px;
+        left: 50%;
+        margin-left: -30.5px;
+    }
+    .btn__item--down {
+        top: 452px;
+        left: 50%;
+        margin-left: -30.5px;
+    }
+    .btn__item--left {
+        top: 207px;
+        left: -33px;
+    }
+    .btn__item--right {
+        top: 207px;
+        left: 612px;
+    }
+    .btn__item--zoomin {
+        top: 407px;
+        left: 507px;
+    }
+    .btn__item--zoomout {
+        top: 407px;
+        left: 567px;
+    }
+}
+
+.loading {
+    position: relative;
+    // position: absolute;
+    // top: 7px;
+}
+.loading__icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 100;
+    margin: -33px 0 0 -47px;
+}
+.loading__image {
+    overflow: hidden;
+    width: $modal-width;
+    height: $modal-height;
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+}

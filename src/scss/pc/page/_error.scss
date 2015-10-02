@@ -1,0 +1,44 @@
+// ==========================================================================
+//   error
+// ==========================================================================
+
+.error {
+    padding: 195px 0 138px;
+    text-align: center;
+}
+.error__text {
+    margin-bottom: 24px;
+    color: #009999;
+    font-size: fz(24);
+    font-weight: bold;
+}
+.error__description {
+    margin-bottom: 50px;
+    color: #333;
+    font-size: fz(18);
+}
+.btn-about--error {
+    margin-bottom: 25px;
+}
+
+.error-system {
+    padding: 73px 0 40px;
+    text-align: center;
+    
+    .btn {
+        margin-bottom: 10px;
+    }
+}
+.error-system__title {
+    margin-bottom: 30px;
+}
+.error-system__text {
+    margin-bottom: 25px;
+    color: #009999;
+    font-size: fz(23);
+    font-weight: bold;
+}
+.error-system__description {
+    margin-bottom: 30px;
+    font-size: fz(16);
+}

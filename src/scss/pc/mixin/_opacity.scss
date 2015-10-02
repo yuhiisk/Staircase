@@ -1,0 +1,15 @@
+//
+// opacity from compass
+// ------------------------------
+@mixin opacity ($opacity) {
+    @if $legacy-support-for-ie or $legacy-support-for-ie8 {
+        @if $opacity == 1 {
+            filter: unquote("progid:DXImageTransform.Microsoft.Alpha(enabled=false)");
+        }
+        @else {
+            filter: unquote("progid:DXImageTransform.Microsoft.Alpha(Opacity=#{round($opacity * 100)})");
+        }
+    }
+
+    opacity: $opacity;
+}
