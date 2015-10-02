@@ -1,10 +1,12 @@
-do (win = window, doc = window.document) ->
+do (win = window, doc = window.document, Staircase = window.Staircase) ->
 
     'use strict'
 
+    Debug = Staircase.Debug
     Events = Staircase.Events
     Util = Staircase.Util
     UI = Staircase.UI
+
     Params = Staircase.Params
     Params.upload = {}
     Params.reupload = {}
@@ -15,52 +17,52 @@ do (win = window, doc = window.document) ->
     Util.getImageId = () ->
         return Params.upload.image_uuid
 
+
     ###
     # Entry Point
     ###
     class Main
 
-        constructor: () ->
-
+        constructor: (option) ->
+            @settings = $.extend( Staircase.defaults, option )
             @initialize()
 
         initialize: () ->
             # objects
             @modal = new UI.Modal(
-                id: '#Modal'
-                page: '.wrapper'
+                id: @settings.modal
+                page: @settings.modalPage
             )
-            @camera = new UI.Camera('Video')
-            @previewCanvas = new UI.PreviewCanvas('Canvas')
-            @previewImage = new UI.PreviewImage('PreviewContainer')
-            @uploader = new UI.Uploader('#StartUpload')
-            @reUploader = new UI.ReUploader({ size: 640 })
+            @camera = new UI.Camera(@settings.camera)
+            @previewCanvas = new UI.PreviewCanvas(@settings.previewCanvas)
+            @previewImage = new UI.PreviewImage(@settings.previewContainer)
+            @uploader = new UI.Uploader(@settings.uploader)
+            @reUploader = new UI.ReUploader({ size: @settings.reUploadSize })
             @processChecker = new UI.ProcessChecker()
-            @loading = new UI.LoadingSprite('#Loading')
+            @loading = new UI.LoadingSprite(@settings.loading)
 
-            @cameraView = new UI.Scene('Camera')
-            @previewView = new UI.Scene('Preview')
-            @transformView = new UI.Scene('Transform')
-            @loadingView = new UI.Scene('Loading')
+            @cameraView = new UI.Scene(@settings.cameraScene)
+            @previewView = new UI.Scene(@settings.previewScene)
+            @loadingView = new UI.Scene(@settings.loadingScene)
 
             # scene
             @sceneManager = new UI.SceneManager([
-                # @cameraView,
-                # @previewView,
-                # @transformView,
-                # @loadingView
+                @cameraView,
+                @previewView,
+                @loadingView
             ])
+            @sceneManager.active(@sceneManager.current)
 
             # elements
-            @$btnStartUpload = $('#StartUpload')
-            @$btnStartCamera = $('#StartCamera')
-            @$btnCancel = $('#Cancel')
-            @$btnCapture = $('#Capture')
-            @$btnRetake = $('#Retake')
-            @$btnReselect = $('#Reselect')
-            @$btnPostWebCamera = $('#PostWebCamera')
-            @$btnPostPhoto = $('#PostPhoto')
-            @$form  = $('#Upload')
+            @$btnStartUpload = $(@settings.btnStartUpload)
+            @$btnStartCamera = $(@settings.btnStartCamera)
+            @$btnCancel = $(@settings.btnCancelCamera)
+            @$btnCapture = $(@settings.btnCaptureCamera)
+            @$btnRetake = $(@settings.btnRetakeCapture)
+            @$btnReselect = $(@settings.btnReselect)
+            @$btnPostWebCamera = $(@settings.btnPostWebCamera)
+            @$btnPostPhoto = $(@settings.btnPostPhoto)
+            @$form  = $(@settings.uploadForm)
 
             # event
             @eventify()
@@ -79,7 +81,7 @@ do (win = window, doc = window.document) ->
                 e.preventDefault()
                 @modal.show()
                 @camera.powerOn()
-                # @sceneManager.active(0)
+                @sceneManager.active(0)
             )
 
             # Camera
@@ -93,34 +95,33 @@ do (win = window, doc = window.document) ->
             # Button
             @$btnCancel.on('click', (e) =>
                 e.preventDefault()
-                # @sceneManager.prev()
+                @sceneManager.prev()
                 @camera.powerOff()
-                # @modal.hide()
+                @modal.hide()
             )
 
             @$btnCapture.on('click', (e) =>
                 e.preventDefault()
                 video = @camera.getVideo()
                 @previewCanvas.draw(video)
-                # @sceneManager.next()
+                @sceneManager.next()
                 @previewImage.show()
             )
 
             # Preview
             @$btnRetake.on('click', (e) =>
                 e.preventDefault()
-                # @sceneManager.prev()
-                # @previewImage.hide()
+                @sceneManager.prev()
+                @previewImage.hide()
             )
             @$btnReselect.on('click', (e) =>
                 e.preventDefault()
-                # @sceneManager.active(0)
+                @sceneManager.active(0)
                 @uploader.reset()
                 @transformView.$el.addClass('is-hidden')
-                # @modal.hide()
+                @modal.hide()
             )
 
-            # TODO: 疎結合
             @$btnPostWebCamera.on('click', (e) =>
                 e.preventDefault()
                 @loading.start()
@@ -132,8 +133,7 @@ do (win = window, doc = window.document) ->
                 @reUploader.submit()
                 $('.loading__upload').append($('.transform__wrap'))
                 @loading.start()
-                # @sceneManager.active(0)
-                # @sceneManager.next()
+                @sceneManager.next()
             )
 
             @modal.on(Events.MODAL_HIDE, (e) =>
@@ -144,7 +144,7 @@ do (win = window, doc = window.document) ->
                     @transformView.$el.addClass('is-hidden')
 
                 @uploader.reset()
-                # @previewImage.hide()
+                @previewImage.hide()
             )
 
             # Uploader
@@ -199,14 +199,14 @@ do (win = window, doc = window.document) ->
                             self.transformView.setImage()
                             self.transformView.reset()
                         self.transformView.$el.removeClass('is-hidden')
-                        self.previewView.trigger(Events.PREVIEW_PHOTO)
-                        self.sceneManager.deactive(0)
+                        self.previewView.emit(Events.PREVIEW_PHOTO)
+                        self.sceneManager.active(1)
                         break
 
                     else
                         break
 
-            # iframeからJSONを受け取るグローバルメソッド
+            # iframeを経由してサーバからHTMLファイル形式でJSONを受け取るグローバルメソッド
             Util.getJSON = (json) ->
                 Util.setResponse(json, 'PHOTO')
 
@@ -214,7 +214,7 @@ do (win = window, doc = window.document) ->
         _postCameraImage: () ->
 
             canvas = @previewCanvas.getCanvas()
-            blob     = @previewCanvas.getBlob("image/png")
+            blob     = @previewCanvas.getBlob('image/png')
             formData = new FormData(@$form[0])
             xhr      = new XMLHttpRequest()
 
@@ -254,9 +254,9 @@ do (win = window, doc = window.document) ->
 
             else
                 # 本番
-                xhr.open('POST', '/api' + @$form.attr('action'))
+                xhr.open('POST', @$form.attr('action'))
                 xhr.send(formData)
 
-    new Main()
 
+    Staircase.Main = Main
 

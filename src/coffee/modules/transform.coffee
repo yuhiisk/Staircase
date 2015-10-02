@@ -2,9 +2,9 @@ do (win = window, doc = window.document) ->
 
     'use strict'
 
-    Events = win.Staircase.ns('Events')
-    Util = win.Staircase.ns('Util')
-    UI = win.Staircase.ns('UI')
+    Events = Staircase.Events
+    UI = Staircase.UI
+    Util = Staircase.Util
 
     if Util.ua.isMobile
         Events.CLICK = 'touchend'
@@ -194,7 +194,7 @@ do (win = window, doc = window.document) ->
                 ratio: @ratio
             )
 
-            @trigger('scaled')
+            @emit('scaled')
 
         resize: (e) ->
 

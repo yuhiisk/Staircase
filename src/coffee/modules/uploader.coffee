@@ -2,10 +2,10 @@ do (win = window, doc = window.document) ->
 
     'use strict'
 
-    Debug = win.Staircase.ns('Debug')
-    Events = win.Staircase.ns('Events')
-    UI = win.Staircase.ns('UI')
-    Util = win.Staircase.ns('Util')
+    Debug = Staircase.Debug
+    Events = Staircase.Events
+    UI = Staircase.UI
+    Util = Staircase.Util
 
     ###
     # Uploader

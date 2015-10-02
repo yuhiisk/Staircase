@@ -2,8 +2,8 @@ do (win = window, doc = window.document) ->
 
     'use strict'
 
-    Events = win.Staircase.ns('Events')
-    UI = win.Staircase.ns('UI')
+    Events = Staircase.Events
+    UI = Staircase.UI
 
     ###
     # PreviewCanvas
@@ -22,7 +22,7 @@ do (win = window, doc = window.document) ->
         initialize: (id) ->
 
             self = @
-            canvas = doc.getElementById(id)
+            canvas = $(id)[0]
             _ctx = `canvas.getContext ? canvas.getContext("2d") : null;`
 
             _reset = () ->
@@ -82,7 +82,8 @@ do (win = window, doc = window.document) ->
 
             super(id)
 
-            @el = doc.getElementById(id)
+            @$el = $(id)
+            @el = @$el[0]
             @img = new Image()
 
             @initialize()

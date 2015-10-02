@@ -51,10 +51,10 @@ config =
             src + "coffee/static/**/*.coffee"
         ],
         "lib"    : [
-            src + "coffee/namespace.coffee",
             src + "coffee/config.coffee",
             src + "coffee/utilities.coffee",
-            src + "coffee/modules/**/*.coffee"
+            src + "coffee/modules/**/*.coffee",
+            src + "coffee/app.coffee"
         ]
 
     # entry point

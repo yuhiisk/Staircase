@@ -2,4 +2,14 @@ Staircase
 =======
 
 ## Overview
-Starter-kit is Javascript File uploader library.
+Staircase is Javascript File uploader library.
+
+## WorkFlow
+
+### Web Camera
+
+### File Upload
+
+
+## Server
+

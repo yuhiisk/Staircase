@@ -2,7 +2,7 @@ do (win = window, doc = window.document) ->
 
     'use strict'
 
-    Util = win.Staircase.ns('Util')
+    Util = Staircase.Util
 
     query = Util.getQueryString()
 

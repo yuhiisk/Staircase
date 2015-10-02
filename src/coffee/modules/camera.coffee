@@ -2,8 +2,8 @@ do (win = window, doc = window.document) ->
 
     'use strict'
 
-    Events = win.Staircase.ns('Events')
-    UI = win.Staircase.ns('UI')
+    Events = Staircase.Events
+    UI = Staircase.UI
 
     ###
     # Camera
@@ -21,7 +21,7 @@ do (win = window, doc = window.document) ->
 
         initialize: (id) ->
 
-            video = doc.getElementById(id)
+            video = $(id)[0]
             navigator.getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia ||  navigator.mozGetUserMedia || navigator.msGetUserMedia)
             status = false
 

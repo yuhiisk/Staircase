@@ -2,8 +2,8 @@ do (win = window, doc = window.document) ->
 
     'use strict'
 
-    Events = win.Staircase.ns('Events')
-    UI = win.Staircase.ns('UI')
+    Events = Staircase.Events
+    UI = Staircase.UI
 
     ###
     # ProcessChecker

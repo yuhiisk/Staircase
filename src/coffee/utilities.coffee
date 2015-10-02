@@ -2,15 +2,16 @@ do (win = window, doc = window.document) ->
 
     'use strict'
 
-    Util = win.Staircase.ns('Util')
+    Util = Staircase.Util
+    Params = Staircase.Params
 
     # Detect Mobile devices
     ua = navigator.userAgent.toLowerCase()
     Util.ua = {}
+    Util.ua.browser = ua
     Util.ua.isIOS = /(iphone|ipod|ipad)/.test(ua)
     Util.ua.isAndroid = /(android)/.test(ua)
     Util.ua.isMobile = (Util.ua.isIOS || Util.ua.isAndroid)
-
 
     #
     # GETクエリを取得
@@ -50,6 +51,10 @@ do (win = window, doc = window.document) ->
     Util.parseJSON = parseJSON
 
 
+    getParam = ( key, value ) ->
+        return Params[key][value]
+
+    Util.getParam = getParam
     # rollover = () ->
     #     $('[class^="btn__item--"], .rollover').each(() ->
     #         $this = $(@)

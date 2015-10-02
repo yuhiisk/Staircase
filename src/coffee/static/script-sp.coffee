@@ -2,14 +2,13 @@ do (win = window, doc = window.document) ->
 
     'use strict'
 
-    Events = win.Staircase.ns('Events')
-    Util = win.Staircase.ns('Util')
-
-    UI = win.Staircase.ns('UI')
+    Events = Staircase.Events
+    Util = Staircase.Util
+    UI = Staircase.UI
     UI.TRIM_OFFSET_TOP = 200
     UI.TRIM_OFFSET_LEFT = 0
 
-    Params = win.Staircase.ns('Params')
+    Params = Staircase.Params
     Params.upload = {}
     Params.reupload = {}
 

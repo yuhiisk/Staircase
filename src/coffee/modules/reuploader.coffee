@@ -2,9 +2,9 @@ do (win = window, doc = window.document) ->
 
     'use strict'
 
-    Events = win.Staircase.ns('Events')
-    Util = win.Staircase.ns('Util')
-    UI = win.Staircase.ns('UI')
+    Events = Staircase.Events
+    Util = Staircase.Util
+    UI = Staircase.UI
 
     # serverから返ってくる画像の幅
     ORIGINAL_IMAGE_WIDTH = 640
