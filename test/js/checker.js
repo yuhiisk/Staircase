@@ -41,7 +41,6 @@
       };
     })(this));
   };
-  Staircase.prototype.globalize = function() {};
 
   /*
    * Entry Point
@@ -53,18 +52,6 @@
     trim_width: 886,
     trim_height: 236,
     params: {},
-    modal: '#Modal',
-    modalPage: '.wrapper',
-    camera: '#Video',
-    previewCanvas: '#Canvas',
-    previewContainer: '#PreviewContainer',
-    uploader: '#StartUpload',
-    reUploadSize: 640,
-    loading: '#Loading',
-    cameraScene: '#Camera',
-    previewScene: '#Preview',
-    loadingScene: '#Loading',
-    sceneManager: [],
     btnStartUpload: '#StartUpload',
     btnStartCamera: '#StartCamera',
     btnCancelCamera: '#Cancel',

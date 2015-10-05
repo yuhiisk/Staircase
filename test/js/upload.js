@@ -6,8 +6,6 @@
   Util = Staircase.Util;
   UI = Staircase.UI;
   Params = Staircase.Params;
-  Params.upload = {};
-  Params.reupload = {};
 
   /*
    * Entry Point
@@ -96,13 +94,12 @@
           break;
         case 'PHOTO':
           if (self.transformView == null) {
-            self.transformView = new UI.Transform('#Transform');
+            self.transformView = new UI.Transform(self.settings.transformOption);
           } else {
             self.transformView.setImage();
             self.transformView.reset();
           }
           self.transformView.$el.removeClass('is-hidden');
-          self.previewView.emit(Events.PREVIEW_PHOTO);
           break;
         default:
           break;
@@ -112,6 +109,7 @@
       return Util.setResponse(json, 'PHOTO');
     };
   };
+  Staircase.prototype._postCameraImage = function() {};
 
   /*
    * Entry Point
@@ -122,6 +120,10 @@
     trim_offset_left: 0,
     trim_width: 886,
     trim_height: 236,
+    params: {
+      upload: {},
+      reupload: {}
+    },
     previewContainer: '#PreviewContainer',
     uploader: '#StartUpload',
     reUploadSize: 640,
