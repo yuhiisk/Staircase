@@ -1,4 +1,4 @@
-(function(win, doc) {
+(function(win, doc, Staircase) {
   'use strict';
   var Debug, Events, Params, UI, Util;
   Debug = Staircase.Debug;
@@ -14,6 +14,10 @@
   Util.getImageId = function() {
     return Params.upload.image_uuid;
   };
+
+  /*
+   * Entry Point
+   */
   Staircase.prototype.initialize = function() {
     this.modal = new UI.Modal({
       id: this.settings.modal,
@@ -166,10 +170,10 @@
   Staircase.prototype.globalize = function() {
     var self;
     self = this;
-    Util.setResponse = function(res, type) {
+    Util.setResponse = function(res, CAMERA_or_PHOTO) {
       Params.upload = res.response;
       self.modal.show();
-      switch (type) {
+      switch (CAMERA_or_PHOTO) {
         case 'CAMERA':
           self.processChecker.set(Params.upload.result_path).start();
           break;
@@ -192,7 +196,7 @@
       return Util.setResponse(json, 'PHOTO');
     };
   };
-  Staircase.prototype._postCameraImage = function() {
+  return Staircase.prototype._postCameraImage = function() {
     var blob, canvas, formData, ratio, video, x, xhr, y;
     canvas = this.previewCanvas.getCanvas();
     blob = this.previewCanvas.getBlob('image/png');
@@ -232,39 +236,4 @@
       return xhr.send(formData);
     }
   };
-
-  /*
-   * Entry Point
-   */
-  return new Staircase({
-    size: 640,
-    trim_offset_top: 176,
-    trim_offset_left: 0,
-    trim_width: 886,
-    trim_height: 236,
-    params: {},
-    path: 'image_path',
-    uuid: 'image_uuid',
-    modal: '#Modal',
-    modalPage: '.wrapper',
-    camera: '#Video',
-    previewCanvas: '#Canvas',
-    previewContainer: '#PreviewContainer',
-    uploader: '#StartUpload',
-    reUploadSize: 640,
-    loading: '#Loading',
-    cameraScene: '#Camera',
-    previewScene: '#Preview',
-    loadingScene: '#Loading',
-    sceneManager: [],
-    btnStartUpload: '#StartUpload',
-    btnStartCamera: '#StartCamera',
-    btnCancelCamera: '#Cancel',
-    btnCaptureCamera: '#Capture',
-    btnRetakeCapture: '#Retake',
-    btnReselect: '#Reselect',
-    btnPostWebCamera: '#PostWebCamera',
-    btnPostPhoto: '#PostPhoto',
-    uploadForm: '#Upload'
-  });
-})(window, document);
+})(window, window.document, window.Staircase);

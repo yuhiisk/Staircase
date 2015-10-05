@@ -52,16 +52,16 @@ do (win = window, doc = window.document) ->
                 width: UI.TRIM_WIDTH
                 height: UI.TRIM_HEIGHT
 
-            @emit(Events.REUPLOAD_SUBMIT, null, params)
+            @emit(Events.REUPLOAD_SUBMIT, params)
 
             $.ajax(
                 type: 'POST'
                 url: @$form.attr('action')
                 data: params
             ).done((e) =>
-                @emit(Events.REUPLOAD_SUCCESS, null, e)
+                @emit(Events.REUPLOAD_SUCCESS, e)
             ).fail((e) =>
-                @emit(Events.REUPLOAD_ERROR, null, e)
+                @emit(Events.REUPLOAD_ERROR, e)
             )
 
     UI.ReUploader = ReUploader

@@ -34,11 +34,11 @@ do (win = window, doc = window.document) ->
                     localMediaStream.stop()
                     status = false
 
-                @emit(Events.CAMERA_SUCCESS, null, localMediaStream)
+                @emit(Events.CAMERA_SUCCESS, localMediaStream)
 
             _handleError = (e) =>
                 status = false
-                @emit(Events.CAMERA_ERROR, null, e)
+                @emit(Events.CAMERA_ERROR, e)
 
             _powerOn = () =>
                 navigator.getUserMedia({ video: true, audio: false }, _handleSuccess, _handleError)

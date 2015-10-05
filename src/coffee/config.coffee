@@ -71,7 +71,9 @@ do (win = window, doc = window.document) ->
     ###
     # Parameters
     ###
-    Staircase.Params = {}
+    Staircase.Params =
+        resized_image_width: 0
+        resized_image_height: 0
 
     ###
     # UI components
@@ -91,26 +93,32 @@ do (win = window, doc = window.document) ->
     ###
     Staircase.Events =
         # Camera
-        CAMERA_SUCCESS:   Staircase.defaults.eventNamespace + 'camera_success'
-        CAMERA_ERROR:     Staircase.defaults.eventNamespace + 'camera_error'
+        CAMERA_SUCCESS       : Staircase.defaults.eventNamespace + 'camera_success'
+        CAMERA_ERROR         : Staircase.defaults.eventNamespace + 'camera_error'
         # Uploader
-        UPLOAD_LOAD_IMG:  Staircase.defaults.eventNamespace + 'upload_img_load'
-        UPLOAD_READER:    Staircase.defaults.eventNamespace + 'upload_reader'
+        UPLOAD_LOAD_IMG      : Staircase.defaults.eventNamespace + 'upload_img_load'
+        UPLOAD_READER        : Staircase.defaults.eventNamespace + 'upload_reader'
         # Preview
-        PREVIEW_SEND:     Staircase.defaults.eventNamespace + 'preview_send'
-        PREVIEW_CAMERA:   Staircase.defaults.eventNamespace + 'preview_camera'
-        PREVIEW_PHOTO:    Staircase.defaults.eventNamespace + 'preview_photo'
+        PREVIEW_SEND         : Staircase.defaults.eventNamespace + 'preview_send'
+        PREVIEW_CAMERA       : Staircase.defaults.eventNamespace + 'preview_camera'
+        PREVIEW_PHOTO        : Staircase.defaults.eventNamespace + 'preview_photo'
         # ReUpload
-        REUPLOAD_SUBMIT:  Staircase.defaults.eventNamespace + 'reupload_submit'
-        REUPLOAD_SUCCESS: Staircase.defaults.eventNamespace + 'reupload_success'
-        REUPLOAD_ERROR:   Staircase.defaults.eventNamespace + 'reupload_error'
-        # Check
-        CHECK_PROCESS:    Staircase.defaults.eventNamespace + 'check_process'
-        CHECK_COMPLETE:   Staircase.defaults.eventNamespace + 'check_complete'
-        CHECK_ERROR:      Staircase.defaults.eventNamespace + 'check_error'
+        REUPLOAD_SUBMIT      : Staircase.defaults.eventNamespace + 'reupload_submit'
+        REUPLOAD_SUCCESS     : Staircase.defaults.eventNamespace + 'reupload_success'
+        REUPLOAD_ERROR       : Staircase.defaults.eventNamespace + 'reupload_error'
+        # ProcessCheck
+        CHECK_PROCESS        : Staircase.defaults.eventNamespace + 'check_process'
+        CHECK_COMPLETE       : Staircase.defaults.eventNamespace + 'check_complete'
+        CHECK_ERROR          : Staircase.defaults.eventNamespace + 'check_error'
         # Modal
-        MODAL_SHOW:       Staircase.defaults.eventNamespace + 'modal_show'
-        MODAL_HIDE:       Staircase.defaults.eventNamespace + 'modal_hide'
+        MODAL_SHOW           : Staircase.defaults.eventNamespace + 'modal_show'
+        MODAL_HIDE           : Staircase.defaults.eventNamespace + 'modal_hide'
+        # Transform
+        TRANSFORM_LOAD_IMG   : Staircase.defaults.eventNamespace + 'transform_img_load'
+        TRANSFORM_MOVE_START : Staircase.defaults.eventNamespace + 'transform_move_start'
+        TRANSFORM_MOVE       : Staircase.defaults.eventNamespace + 'transform_move'
+        TRANSFORM_MOVE_END   : Staircase.defaults.eventNamespace + 'transform_move_end'
+        TRANSFORM_SCALE      : Staircase.defaults.eventNamespace + 'transform_scale'
 
 
     ###
@@ -121,6 +129,6 @@ do (win = window, doc = window.document) ->
             '0': '0'
             '2': '2'
         text:
-            '0': '瞳を検出することが出来ませんでした。'
-            '2': '複数の瞳が検出されました'
+            '0': 'エラーテキスト1'
+            '2': 'エラーテキスト2'
 

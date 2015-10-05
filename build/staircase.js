@@ -71,7 +71,10 @@
   /*
    * Parameters
    */
-  Staircase.Params = {};
+  Staircase.Params = {
+    resized_image_width: 0,
+    resized_image_height: 0
+  };
 
   /*
    * UI components
@@ -103,7 +106,12 @@
     CHECK_COMPLETE: Staircase.defaults.eventNamespace + 'check_complete',
     CHECK_ERROR: Staircase.defaults.eventNamespace + 'check_error',
     MODAL_SHOW: Staircase.defaults.eventNamespace + 'modal_show',
-    MODAL_HIDE: Staircase.defaults.eventNamespace + 'modal_hide'
+    MODAL_HIDE: Staircase.defaults.eventNamespace + 'modal_hide',
+    TRANSFORM_LOAD_IMG: Staircase.defaults.eventNamespace + 'transform_img_load',
+    TRANSFORM_MOVE_START: Staircase.defaults.eventNamespace + 'transform_move_start',
+    TRANSFORM_MOVE: Staircase.defaults.eventNamespace + 'transform_move',
+    TRANSFORM_MOVE_END: Staircase.defaults.eventNamespace + 'transform_move_end',
+    TRANSFORM_SCALE: Staircase.defaults.eventNamespace + 'transform_scale'
   };
 
   /*
@@ -115,8 +123,8 @@
       '2': '2'
     },
     text: {
-      '0': '瞳を検出することが出来ませんでした。',
-      '2': '複数の瞳が検出されました'
+      '0': 'エラーテキスト1',
+      '2': 'エラーテキスト2'
     }
   };
 })(window, window.document);
@@ -197,13 +205,13 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
             localMediaStream.stop();
             return status = false;
           };
-          return _this.emit(Events.CAMERA_SUCCESS, null, localMediaStream);
+          return _this.emit(Events.CAMERA_SUCCESS, localMediaStream);
         };
       })(this);
       _handleError = (function(_this) {
         return function(e) {
           status = false;
-          return _this.emit(Events.CAMERA_ERROR, null, e);
+          return _this.emit(Events.CAMERA_ERROR, e);
         };
       })(this);
       _powerOn = (function(_this) {
@@ -402,9 +410,9 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
             if (res.is_recogition_finished === true) {
               _stop();
               isComplete = true;
-              return self.emit(Events.CHECK_COMPLETE, null, res);
+              return self.emit(Events.CHECK_COMPLETE, res);
             } else if (res.is_recogition_finished === false) {
-              return self.emit(Events.CHECK_PROCESS, null, res);
+              return self.emit(Events.CHECK_PROCESS, res);
             }
           });
         }, 1000);
@@ -482,18 +490,18 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
         width: UI.TRIM_WIDTH,
         height: UI.TRIM_HEIGHT
       };
-      this.emit(Events.REUPLOAD_SUBMIT, null, params);
+      this.emit(Events.REUPLOAD_SUBMIT, params);
       return $.ajax({
         type: 'POST',
         url: this.$form.attr('action'),
         data: params
       }).done((function(_this) {
         return function(e) {
-          return _this.emit(Events.REUPLOAD_SUCCESS, null, e);
+          return _this.emit(Events.REUPLOAD_SUCCESS, e);
         };
       })(this)).fail((function(_this) {
         return function(e) {
-          return _this.emit(Events.REUPLOAD_ERROR, null, e);
+          return _this.emit(Events.REUPLOAD_ERROR, e);
         };
       })(this));
     };
@@ -502,449 +510,6 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
 
   })(EventEmitter2);
   return UI.ReUploader = ReUploader;
-})(window, window.document);
-
-var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
-  hasProp = {}.hasOwnProperty;
-
-(function(win, doc) {
-  'use strict';
-  var Events, RESIZED_IMAGE_HEIGHT, RESIZED_IMAGE_WIDTH, Scale, Transform, Translate, UI, Util;
-  Events = Staircase.Events;
-  UI = Staircase.UI;
-  Util = Staircase.Util;
-  if (Util.ua.isMobile) {
-    Events.CLICK = 'touchend';
-    Events.START = 'touchstart';
-    Events.MOVE = 'touchmove';
-    Events.END = 'touchend';
-  } else {
-    Events.CLICK = 'click';
-    Events.START = 'mousedown';
-    Events.MOVE = 'mousemove';
-    Events.END = 'mouseup';
-  }
-  RESIZED_IMAGE_WIDTH = 0;
-  RESIZED_IMAGE_HEIGHT = 0;
-
-  /*
-   * Translate
-   * @constructor
-   * @extends EventEmitter2
-   */
-  Translate = (function(superClass) {
-    extend(Translate, superClass);
-
-    function Translate(option) {
-      Translate.__super__.constructor.call(this, option);
-      this.$imageFrame = $('.transform__image');
-      this.$image = $('img', this.$imageFrame);
-      this.location = {};
-      this.flag = false;
-      this.initialize();
-    }
-
-    Translate.prototype.initialize = function() {
-      this.imageFrameWidth = this.$imageFrame.width();
-      this.imageFrameHeight = this.$imageFrame.height();
-      this.location = {
-        top: this.$imageFrame.offset().top,
-        bottom: this.$imageFrame.offset().top + this.imageFrameHeight,
-        left: this.$imageFrame.offset().left,
-        right: this.$imageFrame.offset().left + this.imageFrameWidth
-      };
-      this.$imageFrame.data({
-        location: this.location
-      });
-      return this.framePosition = {
-        top: 0,
-        bottom: 0,
-        left: 0,
-        right: 0
-      };
-    };
-
-    Translate.prototype.adjust = function($box, x, y) {
-      if (this.location.left < this.framePosition.left) {
-        $box.css({
-          left: 0 + x
-        });
-      } else if (this.location.right > this.framePosition.right) {
-        $box.css({
-          left: this.imageFrameWidth - this.$image.width() + x
-        });
-      }
-      if (this.location.top < this.framePosition.top) {
-        return $box.css({
-          top: 0 + y
-        });
-      } else if (this.location.bottom > this.framePosition.bottom) {
-        return $box.css({
-          top: this.imageFrameHeight - this.$image.height() + y
-        });
-      }
-    };
-
-    Translate.prototype.start = function(e) {
-      this.flag = true;
-      this.startX = e.pageX;
-      this.startY = e.pageY;
-      this.originalTop = parseInt(this.$imageFrame.css('top'), 10);
-      return this.originalLeft = parseInt(this.$imageFrame.css('left'), 10);
-    };
-
-    Translate.prototype.move = function(e) {
-      var mouseX, mouseY, newX, newY;
-      mouseX = e.pageX;
-      mouseY = e.pageY;
-      newX = mouseX - this.startX;
-      newY = mouseY - this.startY;
-      return this.locate(this.$imageFrame, 0, 0, newX, newY);
-    };
-
-    Translate.prototype.locate = function($box, x, y, newX, newY) {
-      return $box.css({
-        left: this.originalLeft + newX + x,
-        top: this.originalTop + newY + y
-      });
-    };
-
-    Translate.prototype.end = function(e) {
-      this.flag = false;
-      return this.adjustPhotoLocation();
-    };
-
-    Translate.prototype.adjustPhotoLocation = function() {
-      this.framePosition = {
-        top: this.$imageFrame.offset().top,
-        bottom: this.$imageFrame.offset().top + this.$image.height(),
-        left: this.$imageFrame.offset().left,
-        right: this.$imageFrame.offset().left + this.$image.width()
-      };
-      return this.adjust(this.$imageFrame, 0, 0);
-    };
-
-    Translate.prototype.set = function(newX, newY) {
-      this.originalTop = parseInt(this.$imageFrame.css('top'), 10);
-      this.originalLeft = parseInt(this.$imageFrame.css('left'), 10);
-      this.locate(this.$imageFrame, 0, 0, newX, newY);
-      return this.adjustPhotoLocation();
-    };
-
-    Translate.prototype.reset = function() {
-      this.location = {};
-      this.$imageFrame.css({
-        left: 0,
-        top: 0
-      });
-      this.framePosition = {
-        top: 0,
-        bottom: 0,
-        left: 0,
-        right: 0
-      };
-      this.$imageFrame.width(this.imageFrameWidth);
-      return this.$imageFrame.height(this.imageFrameHeight);
-    };
-
-    return Translate;
-
-  })(EventEmitter2);
-
-  /*
-   * Scale
-   * @constructor
-   * @extends EventEmitter2
-   */
-  Scale = (function(superClass) {
-    extend(Scale, superClass);
-
-    function Scale(id) {
-      Scale.__super__.constructor.call(this, id);
-      this.$imageFrame = $('.transform__image');
-      this.$image = $('img', this.$imageFrame);
-      this.ratio = 10;
-      this.initialize();
-    }
-
-    Scale.prototype.initialize = function() {
-      this.$image.data('baseWidth', this.$image.width());
-      return this.$image.data('baseHeight', this.$image.height());
-    };
-
-    Scale.prototype.scale = function(e, zoomScale) {
-      var imageLeft, imageTop, imageX, imageXcenter, imageY, imageYcenter, unitScale;
-      e.preventDefault();
-      imageLeft = parseInt(this.$imageFrame.css('left'), 10);
-      imageTop = parseInt(this.$imageFrame.css('top'), 10);
-      imageX = this.$image.offset().left;
-      imageY = this.$image.offset().top;
-      unitScale = 10;
-      imageXcenter = imageX + this.$image.width() / unitScale / 2;
-      imageYcenter = imageY - this.$image.height() / unitScale / 2;
-      if (this.ratio >= unitScale * 3 && zoomScale > 0) {
-        this.ratio = unitScale * 3;
-      } else if (this.ratio <= unitScale && zoomScale < 0) {
-        this.ratio = unitScale;
-      } else {
-        this.ratio += zoomScale * unitScale;
-        imageLeft -= RESIZED_IMAGE_WIDTH * zoomScale / 2;
-        imageTop -= RESIZED_IMAGE_HEIGHT * zoomScale / 2;
-      }
-      this.resize({
-        top: imageTop,
-        left: imageLeft,
-        ratio: this.ratio
-      });
-      return this.emit('scaled');
-    };
-
-    Scale.prototype.resize = function(e) {
-      var resizeBox, resizeImg;
-      resizeImg = function($img) {
-        return $img.css({
-          width: RESIZED_IMAGE_WIDTH * e.ratio / 10,
-          height: RESIZED_IMAGE_HEIGHT * e.ratio / 10
-        });
-      };
-      resizeBox = function($box, x, y) {
-        return $box.css({
-          left: e.left + x,
-          top: e.top + y
-        });
-      };
-      resizeImg(this.$image);
-      return resizeBox(this.$imageFrame, 0, 0);
-    };
-
-    Scale.prototype.getDistance = function(e) {
-      return Math.sqrt(Math.pow(Number(e.originalEvent.touches[0].pageX) - Number(e.originalEvent.touches[1].pageX), 2) + Math.pow(Number(e.originalEvent.touches[0].pageY) - Number(e.originalEvent.touches[1].pageY), 2));
-    };
-
-    Scale.prototype.getRatio = function() {
-      return this.ratio;
-    };
-
-    Scale.prototype.reset = function() {
-      this.ratio = 10;
-      this.$image.css({
-        width: '',
-        height: ''
-      });
-      this.$imageFrame.css({
-        left: 0,
-        top: 0
-      });
-      this.$image.data('baseWidth', null);
-      return this.$image.data('baseHeight', null);
-    };
-
-    return Scale;
-
-  })(EventEmitter2);
-
-  /*
-   * Transform
-   * @constructor
-   * @extends EventEmitter2
-   */
-  Transform = (function(superClass) {
-    extend(Transform, superClass);
-
-    function Transform(id) {
-      Transform.__super__.constructor.call(this, id);
-      this.$el = $(id);
-      this.initialize();
-      this.eventify();
-    }
-
-    Transform.prototype.initialize = function() {
-      var $image, $imageFrame, centering, imageFrameHeight, imageFrameWidth, loaded, ratio, reset, resizeImage, resizeImageBox, resizeParent, setImgToFrame;
-      this.translate = null;
-      this.scale = null;
-      this.$dragArea = $('.transform__touch');
-      this.$btnUp = $('#AdjustUp');
-      this.$btnDown = $('#AdjustDown');
-      this.$btnLeft = $('#AdjustLeft');
-      this.$btnRight = $('#AdjustRight');
-      this.$btnZoomIn = $('#ZoomIn');
-      this.$btnZoomOut = $('#ZoomOut');
-      $imageFrame = $('.transform__image');
-      $image = $imageFrame.find('img');
-      $image.css({
-        width: 'auto',
-        height: 'auto'
-      });
-      imageFrameWidth = $imageFrame.width();
-      imageFrameHeight = $imageFrame.height();
-      ratio = 10;
-      resizeImage = function($img) {
-        var aspectRatio, height, width;
-        width = $img.width();
-        height = $img.height();
-        aspectRatio = width / height;
-        RESIZED_IMAGE_WIDTH = imageFrameWidth;
-        RESIZED_IMAGE_HEIGHT = RESIZED_IMAGE_WIDTH / aspectRatio;
-        if (RESIZED_IMAGE_HEIGHT < imageFrameHeight) {
-          RESIZED_IMAGE_HEIGHT = imageFrameHeight;
-          RESIZED_IMAGE_WIDTH = RESIZED_IMAGE_HEIGHT * aspectRatio;
-        }
-        $img.css({
-          width: RESIZED_IMAGE_WIDTH,
-          height: RESIZED_IMAGE_HEIGHT
-        });
-        return resizeImageBox($img);
-      };
-      resizeImageBox = function($img) {
-        return $imageFrame.css({
-          width: $img.width(),
-          height: $img.height()
-        });
-      };
-      resizeParent = function($img) {
-        return $imageFrame.css({
-          width: $img.width(),
-          height: $img.height()
-        });
-      };
-      centering = function($box, $frame, x, y) {
-        var left, top;
-        top = ($box.height() - $frame.height()) / 2;
-        left = ($box.width() - $frame.width()) / 2;
-        return $box.css({
-          top: -top + y,
-          left: -left + x
-        });
-      };
-      loaded = (function(_this) {
-        return function() {
-          if (_this.translate == null) {
-            _this.translate = new Translate();
-          } else {
-            _this.translate.initialize();
-          }
-          if (_this.scale == null) {
-            _this.scale = new Scale();
-          } else {
-            _this.scale.initialize();
-          }
-          resizeImage($image);
-          return centering($imageFrame, $imageFrame, 0, 0);
-        };
-      })(this);
-      $image.on('load', (function(_this) {
-        return function() {
-          return loaded();
-        };
-      })(this));
-      setImgToFrame = (function(_this) {
-        return function() {
-          return $image.attr({
-            src: Util.getImagePath()
-          });
-        };
-      })(this);
-      setImgToFrame();
-      reset = (function(_this) {
-        return function() {
-          if (_this.translate != null) {
-            _this.translate.reset();
-            _this.translate.initialize();
-          }
-          if (_this.scale != null) {
-            _this.scale.reset();
-            return _this.scale.initialize();
-          }
-        };
-      })(this);
-      this.setImage = setImgToFrame;
-      return this.reset = reset;
-    };
-
-    Transform.prototype.eventify = function() {
-      var currentScale, moveDistance, saveScale, startDistance;
-      this.$dragArea.on(Events.START, (function(_this) {
-        return function(e) {
-          if (!e.pageX) {
-            e = event.touches[0];
-          }
-          return _this.translate.start(e);
-        };
-      })(this));
-      $(doc).on(Events.MOVE, (function(_this) {
-        return function(e) {
-          if ((_this.translate != null) && _this.translate.flag === true) {
-            if (!e.pageX) {
-              e = event.touches[0];
-            }
-            return _this.translate.move(e);
-          }
-        };
-      })(this));
-      $(doc).on(Events.END, (function(_this) {
-        return function(e) {
-          return _this.translate.end();
-        };
-      })(this));
-      this.$btnZoomIn.on(Events.CLICK, (function(_this) {
-        return function(e) {
-          return _this.scale.scale(e, 0.2);
-        };
-      })(this));
-      this.$btnZoomOut.on(Events.CLICK, (function(_this) {
-        return function(e) {
-          return _this.scale.scale(e, -0.2);
-        };
-      })(this));
-      this.$btnUp.on(Events.CLICK, (function(_this) {
-        return function() {
-          return _this.translate.set(0, -10);
-        };
-      })(this));
-      this.$btnDown.on(Events.CLICK, (function(_this) {
-        return function() {
-          return _this.translate.set(0, 10);
-        };
-      })(this));
-      this.$btnLeft.on(Events.CLICK, (function(_this) {
-        return function() {
-          return _this.translate.set(-10, 0);
-        };
-      })(this));
-      this.$btnRight.on(Events.CLICK, (function(_this) {
-        return function() {
-          return _this.translate.set(10, 0);
-        };
-      })(this));
-      if (Util.ua.isMobile) {
-        startDistance = 0;
-        moveDistance = 0;
-        currentScale = 1;
-        saveScale = 10;
-        this.$dragArea.on('touchstart', (function(_this) {
-          return function(e) {
-            e.preventDefault();
-            if (e.originalEvent.touches.length === 2) {
-              return startDistance = _this.scale.getDistance(e);
-            }
-          };
-        })(this));
-        return this.$dragArea.on('touchmove', (function(_this) {
-          return function(e) {
-            if (e.originalEvent.touches.length === 2) {
-              moveDistance = _this.scale.getDistance(e);
-              ratio *= moveDistance / startDistance;
-              return _this.scale.scale(e, ratio / 10 - 1);
-            }
-          };
-        })(this));
-      }
-    };
-
-    return Transform;
-
-  })(EventEmitter2);
-  return UI.Transform = Transform;
 })(window, window.document);
 
 var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -1452,242 +1017,523 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
   return UI.Scene = Scene;
 })(window, window.document);
 
-(function(win, doc, Staircase) {
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
+
+(function(win, doc) {
   'use strict';
-  var Debug, Events, Params, UI, Util;
-  Debug = Staircase.Debug;
+  var Events, Params, Scale, UI, Util;
   Events = Staircase.Events;
-  Util = Staircase.Util;
   UI = Staircase.UI;
+  Util = Staircase.Util;
   Params = Staircase.Params;
-  Params.upload = {};
-  Params.reupload = {};
-  Util.getImagePath = function() {
-    return Params.upload.image_path;
-  };
-  Util.getImageId = function() {
-    return Params.upload.image_uuid;
-  };
+  if (Util.ua.isMobile) {
+    Events.CLICK = 'touchend';
+    Events.START = 'touchstart';
+    Events.MOVE = 'touchmove';
+    Events.END = 'touchend';
+  } else {
+    Events.CLICK = 'click';
+    Events.START = 'mousedown';
+    Events.MOVE = 'mousemove';
+    Events.END = 'mouseup';
+  }
 
   /*
-   * Entry Point
+   * Scale
+   * @constructor
+   * @extends EventEmitter2
    */
-  Staircase.prototype.initialize = function() {
-    this.modal = new UI.Modal({
-      id: this.settings.modal,
-      page: this.settings.modalPage
-    });
-    this.camera = new UI.Camera(this.settings.camera);
-    this.previewCanvas = new UI.PreviewCanvas(this.settings.previewCanvas);
-    this.previewImage = new UI.PreviewImage(this.settings.previewContainer);
-    this.uploader = new UI.Uploader(this.settings.uploader);
-    this.reUploader = new UI.ReUploader({
-      size: this.settings.reUploadSize
-    });
-    this.processChecker = new UI.ProcessChecker();
-    this.loading = new UI.LoadingSprite(this.settings.loading);
-    this.cameraView = new UI.Scene(this.settings.cameraScene);
-    this.previewView = new UI.Scene(this.settings.previewScene);
-    this.loadingView = new UI.Scene(this.settings.loadingScene);
-    this.sceneManager = new UI.SceneManager([this.cameraView, this.previewView, this.loadingView]);
-    this.sceneManager.active(this.sceneManager.current);
-    this.$btnStartUpload = $(this.settings.btnStartUpload);
-    this.$btnStartCamera = $(this.settings.btnStartCamera);
-    this.$btnCancel = $(this.settings.btnCancelCamera);
-    this.$btnCapture = $(this.settings.btnCaptureCamera);
-    this.$btnRetake = $(this.settings.btnRetakeCapture);
-    this.$btnReselect = $(this.settings.btnReselect);
-    this.$btnPostWebCamera = $(this.settings.btnPostWebCamera);
-    this.$btnPostPhoto = $(this.settings.btnPostPhoto);
-    this.$form = $(this.settings.uploadForm);
-    this.eventify();
-    return this.globalize();
-  };
-  Staircase.prototype.eventify = function() {
-    if (this.camera.isSupport == null) {
-      this.$btnStartCamera.parent().hide();
-    }
-    this.$btnStartCamera.on('click', (function(_this) {
-      return function(e) {
-        e.preventDefault();
-        _this.modal.show();
-        _this.camera.powerOn();
-        return _this.sceneManager.active(0);
-      };
-    })(this));
-    this.camera.on(Events.CAMERA_SUCCESS, (function(_this) {
-      return function(e) {
-        return console.log(e);
-      };
-    })(this));
-    this.camera.on(Events.CAMERA_ERROR, function(e) {
-      return console.log(e);
-    });
-    this.$btnCancel.on('click', (function(_this) {
-      return function(e) {
-        e.preventDefault();
-        _this.sceneManager.prev();
-        _this.camera.powerOff();
-        return _this.modal.hide();
-      };
-    })(this));
-    this.$btnCapture.on('click', (function(_this) {
-      return function(e) {
-        var video;
-        e.preventDefault();
-        video = _this.camera.getVideo();
-        _this.previewCanvas.draw(video);
-        _this.sceneManager.next();
-        return _this.previewImage.show();
-      };
-    })(this));
-    this.$btnRetake.on('click', (function(_this) {
-      return function(e) {
-        e.preventDefault();
-        _this.sceneManager.prev();
-        return _this.previewImage.hide();
-      };
-    })(this));
-    this.$btnReselect.on('click', (function(_this) {
-      return function(e) {
-        e.preventDefault();
-        _this.sceneManager.active(0);
-        _this.uploader.reset();
-        _this.transformView.$el.addClass('is-hidden');
-        return _this.modal.hide();
-      };
-    })(this));
-    this.$btnPostWebCamera.on('click', (function(_this) {
-      return function(e) {
-        e.preventDefault();
-        _this.loading.start();
-        return _this._postCameraImage();
-      };
-    })(this));
-    this.$btnPostPhoto.on('click', (function(_this) {
-      return function(e) {
-        e.preventDefault();
-        _this.reUploader.submit();
-        $('.loading__upload').append($('.transform__wrap'));
-        _this.loading.start();
-        return _this.sceneManager.next();
-      };
-    })(this));
-    this.modal.on(Events.MODAL_HIDE, (function(_this) {
-      return function(e) {
-        if (_this.camera.getStatus() === true) {
-          _this.camera.powerOff();
-        }
-        if (_this.transformView != null) {
-          _this.transformView.$el.addClass('is-hidden');
-        }
-        _this.uploader.reset();
-        return _this.previewImage.hide();
-      };
-    })(this));
-    this.uploader.on(Events.UPLOAD_LOAD_IMG, (function(_this) {
-      return function(e) {
-        return _this.$form.submit();
-      };
-    })(this));
-    this.reUploader.on(Events.REUPLOAD_SUCCESS, (function(_this) {
-      return function(e) {
-        Params.reupload = e.response;
-        return _this.processChecker.set(Params.reupload.result_path).start();
-      };
-    })(this));
-    this.reUploader.on(Events.REUPLOAD_ERROR, (function(_this) {
-      return function(e) {
-        alert('アップロードに失敗しました。');
-        return _this.loading.stop();
-      };
-    })(this));
-    return this.processChecker.on(Events.CHECK_COMPLETE, (function(_this) {
-      return function(res) {
-        _this.loading.stop();
-        switch (res.result.face_count) {
-          case 0:
-            win.location.href = '/error.html#0';
-            break;
-          case 1:
-            win.location.href = res.result_url;
-            break;
-          case 2:
-            win.location.href = '/error.html#2';
-            break;
-          default:
-            break;
-        }
-      };
-    })(this));
-  };
-  Staircase.prototype.globalize = function() {
-    var self;
-    self = this;
-    Util.setResponse = function(res, CAMERA_or_PHOTO) {
-      Params.upload = res.response;
-      self.modal.show();
-      switch (CAMERA_or_PHOTO) {
-        case 'CAMERA':
-          self.processChecker.set(Params.upload.result_path).start();
-          break;
-        case 'PHOTO':
-          if (self.transformView == null) {
-            self.transformView = new UI.Transform('#Transform');
-          } else {
-            self.transformView.setImage();
-            self.transformView.reset();
-          }
-          self.transformView.$el.removeClass('is-hidden');
-          self.previewView.emit(Events.PREVIEW_PHOTO);
-          self.sceneManager.active(1);
-          break;
-        default:
-          break;
-      }
-    };
-    return Util.getJSON = function(json) {
-      return Util.setResponse(json, 'PHOTO');
-    };
-  };
-  return Staircase.prototype._postCameraImage = function() {
-    var blob, canvas, formData, ratio, video, x, xhr, y;
-    canvas = this.previewCanvas.getCanvas();
-    blob = this.previewCanvas.getBlob('image/png');
-    formData = new FormData(this.$form[0]);
-    xhr = new XMLHttpRequest();
-    this.camera.powerOff();
-    ratio = 2.2 + (UI.TRIM_RATIO - 1);
-    video = this.camera.getVideo();
-    x = ($(video).width() / 2 * ratio) - (UI.TRIM_WIDTH / 2);
-    y = ($(video).height() / 2 * ratio) - (UI.TRIM_HEIGHT / 2);
-    formData.append('is_camera', true);
-    formData.append('image', blob);
-    formData.append('zoom', ratio);
-    formData.append('x', x);
-    formData.append('y', y);
-    formData.append('width', UI.TRIM_WIDTH);
-    formData.append('height', UI.TRIM_HEIGHT);
-    xhr.onload = function(e) {
-      var json;
-      if (xhr.readyState === 4) {
-        if (xhr.status === 200) {
-          json = Util.parseJSON(xhr.responseText);
-          return Util.setResponse(json, 'CAMERA');
-        } else {
+  Scale = (function(superClass) {
+    extend(Scale, superClass);
 
+    function Scale(option) {
+      Scale.__super__.constructor.call(this, option);
+      this.$imageFrame = $('.transform__image');
+      this.$image = $('img', this.$imageFrame);
+      this.ratio = 10;
+      this.initialize();
+    }
+
+    Scale.prototype.initialize = function() {
+      this.$image.data('baseWidth', this.$image.width());
+      return this.$image.data('baseHeight', this.$image.height());
+    };
+
+    Scale.prototype.scale = function(e, zoomScale) {
+      var imageLeft, imageTop, imageX, imageXcenter, imageY, imageYcenter, resized, unitScale;
+      e.preventDefault();
+      imageLeft = parseInt(this.$imageFrame.css('left'), 10);
+      imageTop = parseInt(this.$imageFrame.css('top'), 10);
+      imageX = this.$image.offset().left;
+      imageY = this.$image.offset().top;
+      unitScale = 10;
+      imageXcenter = imageX + this.$image.width() / unitScale / 2;
+      imageYcenter = imageY - this.$image.height() / unitScale / 2;
+      if (this.ratio >= unitScale * 3 && zoomScale > 0) {
+        this.ratio = unitScale * 3;
+      } else if (this.ratio <= unitScale && zoomScale < 0) {
+        this.ratio = unitScale;
+      } else {
+        this.ratio += zoomScale * unitScale;
+        imageLeft -= Params.resized_image_width * zoomScale / 2;
+        imageTop -= Params.resized_image_height * zoomScale / 2;
+      }
+      resized = this.resize({
+        top: imageTop,
+        left: imageLeft,
+        ratio: this.ratio
+      });
+      return this.emit(Events.TRANSFORM_SCALE, resized);
+    };
+
+    Scale.prototype.resize = function(e) {
+      var height, left, resizeBox, resizeImg, top, width;
+      width = Params.resized_image_width * e.ratio / 10;
+      height = Params.resized_image_height * e.ratio / 10;
+      top = 0;
+      left = 0;
+      resizeImg = (function(_this) {
+        return function($img) {
+          return $img.css({
+            width: width,
+            height: height
+          });
+        };
+      })(this);
+      resizeBox = function($box, x, y) {
+        top = e.top + y;
+        left = e.left + x;
+        return $box.css({
+          left: left,
+          top: top
+        });
+      };
+      resizeImg(this.$image);
+      resizeBox(this.$imageFrame, 0, 0);
+      return {
+        width: width,
+        height: height,
+        top: top,
+        left: left,
+        ratio: e.ratio
+      };
+    };
+
+    Scale.prototype.getDistance = function(e) {
+      return Math.sqrt(Math.pow(Number(e.originalEvent.touches[0].pageX) - Number(e.originalEvent.touches[1].pageX), 2) + Math.pow(Number(e.originalEvent.touches[0].pageY) - Number(e.originalEvent.touches[1].pageY), 2));
+    };
+
+    Scale.prototype.getRatio = function() {
+      return this.ratio;
+    };
+
+    Scale.prototype.reset = function() {
+      this.ratio = 10;
+      this.$image.css({
+        width: '',
+        height: ''
+      });
+      this.$imageFrame.css({
+        left: 0,
+        top: 0
+      });
+      this.$image.data('baseWidth', null);
+      return this.$image.data('baseHeight', null);
+    };
+
+    return Scale;
+
+  })(EventEmitter2);
+  return UI.Scale = Scale;
+})(window, window.document);
+
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
+
+(function(win, doc) {
+  'use strict';
+  var Events, Params, Transform, UI, Util;
+  Events = Staircase.Events;
+  UI = Staircase.UI;
+  Util = Staircase.Util;
+  Params = Staircase.Params;
+  if (Util.ua.isMobile) {
+    Events.CLICK = 'touchend';
+    Events.START = 'touchstart';
+    Events.MOVE = 'touchmove';
+    Events.END = 'touchend';
+  } else {
+    Events.CLICK = 'click';
+    Events.START = 'mousedown';
+    Events.MOVE = 'mousemove';
+    Events.END = 'mouseup';
+  }
+
+  /*
+   * Transform
+   * @constructor
+   * @extends EventEmitter2
+   */
+  Transform = (function(superClass) {
+    extend(Transform, superClass);
+
+    function Transform(id) {
+      Transform.__super__.constructor.call(this, id);
+      this.$el = $(id);
+      this.isLoaded = false;
+      this.initialize();
+      this.eventify();
+    }
+
+    Transform.prototype.initialize = function() {
+      var $image, $imageFrame, centering, imageFrameHeight, imageFrameWidth, loaded, ratio, reset, resizeImage, resizeImageBox, resizeParent, self, setImgToFrame;
+      self = this;
+      this.translate = null;
+      this.scale = null;
+      this.$dragArea = $('.transform__touch');
+      this.$btnUp = $('#AdjustUp');
+      this.$btnDown = $('#AdjustDown');
+      this.$btnLeft = $('#AdjustLeft');
+      this.$btnRight = $('#AdjustRight');
+      this.$btnZoomIn = $('#ZoomIn');
+      this.$btnZoomOut = $('#ZoomOut');
+      $imageFrame = $('.transform__image');
+      $image = $imageFrame.find('img');
+      $image.css({
+        width: 'auto',
+        height: 'auto'
+      });
+      imageFrameWidth = $imageFrame.width();
+      imageFrameHeight = $imageFrame.height();
+      ratio = 10;
+      resizeImage = function($img) {
+        var aspectRatio, height, width;
+        width = $img.width();
+        height = $img.height();
+        aspectRatio = width / height;
+        Params.resized_image_width = imageFrameWidth;
+        Params.resized_image_height = Params.resized_image_width / aspectRatio;
+        if (Params.resized_image_height < imageFrameHeight) {
+          Params.resized_image_height = imageFrameHeight;
+          Params.resized_image_width = Params.resized_image_height * aspectRatio;
         }
+        $img.css({
+          width: Params.resized_image_width,
+          height: Params.resized_image_height
+        });
+        return resizeImageBox($img);
+      };
+      resizeImageBox = function($img) {
+        return $imageFrame.css({
+          width: $img.width(),
+          height: $img.height()
+        });
+      };
+      resizeParent = function($img) {
+        return $imageFrame.css({
+          width: $img.width(),
+          height: $img.height()
+        });
+      };
+      centering = function($box, $frame, x, y) {
+        var left, top;
+        top = ($box.height() - $frame.height()) / 2;
+        left = ($box.width() - $frame.width()) / 2;
+        return $box.css({
+          top: -top + y,
+          left: -left + x
+        });
+      };
+      loaded = (function(_this) {
+        return function() {
+          if (_this.translate == null) {
+            _this.translate = new UI.Translate();
+          } else {
+            _this.translate.initialize();
+          }
+          if (_this.scale == null) {
+            _this.scale = new UI.Scale();
+          } else {
+            _this.scale.initialize();
+          }
+          resizeImage($image);
+          return centering($imageFrame, $imageFrame, 0, 0);
+        };
+      })(this);
+      $image.on('load', (function(_this) {
+        return function() {
+          loaded();
+          _this.isLoaded = true;
+          return _this.emit(Events.TRANSFORM_LOAD_IMG);
+        };
+      })(this));
+      setImgToFrame = (function(_this) {
+        return function() {
+          return $image.attr({
+            src: Util.getImagePath()
+          });
+        };
+      })(this);
+      setImgToFrame();
+      reset = (function(_this) {
+        return function() {
+          if (_this.translate != null) {
+            _this.translate.reset();
+            _this.translate.initialize();
+          }
+          if (_this.scale != null) {
+            _this.scale.reset();
+            return _this.scale.initialize();
+          }
+        };
+      })(this);
+      this.setImage = setImgToFrame;
+      return this.reset = reset;
+    };
+
+    Transform.prototype.eventify = function() {
+      var currentScale, moveDistance, saveScale, startDistance;
+      if (this.isLoaded === true) {
+        this.eventifyExt();
+      } else {
+        this.on(Events.TRANSFORM_LOAD_IMG, (function(_this) {
+          return function() {
+            return _this.eventifyExt();
+          };
+        })(this));
+      }
+      this.$dragArea.on(Events.START, (function(_this) {
+        return function(e) {
+          if (!e.pageX) {
+            e = event.touches[0];
+          }
+          return _this.translate.start(e);
+        };
+      })(this));
+      $(doc).on(Events.MOVE, (function(_this) {
+        return function(e) {
+          if ((_this.translate != null) && _this.translate.flag === true) {
+            if (!e.pageX) {
+              e = event.touches[0];
+            }
+            return _this.translate.move(e);
+          }
+        };
+      })(this));
+      $(doc).on(Events.END, (function(_this) {
+        return function(e) {
+          return _this.translate.end(e);
+        };
+      })(this));
+      if (Util.ua.isMobile) {
+        startDistance = 0;
+        moveDistance = 0;
+        currentScale = 1;
+        saveScale = 10;
+        this.$dragArea.on('touchstart', (function(_this) {
+          return function(e) {
+            e.preventDefault();
+            if (e.originalEvent.touches.length === 2) {
+              return startDistance = _this.scale.getDistance(e);
+            }
+          };
+        })(this));
+        return this.$dragArea.on('touchmove', (function(_this) {
+          return function(e) {
+            if (e.originalEvent.touches.length === 2) {
+              moveDistance = _this.scale.getDistance(e);
+              ratio *= moveDistance / startDistance;
+              return _this.scale.scale(e, ratio / 10 - 1);
+            }
+          };
+        })(this));
       }
     };
-    xhr.onerror = function(e) {
-      return console.log('XHR ERROR: ', e);
+
+    Transform.prototype.eventifyExt = function() {
+      this.$btnZoomIn.on(Events.CLICK, (function(_this) {
+        return function(e) {
+          return _this.scale.scale(e, 0.2);
+        };
+      })(this));
+      this.$btnZoomOut.on(Events.CLICK, (function(_this) {
+        return function(e) {
+          return _this.scale.scale(e, -0.2);
+        };
+      })(this));
+      this.$btnUp.on(Events.CLICK, (function(_this) {
+        return function() {
+          return _this.translate.set(0, -10);
+        };
+      })(this));
+      this.$btnDown.on(Events.CLICK, (function(_this) {
+        return function() {
+          return _this.translate.set(0, 10);
+        };
+      })(this));
+      this.$btnLeft.on(Events.CLICK, (function(_this) {
+        return function() {
+          return _this.translate.set(-10, 0);
+        };
+      })(this));
+      return this.$btnRight.on(Events.CLICK, (function(_this) {
+        return function() {
+          return _this.translate.set(10, 0);
+        };
+      })(this));
     };
-    if (/\?debug/.test(location.search)) {
-      xhr.open('GET', 'stub/result.json');
-      return xhr.send();
-    } else {
-      xhr.open('POST', this.$form.attr('action'));
-      return xhr.send(formData);
+
+    return Transform;
+
+  })(EventEmitter2);
+  return UI.Transform = Transform;
+})(window, window.document);
+
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
+
+(function(win, doc) {
+  'use strict';
+  var Events, Params, Translate, UI, Util;
+  Events = Staircase.Events;
+  UI = Staircase.UI;
+  Util = Staircase.Util;
+  Params = Staircase.Params;
+  if (Util.ua.isMobile) {
+    Events.CLICK = 'touchend';
+    Events.START = 'touchstart';
+    Events.MOVE = 'touchmove';
+    Events.END = 'touchend';
+  } else {
+    Events.CLICK = 'click';
+    Events.START = 'mousedown';
+    Events.MOVE = 'mousemove';
+    Events.END = 'mouseup';
+  }
+
+  /*
+   * Translate
+   * @constructor
+   * @extends EventEmitter2
+   */
+  Translate = (function(superClass) {
+    extend(Translate, superClass);
+
+    function Translate(option) {
+      Translate.__super__.constructor.call(this, option);
+      this.$imageFrame = $('.transform__image');
+      this.$image = $('img', this.$imageFrame);
+      this.location = {};
+      this.flag = false;
+      this.initialize();
     }
-  };
-})(window, window.document, window.Staircase);
+
+    Translate.prototype.initialize = function() {
+      this.imageFrameWidth = this.$imageFrame.width();
+      this.imageFrameHeight = this.$imageFrame.height();
+      this.location = {
+        top: this.$imageFrame.offset().top,
+        bottom: this.$imageFrame.offset().top + this.imageFrameHeight,
+        left: this.$imageFrame.offset().left,
+        right: this.$imageFrame.offset().left + this.imageFrameWidth
+      };
+      this.$imageFrame.data({
+        location: this.location
+      });
+      return this.framePosition = {
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0
+      };
+    };
+
+    Translate.prototype.adjust = function($box, x, y) {
+      if (this.location.left < this.framePosition.left) {
+        $box.css({
+          left: 0 + x
+        });
+      } else if (this.location.right > this.framePosition.right) {
+        $box.css({
+          left: this.imageFrameWidth - this.$image.width() + x
+        });
+      }
+      if (this.location.top < this.framePosition.top) {
+        return $box.css({
+          top: 0 + y
+        });
+      } else if (this.location.bottom > this.framePosition.bottom) {
+        return $box.css({
+          top: this.imageFrameHeight - this.$image.height() + y
+        });
+      }
+    };
+
+    Translate.prototype.start = function(e) {
+      this.flag = true;
+      this.startX = e.pageX;
+      this.startY = e.pageY;
+      this.originalTop = parseInt(this.$imageFrame.css('top'), 10);
+      return this.originalLeft = parseInt(this.$imageFrame.css('left'), 10);
+    };
+
+    Translate.prototype.move = function(e) {
+      var mouseX, mouseY, newX, newY;
+      mouseX = e.pageX;
+      mouseY = e.pageY;
+      newX = mouseX - this.startX;
+      newY = mouseY - this.startY;
+      return this.locate(this.$imageFrame, 0, 0, newX, newY);
+    };
+
+    Translate.prototype.locate = function($box, x, y, newX, newY) {
+      return $box.css({
+        left: this.originalLeft + newX + x,
+        top: this.originalTop + newY + y
+      });
+    };
+
+    Translate.prototype.end = function(e) {
+      this.flag = false;
+      return this.adjustPhotoLocation();
+    };
+
+    Translate.prototype.adjustPhotoLocation = function() {
+      this.framePosition = {
+        top: this.$imageFrame.offset().top,
+        bottom: this.$imageFrame.offset().top + this.$image.height(),
+        left: this.$imageFrame.offset().left,
+        right: this.$imageFrame.offset().left + this.$image.width()
+      };
+      return this.adjust(this.$imageFrame, 0, 0);
+    };
+
+    Translate.prototype.set = function(newX, newY) {
+      this.originalTop = parseInt(this.$imageFrame.css('top'), 10);
+      this.originalLeft = parseInt(this.$imageFrame.css('left'), 10);
+      this.locate(this.$imageFrame, 0, 0, newX, newY);
+      return this.adjustPhotoLocation();
+    };
+
+    Translate.prototype.reset = function() {
+      this.location = {};
+      this.$imageFrame.css({
+        left: 0,
+        top: 0
+      });
+      this.framePosition = {
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0
+      };
+      this.$imageFrame.width(this.imageFrameWidth);
+      return this.$imageFrame.height(this.imageFrameHeight);
+    };
+
+    return Translate;
+
+  })(EventEmitter2);
+  return UI.Translate = Translate;
+})(window, window.document);

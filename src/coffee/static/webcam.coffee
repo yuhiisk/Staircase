@@ -11,38 +11,38 @@ do (win = window, doc = document) ->
     Params.upload = {}
     Params.reupload = {}
 
-    Util.getImagePath = () ->
-        return Params.upload.image_path
+    # Util.getImagePath = () ->
+        # return Params.upload.image_path
 
-    Util.getImageId = () ->
-        return Params.upload.image_uuid
+    # Util.getImageId = () ->
+        # return Params.upload.image_uuid
 
 
     Staircase::initialize = ->
         # objects
-        @modal = new UI.Modal(
-            id: @settings.modal
-            page: @settings.modalPage
-        )
+        # @modal = new UI.Modal(
+        #     id: @settings.modal
+        #     page: @settings.modalPage
+        # )
         @camera = new UI.Camera(@settings.camera)
         @previewCanvas = new UI.PreviewCanvas(@settings.previewCanvas)
         @previewImage = new UI.PreviewImage(@settings.previewContainer)
-        @uploader = new UI.Uploader(@settings.uploader)
-        @reUploader = new UI.ReUploader({ size: @settings.reUploadSize })
-        @processChecker = new UI.ProcessChecker()
-        @loading = new UI.LoadingSprite(@settings.loading)
+        # @uploader = new UI.Uploader(@settings.uploader)
+        # @reUploader = new UI.ReUploader({ size: @settings.reUploadSize })
+        # @processChecker = new UI.ProcessChecker()
+        # @loading = new UI.LoadingSprite(@settings.loading)
 
-        @cameraView = new UI.Scene(@settings.cameraScene)
-        @previewView = new UI.Scene(@settings.previewScene)
-        @loadingView = new UI.Scene(@settings.loadingScene)
+        # @cameraView = new UI.Scene(@settings.cameraScene)
+        # @previewView = new UI.Scene(@settings.previewScene)
+        # @loadingView = new UI.Scene(@settings.loadingScene)
 
         # scene
-        @sceneManager = new UI.SceneManager([
-            @cameraView,
-            @previewView,
-            @loadingView
-        ])
-        @sceneManager.active(@sceneManager.current)
+        # @sceneManager = new UI.SceneManager([
+            # @cameraView,
+            # @previewView,
+            # @loadingView
+        # ])
+        # @sceneManager.active(@sceneManager.current)
 
         # elements
         @$btnStartUpload = $(@settings.btnStartUpload)
@@ -50,9 +50,9 @@ do (win = window, doc = document) ->
         @$btnCancel = $(@settings.btnCancelCamera)
         @$btnCapture = $(@settings.btnCaptureCamera)
         @$btnRetake = $(@settings.btnRetakeCapture)
-        @$btnReselect = $(@settings.btnReselect)
+        # @$btnReselect = $(@settings.btnReselect)
         @$btnPostWebCamera = $(@settings.btnPostWebCamera)
-        @$btnPostPhoto = $(@settings.btnPostPhoto)
+        # @$btnPostPhoto = $(@settings.btnPostPhoto)
         @$form  = $(@settings.uploadForm)
 
         # event
@@ -70,9 +70,9 @@ do (win = window, doc = document) ->
         # Start
         @$btnStartCamera.on('click', (e) =>
             e.preventDefault()
-            @modal.show()
+            # @modal.show()
             @camera.powerOn()
-            @sceneManager.active(0)
+            # @sceneManager.active(0)
         )
 
         # Camera
@@ -86,88 +86,94 @@ do (win = window, doc = document) ->
         # Button
         @$btnCancel.on('click', (e) =>
             e.preventDefault()
-            @sceneManager.prev()
+            # @sceneManager.prev()
             @camera.powerOff()
-            @modal.hide()
+            # @modal.hide()
         )
 
         @$btnCapture.on('click', (e) =>
             e.preventDefault()
             video = @camera.getVideo()
             @previewCanvas.draw(video)
-            @sceneManager.next()
+            # @sceneManager.next()
             @previewImage.show()
+
+            $('#Camera').hide()
+            $('#Preview').show()
         )
 
         # Preview
         @$btnRetake.on('click', (e) =>
             e.preventDefault()
-            @sceneManager.prev()
+            # @sceneManager.prev()
             @previewImage.hide()
+            $('#Camera').show()
+            $('#Preview').hide()
         )
-        @$btnReselect.on('click', (e) =>
-            e.preventDefault()
-            @sceneManager.active(0)
-            @uploader.reset()
-            @transformView.$el.addClass('is-hidden')
-            @modal.hide()
-        )
+        # @$btnReselect.on('click', (e) =>
+            # e.preventDefault()
+            # @sceneManager.active(0)
+            # @uploader.reset()
+            # @transformView.$el.addClass('is-hidden')
+            # @modal.hide()
+        # )
 
         @$btnPostWebCamera.on('click', (e) =>
             e.preventDefault()
-            @loading.start()
+            @camera.powerOff()
+            # @loading.start()
             @_postCameraImage()
         )
 
-        @$btnPostPhoto.on('click', (e) =>
-            e.preventDefault()
-            @reUploader.submit()
-            $('.loading__upload').append($('.transform__wrap'))
-            @loading.start()
-            @sceneManager.next()
-        )
+        # @$btnPostPhoto.on('click', (e) =>
+            # e.preventDefault()
+            # @reUploader.submit()
+            # $('.loading__upload').append($('.transform__wrap'))
+            # @loading.start()
+            # @sceneManager.next()
+        # )
 
-        @modal.on(Events.MODAL_HIDE, (e) =>
-            if @camera.getStatus() is true
-                @camera.powerOff()
+        # @modal.on(Events.MODAL_HIDE, (e) =>
+        #     if @camera.getStatus() is true
+        #         @camera.powerOff()
 
-            if @transformView?
-                @transformView.$el.addClass('is-hidden')
+        #     if @transformView?
+        #         @transformView.$el.addClass('is-hidden')
 
-            @uploader.reset()
-            @previewImage.hide()
-        )
+        #     @uploader.reset()
+        #     @previewImage.hide()
+        # )
 
         # Uploader
-        @uploader.on(Events.UPLOAD_LOAD_IMG, (e) =>
-            @$form.submit()
-        )
-        @reUploader.on(Events.REUPLOAD_SUCCESS, (e) =>
-            Params.reupload = e.response
-            @processChecker.set(Params.reupload.result_path).start()
-        )
-        @reUploader.on(Events.REUPLOAD_ERROR, (e) =>
-            alert('アップロードに失敗しました。')
-            @loading.stop()
-        )
+        # @uploader.on(Events.UPLOAD_LOAD_IMG, (e) =>
+        #     @$form.submit()
+        # )
+        # @reUploader.on(Events.REUPLOAD_SUCCESS, (e) =>
+        #     Params.reupload = e.response
+        #     @processChecker.set(Params.reupload.result_path).start()
+        # )
+        # @reUploader.on(Events.REUPLOAD_ERROR, (e) =>
+        #     alert('アップロードに失敗しました。')
+        #     @loading.stop()
+        # )
 
         # Checker
-        @processChecker.on(Events.CHECK_COMPLETE, (res) =>
-            @loading.stop()
+        # @processChecker.on(Events.CHECK_COMPLETE, (res) =>
+        #     @loading.stop()
 
-            switch res.result.face_count
-                when 0
-                    win.location.href = '/error.html#0'
-                    break
-                when 1
-                    win.location.href = res.result_url
-                    break
-                when 2
-                    win.location.href = '/error.html#2'
-                    break
-                else
-                    break
-        )
+        #     switch res.result.face_count
+        #         when 0
+        #             win.location.href = '/error.html#0'
+        #             break
+        #         when 1
+        #             win.location.href = res.result_url
+        #             break
+        #         when 2
+        #             win.location.href = '/error.html#2'
+        #             break
+        #         else
+        #             break
+        # )
 
     Staircase::globalize = ->
         self = @
@@ -175,30 +181,22 @@ do (win = window, doc = document) ->
         # JSONを受け取って処理する
         Util.setResponse = (res, type) ->
             Params.upload = res.response
-            self.modal.show()
 
             switch type
                 when 'CAMERA'
-                    self.processChecker.set(Params.upload.result_path).start()
+                    alert('Post Complete.')
+                    # self.processChecker.set(Params.upload.result_path).start()
                     break
 
                 when 'PHOTO'
-                    # 再代入を回避
-                    if !self.transformView?
-                        self.transformView = new UI.Transform('#Transform')
-                    else
-                        self.transformView.setImage()
-                        self.transformView.reset()
-                    self.transformView.$el.removeClass('is-hidden')
-                    self.previewView.emit(Events.PREVIEW_PHOTO)
-                    self.sceneManager.active(1)
+                    alert('Form?')
                     break
 
                 else
                     break
 
         # iframeを経由してサーバからHTMLファイル形式でJSONを受け取るグローバルメソッド
-        Util.getJSON = (json) ->
+        Util['getJSON'] = (json) ->
             Util.setResponse(json, 'PHOTO')
 
 
@@ -209,7 +207,6 @@ do (win = window, doc = document) ->
         formData = new FormData(@$form[0])
         xhr      = new XMLHttpRequest()
 
-        @camera.powerOff()
 
         ratio = 2.2 + (UI.TRIM_RATIO - 1)
         video = @camera.getVideo()

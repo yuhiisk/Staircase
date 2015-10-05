@@ -46,11 +46,11 @@ do (win = window, doc = window.document) ->
                         if res.is_recogition_finished is true
                             _stop()
                             isComplete = true
-                            self.emit(Events.CHECK_COMPLETE, null, res)
+                            self.emit(Events.CHECK_COMPLETE, res)
 
                         # 画像が完成していない場合
                         else if res.is_recogition_finished is false
-                            self.emit(Events.CHECK_PROCESS, null, res)
+                            self.emit(Events.CHECK_PROCESS, res)
 
                         # Error handle
                         # uidが存在しないとき（最初の画像のアップロード自体が失敗している時など）

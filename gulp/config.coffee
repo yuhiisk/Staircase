@@ -53,8 +53,7 @@ config =
         "lib"    : [
             src + "coffee/config.coffee",
             src + "coffee/utilities.coffee",
-            src + "coffee/modules/**/*.coffee",
-            src + "coffee/app.coffee"
+            src + "coffee/modules/**/*.coffee"
         ]
 
     # entry point
