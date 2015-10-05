@@ -8,15 +8,6 @@ do (win = window, doc = document) ->
     UI = Staircase.UI
 
     Params = Staircase.Params
-    Params.upload = {}
-    Params.reupload = {}
-
-    Util.getImagePath = () ->
-        return Params.upload.image_path
-
-    Util.getImageId = () ->
-        return Params.upload.image_uuid
-
 
     Staircase::initialize = ->
         # objects
@@ -255,8 +246,6 @@ do (win = window, doc = document) ->
         trim_height: 236, #198 #160
         # parameter name
         params: {},
-        path: 'image_path',
-        uuid: 'image_uuid',
         # elements
         modal: '#Modal',
         modalPage: '.wrapper'

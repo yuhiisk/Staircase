@@ -4,10 +4,17 @@
   Staircase = (function() {
     function Staircase(option) {
       this.settings = $.extend(Staircase.defaults, option);
+      Staircase.Params = $.extend(Staircase.Params, this.settings.params);
       this.initialize();
     }
 
     Staircase.prototype.initialize = function() {};
+
+    Staircase.prototype.eventify = function() {};
+
+    Staircase.prototype.globalize = function() {};
+
+    Staircase.prototype.post = function() {};
 
     return Staircase;
 
@@ -21,8 +28,6 @@
     trim_height: 236,
     eventNamespace: 'Staircase',
     params: {},
-    path: 'image_path',
-    uuid: 'image_uuid',
     modal: '#Modal',
     modalPage: '.wrapper',
     camera: '#Video',
@@ -43,8 +48,26 @@
     btnReselect: '#Reselect',
     btnPostWebCamera: '#PostWebCamera',
     btnPostPhoto: '#PostPhoto',
+    transform: '#Transform',
+    transformImageWrap: '.transform__image',
+    btnUp: '#AdjustUp',
+    btnDown: '#AdjustDown',
+    btnLeft: '#AdjustLeft',
+    btnRight: '#AdjustRight',
+    btnZoomIn: '#ZoomIn',
+    btnZoomOut: '#ZoomOut',
     uploadForm: '#Upload',
     debugMode: 'debug'
+  };
+  Staircase.defaults.transformOption = {
+    transform: Staircase.defaults.transform,
+    transformImageWrap: Staircase.defaults.transformImageWrap,
+    btnUp: Staircase.defaults.btnUp,
+    btnDown: Staircase.defaults.btnDown,
+    btnLeft: Staircase.defaults.btnLeft,
+    btnRight: Staircase.defaults.btnRight,
+    btnZoomIn: Staircase.defaults.btnZoomIn,
+    btnZoomOut: Staircase.defaults.btnZoomOut
   };
 
   /*
@@ -131,7 +154,7 @@
 
 (function(win, doc) {
   'use strict';
-  var Params, Util, getParam, getQueryString, parseJSON, ua;
+  var Params, Util, getParam, getQueryString, parseJSON, setParam, ua;
   Util = Staircase.Util;
   Params = Staircase.Params;
   ua = navigator.userAgent.toLowerCase();
@@ -162,8 +185,16 @@
     }
   };
   Util.parseJSON = parseJSON;
+  setParam = function(key, value) {
+    return Params[key] = value;
+  };
+  Util.setParam = setParam;
   getParam = function(key, value) {
-    return Params[key][value];
+    if ((Params[key] != null) && (Params[key][value] != null)) {
+      return Params[key][value];
+    } else {
+      throw new Error("Error Staircase.Params in key or value => key: " + key + ", value: " + value);
+    }
   };
   return Util.getParam = getParam;
 })(window, window.document);
@@ -483,7 +514,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
       var params, ratio;
       ratio = this.$image.width() / this.size + (UI.TRIM_RATIO - 1);
       params = {
-        image_uuid: Util.getImageId(),
+        image_uuid: Util.getParam('upload', 'image_uuid'),
         zoom: ratio,
         x: (UI.TRIM_OFFSET_LEFT * UI.TRIM_RATIO) + Math.abs(this.$imageFrame.position().left) * this.expansion,
         y: (UI.TRIM_OFFSET_TOP * UI.TRIM_RATIO) + Math.abs(this.$imageFrame.position().top) * this.expansion,
@@ -1178,9 +1209,10 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
   Transform = (function(superClass) {
     extend(Transform, superClass);
 
-    function Transform(id) {
-      Transform.__super__.constructor.call(this, id);
-      this.$el = $(id);
+    function Transform(option) {
+      Transform.__super__.constructor.call(this, option);
+      this.settings = option;
+      this.$el = $(this.settings.el);
       this.isLoaded = false;
       this.initialize();
       this.eventify();
@@ -1192,13 +1224,13 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
       this.translate = null;
       this.scale = null;
       this.$dragArea = $('.transform__touch');
-      this.$btnUp = $('#AdjustUp');
-      this.$btnDown = $('#AdjustDown');
-      this.$btnLeft = $('#AdjustLeft');
-      this.$btnRight = $('#AdjustRight');
-      this.$btnZoomIn = $('#ZoomIn');
-      this.$btnZoomOut = $('#ZoomOut');
-      $imageFrame = $('.transform__image');
+      this.$btnUp = $(this.settings.btnUp);
+      this.$btnDown = $(this.settings.btnDown);
+      this.$btnLeft = $(this.settings.btnLeft);
+      this.$btnRight = $(this.settings.btnRight);
+      this.$btnZoomIn = $(this.settings.btnZoomIn);
+      this.$btnZoomOut = $(this.settings.btnZoomOut);
+      $imageFrame = $(this.settings.transformImageWrap);
       $image = $imageFrame.find('img');
       $image.css({
         width: 'auto',
@@ -1271,7 +1303,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
       setImgToFrame = (function(_this) {
         return function() {
           return $image.attr({
-            src: Util.getImagePath()
+            src: Util.getParam('upload', 'image_path')
           });
         };
       })(this);

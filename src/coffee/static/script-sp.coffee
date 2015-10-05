@@ -3,20 +3,12 @@ do (win = window, doc = window.document) ->
     'use strict'
 
     Events = Staircase.Events
+    Params = Staircase.Params
     Util = Staircase.Util
     UI = Staircase.UI
     UI.TRIM_OFFSET_TOP = 200
     UI.TRIM_OFFSET_LEFT = 0
 
-    Params = Staircase.Params
-    Params.upload = {}
-    Params.reupload = {}
-
-    Util.getImagePath = () ->
-        return Params.upload.image_path
-
-    Util.getImageId = () ->
-        return Params.upload.image_uuid
 
     ###
     # Entry Point

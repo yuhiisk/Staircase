@@ -143,8 +143,6 @@
     trim_width: 886,
     trim_height: 236,
     params: {},
-    path: 'image_path',
-    uuid: 'image_uuid',
     modal: '#Modal',
     modalPage: '.wrapper',
     camera: '#Video',

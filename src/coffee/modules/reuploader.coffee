@@ -45,7 +45,7 @@ do (win = window, doc = window.document) ->
             ratio = @$image.width() / @size + (UI.TRIM_RATIO - 1)
 
             params =
-                image_uuid: Util.getImageId()
+                image_uuid: Util.getParam('upload', 'image_uuid')
                 zoom: ratio # 拡大比率
                 x: (UI.TRIM_OFFSET_LEFT * UI.TRIM_RATIO) + Math.abs(@$imageFrame.position().left) * @expansion
                 y: (UI.TRIM_OFFSET_TOP * UI.TRIM_RATIO) + Math.abs(@$imageFrame.position().top) * @expansion

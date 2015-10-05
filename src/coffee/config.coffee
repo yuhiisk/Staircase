@@ -5,9 +5,13 @@ do (win = window, doc = window.document) ->
     class Staircase
         constructor: (option) ->
             @settings = $.extend( Staircase.defaults, option )
+            Staircase.Params = $.extend(Staircase.Params, @settings.params)
             @initialize()
 
         initialize: ->
+        eventify: ->
+        globalize: ->
+        post: ->
 
     win.Staircase = Staircase
 
@@ -21,10 +25,8 @@ do (win = window, doc = window.document) ->
         trim_height: 236, #198 #160
         # event namespace
         eventNamespace: 'Staircase',
-        # parameter name
+        # extend parameter
         params: {},
-        path: 'image_path',
-        uuid: 'image_uuid',
         # elements
         modal: '#Modal',
         modalPage: '.wrapper'
@@ -46,9 +48,27 @@ do (win = window, doc = window.document) ->
         btnReselect: '#Reselect',
         btnPostWebCamera: '#PostWebCamera',
         btnPostPhoto: '#PostPhoto',
+        transform: '#Transform',
+        transformImageWrap: '.transform__image',
+        btnUp: '#AdjustUp',
+        btnDown: '#AdjustDown',
+        btnLeft: '#AdjustLeft',
+        btnRight: '#AdjustRight',
+        btnZoomIn: '#ZoomIn',
+        btnZoomOut: '#ZoomOut',
         uploadForm: '#Upload',
         # debug mode
         debugMode: 'debug'
+
+    Staircase.defaults.transformOption =
+        transform: Staircase.defaults.transform,
+        transformImageWrap: Staircase.defaults.transformImageWrap,
+        btnUp: Staircase.defaults.btnUp,
+        btnDown: Staircase.defaults.btnDown,
+        btnLeft: Staircase.defaults.btnLeft,
+        btnRight: Staircase.defaults.btnRight,
+        btnZoomIn: Staircase.defaults.btnZoomIn,
+        btnZoomOut: Staircase.defaults.btnZoomOut
 
     ###
     # API
@@ -71,6 +91,7 @@ do (win = window, doc = window.document) ->
     ###
     # Parameters
     ###
+    # TODO: defaults.paramsを入れる
     Staircase.Params =
         resized_image_width: 0
         resized_image_height: 0

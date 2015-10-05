@@ -19,7 +19,6 @@ do (win = window, doc = window.document) ->
         Events.END = 'mouseup'
 
 
-
     ###
     # Transform
     # @constructor
@@ -27,10 +26,11 @@ do (win = window, doc = window.document) ->
     ###
     class Transform extends EventEmitter2
 
-        constructor: (id) ->
+        constructor: (option) ->
 
-            super(id)
-            @$el = $(id)
+            super(option)
+            @settings = option
+            @$el = $(@settings.el)
             @isLoaded = false
 
             @initialize()
@@ -45,14 +45,14 @@ do (win = window, doc = window.document) ->
 
             @$dragArea = $('.transform__touch')
 
-            @$btnUp = $('#AdjustUp')
-            @$btnDown = $('#AdjustDown')
-            @$btnLeft = $('#AdjustLeft')
-            @$btnRight = $('#AdjustRight')
-            @$btnZoomIn = $('#ZoomIn')
-            @$btnZoomOut = $('#ZoomOut')
+            @$btnUp = $(@settings.btnUp)
+            @$btnDown = $(@settings.btnDown)
+            @$btnLeft = $(@settings.btnLeft)
+            @$btnRight = $(@settings.btnRight)
+            @$btnZoomIn = $(@settings.btnZoomIn)
+            @$btnZoomOut = $(@settings.btnZoomOut)
 
-            $imageFrame = $('.transform__image')
+            $imageFrame = $(@settings.transformImageWrap)
             $image = $imageFrame.find('img')
             $image.css(
                 width: 'auto',
@@ -131,7 +131,7 @@ do (win = window, doc = window.document) ->
             # アップロード画像をフレームにセット
             setImgToFrame = () =>
                 $image.attr(
-                    src: Util.getImagePath()
+                    src: Util.getParam('upload', 'image_path')
                 )
 
             # 画像をフレームに読み込み

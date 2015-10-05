@@ -8,12 +8,6 @@
   Params = Staircase.Params;
   Params.upload = {};
   Params.reupload = {};
-  Util.getImagePath = function() {
-    return Params.upload.image_path;
-  };
-  Util.getImageId = function() {
-    return Params.upload.image_uuid;
-  };
   Staircase.prototype.initialize = function() {
     this.modal = new UI.Modal({
       id: this.settings.modal,
@@ -243,8 +237,6 @@
     trim_width: 886,
     trim_height: 236,
     params: {},
-    path: 'image_path',
-    uuid: 'image_uuid',
     modal: '#Modal',
     modalPage: '.wrapper',
     camera: '#Video',

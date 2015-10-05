@@ -8,12 +8,6 @@
   Params = Staircase.Params;
   Params.upload = {};
   Params.reupload = {};
-  Util.getImagePath = function() {
-    return Params.upload.image_path;
-  };
-  Util.getImageId = function() {
-    return Params.upload.image_uuid;
-  };
 
   /*
    * Entry Point

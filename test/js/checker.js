@@ -6,14 +6,6 @@
   Util = Staircase.Util;
   UI = Staircase.UI;
   Params = Staircase.Params;
-  Params.upload = {};
-  Params.reupload = {};
-  Util.getImagePath = function() {
-    return Params.upload.image_path;
-  };
-  Util.getImageId = function() {
-    return Params.upload.image_uuid;
-  };
   Staircase.prototype.initialize = function() {
     this.processChecker = new UI.ProcessChecker();
     this.loading = new UI.LoadingSprite(this.settings.loading);
@@ -61,8 +53,6 @@
     trim_width: 886,
     trim_height: 236,
     params: {},
-    path: 'image_path',
-    uuid: 'image_uuid',
     modal: '#Modal',
     modalPage: '.wrapper',
     camera: '#Video',

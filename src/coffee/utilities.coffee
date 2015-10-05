@@ -51,24 +51,16 @@ do (win = window, doc = window.document) ->
     Util.parseJSON = parseJSON
 
 
+    setParam = ( key, value ) ->
+        Params[key] = value
+
+    Util.setParam = setParam
+
     getParam = ( key, value ) ->
-        return Params[key][value]
+        if Params[key]? and Params[key][value]?
+            return Params[key][value]
+        else
+            throw new Error("Error Staircase.Params in key or value => key: #{key}, value: #{value}")
 
     Util.getParam = getParam
-    # rollover = () ->
-    #     $('[class^="btn__item--"], .rollover').each(() ->
-    #         $this = $(@)
-    #         if $this.hasClass('btn__item--input') then return
 
-    #         $this.hover(() ->
-    #             $this.stop().animate({
-    #                 opacity: .8
-    #             }, 100)
-    #         , () ->
-    #             $this.stop().animate({
-    #                 opacity: 1
-    #             }, 100)
-    #         )
-    #     )
-
-    # Util.rollover = rollover
