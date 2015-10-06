@@ -3,7 +3,6 @@ do (win = window, doc = window.document) ->
     'use strict'
 
     Events = Staircase.Events
-    UI = Staircase.UI
     Util = Staircase.Util
     Params = Staircase.Params
 
@@ -30,7 +29,7 @@ do (win = window, doc = window.document) ->
 
             super(option)
             @settings = option
-            @$el = $(@settings.el)
+            @$el = $(@settings.transform)
             @isLoaded = false
 
             @initialize()
@@ -43,7 +42,7 @@ do (win = window, doc = window.document) ->
             @translate = null
             @scale = null
 
-            @$dragArea = $('.transform__touch')
+            @$dragArea = $(@settings.transformDrag)
 
             @$btnUp = $(@settings.btnUp)
             @$btnDown = $(@settings.btnDown)
@@ -110,12 +109,12 @@ do (win = window, doc = window.document) ->
 
             loaded = () =>
                 if !@translate?
-                    @translate = new UI.Translate()
+                    @translate = new Staircase.Translate()
                 else
                     @translate.initialize()
 
                 if !@scale?
-                    @scale = new UI.Scale()
+                    @scale = new Staircase.Scale()
                 else
                     @scale.initialize()
 
@@ -226,5 +225,5 @@ do (win = window, doc = window.document) ->
                 @translate.set(10, 0)
             )
 
-    UI.Transform = Transform
+    Staircase.Transform = Transform
 

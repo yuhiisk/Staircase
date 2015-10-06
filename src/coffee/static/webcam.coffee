@@ -2,276 +2,173 @@ do (win = window, doc = document) ->
 
     'use strict'
 
-    Debug = Staircase.Debug
     Events = Staircase.Events
     Util = Staircase.Util
     UI = Staircase.UI
-
     Params = Staircase.Params
-    Params.upload = {}
-    Params.reupload = {}
 
-    Staircase::initialize = ->
-        # objects
-        # @modal = new UI.Modal(
-        #     id: @settings.modal
-        #     page: @settings.modalPage
-        # )
-        @camera = new UI.Camera(@settings.camera)
-        @previewCanvas = new UI.PreviewCanvas(@settings.previewCanvas)
-        @previewImage = new UI.PreviewImage(@settings.previewContainer)
-        # @uploader = new UI.Uploader(@settings.uploader)
-        # @reUploader = new UI.ReUploader({ size: @settings.reUploadSize })
-        # @processChecker = new UI.ProcessChecker()
-        # @loading = new UI.LoadingSprite(@settings.loading)
+    class Main
+        constructor: () ->
+            Staircase.initialize({
+                # image size
+                size: 640,
+                # trim size
+                trim_offset_top: 176,
+                trim_offset_left: 0,
+                trim_width: 886, #649 #600
+                trim_height: 236, #198 #160
+                # event namespace
+                eventNamespace: 'Staircase',
+                # extend parameter
+                params: {},
+                # elements
+                reUploadSize: 640,
+                # debug mode
+                debugMode: 'debug'
+            })
 
-        # @cameraView = new UI.Scene(@settings.cameraScene)
-        # @previewView = new UI.Scene(@settings.previewScene)
-        # @loadingView = new UI.Scene(@settings.loadingScene)
+            @initialize()
 
-        # scene
-        # @sceneManager = new UI.SceneManager([
-            # @cameraView,
-            # @previewView,
-            # @loadingView
-        # ])
-        # @sceneManager.active(@sceneManager.current)
+        initialize: ->
+            # objects
+            @camera = new Staircase.Camera('#Video')
+            @previewCanvas = new Staircase.PreviewCanvas('#Canvas')
+            @previewImage = new Staircase.PreviewImage('#PreviewContainer')
 
-        # elements
-        @$btnStartUpload = $(@settings.btnStartUpload)
-        @$btnStartCamera = $(@settings.btnStartCamera)
-        @$btnCancel = $(@settings.btnCancelCamera)
-        @$btnCapture = $(@settings.btnCaptureCamera)
-        @$btnRetake = $(@settings.btnRetakeCapture)
-        # @$btnReselect = $(@settings.btnReselect)
-        @$btnPostWebCamera = $(@settings.btnPostWebCamera)
-        # @$btnPostPhoto = $(@settings.btnPostPhoto)
-        @$form  = $(@settings.uploadForm)
+            # elements
+            @$btnStartUpload = $('#StartUpload')
+            @$btnStartCamera = $('#StartCamera')
+            @$btnCancel = $('#Cancel')
+            @$btnCapture = $('#Capture')
+            @$btnRetake = $('#Retake')
+            @$btnReselect = $('#Reselect')
+            @$btnPostWebCamera = $('#PostWebCamera')
+            @$form  = $('#Upload')
 
-        # event
-        @eventify()
+            # event
+            @eventify()
 
-        # callback
-        @globalize()
+            # callback
+            @globalize()
 
 
-    Staircase::eventify = ->
+        eventify: ->
 
-        if !@camera.isSupport?
-            @$btnStartCamera.parent().hide()
+            if !@camera.isSupport?
+                @$btnStartCamera.parent().hide()
 
-        # Start
-        @$btnStartCamera.on('click', (e) =>
-            e.preventDefault()
-            # @modal.show()
-            @camera.powerOn()
-            # @sceneManager.active(0)
-        )
+            # Start
+            @$btnStartCamera.on('click', (e) =>
+                e.preventDefault()
+                @camera.powerOn()
+            )
 
-        # Camera
-        @camera.on(Events.CAMERA_SUCCESS, (e) =>
-            console.log e
-        )
-        @camera.on(Events.CAMERA_ERROR, (e) ->
-            console.log e
-        )
+            # Camera
+            @camera.on(Events.CAMERA_SUCCESS, (e) =>
+                console.log e
+            )
+            @camera.on(Events.CAMERA_ERROR, (e) ->
+                console.log e
+            )
 
-        # Button
-        @$btnCancel.on('click', (e) =>
-            e.preventDefault()
-            # @sceneManager.prev()
-            @camera.powerOff()
-            # @modal.hide()
-        )
+            # Button
+            @$btnCancel.on('click', (e) =>
+                e.preventDefault()
+                @camera.powerOff()
+            )
 
-        @$btnCapture.on('click', (e) =>
-            e.preventDefault()
+            @$btnCapture.on('click', (e) =>
+                e.preventDefault()
+                video = @camera.getVideo()
+                @previewCanvas.draw(video)
+                @previewImage.show()
+
+                $('#Camera').hide()
+                $('#Preview').show()
+            )
+
+            # Preview
+            @$btnRetake.on('click', (e) =>
+                e.preventDefault()
+                @previewImage.hide()
+                $('#Camera').show()
+                $('#Preview').hide()
+            )
+            @$btnPostWebCamera.on('click', (e) =>
+                e.preventDefault()
+                @camera.powerOff()
+                @_postCameraImage()
+            )
+
+
+        globalize: ->
+            self = @
+
+            # JSONを受け取って処理する
+            Util.setResponse = (res, type) ->
+                Params.upload = res.response
+
+                switch type
+                    when 'CAMERA'
+                        alert('Post Complete.')
+                        # self.processChecker.set(Params.upload.result_path).start()
+                        break
+
+                    when 'PHOTO'
+                        alert('Form?')
+                        break
+
+                    else
+                        break
+
+            # iframeを経由してサーバからHTMLファイル形式でJSONを受け取るグローバルメソッド
+            Util['getJSON'] = (json) ->
+                Util.setResponse(json, 'PHOTO')
+
+
+        _postCameraImage: ->
+
+            canvas = @previewCanvas.getCanvas()
+            blob     = @previewCanvas.getBlob('image/png')
+            formData = new FormData(@$form[0])
+            xhr      = new XMLHttpRequest()
+
+
+            ratio = 2.2 + (UI.TRIM_RATIO - 1)
             video = @camera.getVideo()
-            @previewCanvas.draw(video)
-            # @sceneManager.next()
-            @previewImage.show()
+            x = ($(video).width() / 2 * ratio) - (UI.TRIM_WIDTH / 2)
+            y = ($(video).height() / 2 * ratio) - (UI.TRIM_HEIGHT / 2)
 
-            $('#Camera').hide()
-            $('#Preview').show()
-        )
+            formData.append('is_camera', true) # camera画像の送信かどうか
+            formData.append('image', blob) # 画像データ
+            formData.append('zoom', ratio) # 拡大比率
+            formData.append('x', x) # 拡大画像の左上を基準としたトリミング位置x
+            formData.append('y', y) # 拡大画像の左上を基準としたトリミング位置y
+            formData.append('width', UI.TRIM_WIDTH) # トリミング横サイズ
+            formData.append('height', UI.TRIM_HEIGHT) # トリミング縦サイズ
 
-        # Preview
-        @$btnRetake.on('click', (e) =>
-            e.preventDefault()
-            # @sceneManager.prev()
-            @previewImage.hide()
-            $('#Camera').show()
-            $('#Preview').hide()
-        )
-        # @$btnReselect.on('click', (e) =>
-            # e.preventDefault()
-            # @sceneManager.active(0)
-            # @uploader.reset()
-            # @transformView.$el.addClass('is-hidden')
-            # @modal.hide()
-        # )
+            xhr.onload = (e) ->
+                if xhr.readyState is 4
+                    if xhr.status is 200
+                        json = Util.parseJSON(xhr.responseText)
+                        Util.setResponse(json, 'CAMERA')
 
-        @$btnPostWebCamera.on('click', (e) =>
-            e.preventDefault()
-            @camera.powerOff()
-            # @loading.start()
-            @_postCameraImage()
-        )
+                    else
+                        # エラー処理
 
-        # @$btnPostPhoto.on('click', (e) =>
-            # e.preventDefault()
-            # @reUploader.submit()
-            # $('.loading__upload').append($('.transform__wrap'))
-            # @loading.start()
-            # @sceneManager.next()
-        # )
+            xhr.onerror = (e) ->
+                # エラー処理
+                console.log 'XHR ERROR: ', e
 
-        # @modal.on(Events.MODAL_HIDE, (e) =>
-        #     if @camera.getStatus() is true
-        #         @camera.powerOff()
+            # テストコード
+            if Staircase.Debug
+                # テスト
+                xhr.open('GET', 'stub/result.json')
+                xhr.send()
 
-        #     if @transformView?
-        #         @transformView.$el.addClass('is-hidden')
+            else
+                # 本番
+                xhr.open('POST', @$form.attr('action'))
+                xhr.send(formData)
 
-        #     @uploader.reset()
-        #     @previewImage.hide()
-        # )
-
-        # Uploader
-        # @uploader.on(Events.UPLOAD_LOAD_IMG, (e) =>
-        #     @$form.submit()
-        # )
-        # @reUploader.on(Events.REUPLOAD_SUCCESS, (e) =>
-        #     Params.reupload = e.response
-        #     @processChecker.set(Params.reupload.result_path).start()
-        # )
-        # @reUploader.on(Events.REUPLOAD_ERROR, (e) =>
-        #     alert('アップロードに失敗しました。')
-        #     @loading.stop()
-        # )
-
-        # Checker
-        # @processChecker.on(Events.CHECK_COMPLETE, (res) =>
-        #     @loading.stop()
-
-        #     switch res.result.face_count
-        #         when 0
-        #             win.location.href = '/error.html#0'
-        #             break
-        #         when 1
-        #             win.location.href = res.result_url
-        #             break
-        #         when 2
-        #             win.location.href = '/error.html#2'
-        #             break
-        #         else
-        #             break
-        # )
-
-    Staircase::globalize = ->
-        self = @
-
-        # JSONを受け取って処理する
-        Util.setResponse = (res, type) ->
-            Params.upload = res.response
-
-            switch type
-                when 'CAMERA'
-                    alert('Post Complete.')
-                    # self.processChecker.set(Params.upload.result_path).start()
-                    break
-
-                when 'PHOTO'
-                    alert('Form?')
-                    break
-
-                else
-                    break
-
-        # iframeを経由してサーバからHTMLファイル形式でJSONを受け取るグローバルメソッド
-        Util['getJSON'] = (json) ->
-            Util.setResponse(json, 'PHOTO')
-
-
-    Staircase::_postCameraImage = ->
-
-        canvas = @previewCanvas.getCanvas()
-        blob     = @previewCanvas.getBlob('image/png')
-        formData = new FormData(@$form[0])
-        xhr      = new XMLHttpRequest()
-
-
-        ratio = 2.2 + (UI.TRIM_RATIO - 1)
-        video = @camera.getVideo()
-        x = ($(video).width() / 2 * ratio) - (UI.TRIM_WIDTH / 2)
-        y = ($(video).height() / 2 * ratio) - (UI.TRIM_HEIGHT / 2)
-
-        formData.append('is_camera', true) # camera画像の送信かどうか
-        formData.append('image', blob) # 画像データ
-        formData.append('zoom', ratio) # 拡大比率
-        formData.append('x', x) # 拡大画像の左上を基準としたトリミング位置x
-        formData.append('y', y) # 拡大画像の左上を基準としたトリミング位置y
-        formData.append('width', UI.TRIM_WIDTH) # トリミング横サイズ
-        formData.append('height', UI.TRIM_HEIGHT) # トリミング縦サイズ
-
-        xhr.onload = (e) ->
-            if xhr.readyState is 4
-                if xhr.status is 200
-                    json = Util.parseJSON(xhr.responseText)
-                    Util.setResponse(json, 'CAMERA')
-
-                else
-                    # エラー処理
-
-        xhr.onerror = (e) ->
-            # エラー処理
-            console.log 'XHR ERROR: ', e
-
-        # テストコード
-        if /\?debug/.test(location.search)
-            # テスト
-            xhr.open('GET', 'stub/result.json')
-            xhr.send()
-
-        else
-            # 本番
-            xhr.open('POST', @$form.attr('action'))
-            xhr.send(formData)
-
-
-    ###
-    # Entry Point
-    ###
-    new Staircase({
-        # image size
-        size: 640,
-        # trim size
-        trim_offset_top: 176,
-        trim_offset_left: 0,
-        trim_width: 886, #649 #600
-        trim_height: 236, #198 #160
-        # parameter name
-        params: {},
-        # elements
-        modal: '#Modal',
-        modalPage: '.wrapper'
-        camera: '#Video',
-        previewCanvas: '#Canvas',
-        previewContainer: '#PreviewContainer',
-        uploader: '#StartUpload',
-        reUploadSize: 640,
-        loading: '#Loading',
-        cameraScene: '#Camera',
-        previewScene: '#Preview',
-        loadingScene: '#Loading',
-        sceneManager: [],
-        btnStartUpload: '#StartUpload',
-        btnStartCamera: '#StartCamera',
-        btnCancelCamera: '#Cancel',
-        btnCaptureCamera: '#Capture',
-        btnRetakeCapture: '#Retake',
-        btnReselect: '#Reselect',
-        btnPostWebCamera: '#PostWebCamera',
-        btnPostPhoto: '#PostPhoto',
-        uploadForm: '#Upload',
-    })
+    new Main()

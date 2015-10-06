@@ -2,16 +2,10 @@ do (win = window, doc = window.document) ->
 
     'use strict'
 
-    class Staircase
-        constructor: (option) ->
+    Staircase =
+        initialize: (option) ->
             @settings = $.extend( Staircase.defaults, option )
             Staircase.Params = $.extend(Staircase.Params, @settings.params)
-            @initialize()
-
-        initialize: ->
-        eventify: ->
-        globalize: ->
-        post: ->
 
     win.Staircase = Staircase
 
@@ -28,47 +22,9 @@ do (win = window, doc = window.document) ->
         # extend parameter
         params: {},
         # elements
-        modal: '#Modal',
-        modalPage: '.wrapper'
-        camera: '#Video',
-        previewCanvas: '#Canvas',
-        previewContainer: '#PreviewContainer',
-        uploader: '#StartUpload',
         reUploadSize: 640,
-        loading: '#Loading',
-        cameraScene: '#Camera',
-        previewScene: '#Preview',
-        loadingScene: '#Loading',
-        sceneManager: [],
-        btnStartUpload: '#StartUpload',
-        btnStartCamera: '#StartCamera',
-        btnCancelCamera: '#Cancel',
-        btnCaptureCamera: '#Capture',
-        btnRetakeCapture: '#Retake',
-        btnReselect: '#Reselect',
-        btnPostWebCamera: '#PostWebCamera',
-        btnPostPhoto: '#PostPhoto',
-        transform: '#Transform',
-        transformImageWrap: '.transform__image',
-        btnUp: '#AdjustUp',
-        btnDown: '#AdjustDown',
-        btnLeft: '#AdjustLeft',
-        btnRight: '#AdjustRight',
-        btnZoomIn: '#ZoomIn',
-        btnZoomOut: '#ZoomOut',
-        uploadForm: '#Upload',
         # debug mode
         debugMode: 'debug'
-
-    Staircase.defaults.transformOption =
-        transform: Staircase.defaults.transform,
-        transformImageWrap: Staircase.defaults.transformImageWrap,
-        btnUp: Staircase.defaults.btnUp,
-        btnDown: Staircase.defaults.btnDown,
-        btnLeft: Staircase.defaults.btnLeft,
-        btnRight: Staircase.defaults.btnRight,
-        btnZoomIn: Staircase.defaults.btnZoomIn,
-        btnZoomOut: Staircase.defaults.btnZoomOut
 
     ###
     # API

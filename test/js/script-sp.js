@@ -17,22 +17,22 @@
     }
 
     Main.prototype.initialize = function() {
-      this.modal = new UI.Modal({
+      this.modal = new Staircase.Modal({
         id: '#Modal',
         page: '.wrapper'
       });
-      this.previewImage = new UI.PreviewImage('PreviewContainer');
-      this.uploader = new UI.Uploader('#StartUpload');
-      this.reUploader = new UI.ReUploader({
+      this.previewImage = new Staircase.PreviewImage('#PreviewContainer');
+      this.uploader = new Staircase.Uploader('#StartUpload');
+      this.reUploader = new Staircase.ReUploader({
         size: 276
       });
-      this.processChecker = new UI.ProcessChecker();
-      this.loading = new UI.Loading('#Loading');
-      this.exchangeLoading = new UI.Exchange('#Exchange');
+      this.processChecker = new Staircase.ProcessChecker();
+      this.loading = new Staircase.Loading('#Loading');
+      this.exchangeLoading = new Staircase.Exchange('#Exchange');
       this.$form = $('#Upload');
-      this.previewView = new UI.Scene('Preview');
-      this.loadingView = new UI.Scene('Loading');
-      this.sceneManager = new UI.SceneManager([this.previewView, this.loadingView]);
+      this.previewView = new Staircase.Scene('#Preview');
+      this.loadingView = new Staircase.Scene('#Loading');
+      this.sceneManager = new Staircase.SceneManager([this.previewView, this.loadingView]);
       this.$btnCancel = $('#Cancel');
       this.$btnCapture = $('#Capture');
       this.$btnReselect = $('#Reselect');
@@ -124,7 +124,17 @@
         switch (CAMERA_or_PHOTO) {
           case 'PHOTO':
             if (self.transformView == null) {
-              self.transformView = new UI.Transform('#Transform');
+              self.transformView = new Staircase.Transform({
+                transform: '#Transform',
+                transformImageWrap: '.transform__image',
+                transformDrag: '.transform__touch',
+                btnUp: '#AdjustUp',
+                btnDown: '#AdjustDown',
+                btnLeft: '#AdjustLeft',
+                btnRight: '#AdjustRight',
+                btnZoomIn: '#ZoomIn',
+                btnZoomOut: '#ZoomOut'
+              });
             } else {
               self.transformView.setImage();
               self.transformView.reset();
@@ -138,7 +148,7 @@
             break;
         }
       };
-      return Util.getJSON = function(json) {
+      return Util['getJSON'] = function(json) {
         return Util.setResponse(json, 'PHOTO');
       };
     };

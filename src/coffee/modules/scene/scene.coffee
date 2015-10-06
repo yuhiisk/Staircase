@@ -3,7 +3,6 @@ do (win = window, doc = window.document) ->
     'use strict'
 
     Events = Staircase.Events
-    UI = Staircase.UI
 
     ###
     # Scene
@@ -47,5 +46,5 @@ do (win = window, doc = window.document) ->
             @el.style.display = 'none'
             @emit('scene.deactive', @)
 
-    UI.Scene = Scene
+    Staircase.Scene = Scene
 

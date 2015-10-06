@@ -6,6 +6,7 @@ do (win = window, doc = window.document) ->
     Params = Staircase.Params
     Util = Staircase.Util
     UI = Staircase.UI
+    # SP用に変更
     UI.TRIM_OFFSET_TOP = 200
     UI.TRIM_OFFSET_LEFT = 0
 
@@ -21,23 +22,23 @@ do (win = window, doc = window.document) ->
 
         initialize: () ->
             # objects
-            @modal = new UI.Modal(
+            @modal = new Staircase.Modal(
                 id: '#Modal'
                 page: '.wrapper'
             )
-            @previewImage = new UI.PreviewImage('PreviewContainer')
-            @uploader = new UI.Uploader('#StartUpload')
-            @reUploader = new UI.ReUploader({ size: 276 })
-            @processChecker = new UI.ProcessChecker()
-            @loading = new UI.Loading('#Loading')
-            @exchangeLoading = new UI.Exchange('#Exchange')
+            @previewImage = new Staircase.PreviewImage('#PreviewContainer')
+            @uploader = new Staircase.Uploader('#StartUpload')
+            @reUploader = new Staircase.ReUploader({ size: 276 })
+            @processChecker = new Staircase.ProcessChecker()
+            @loading = new Staircase.Loading('#Loading')
+            @exchangeLoading = new Staircase.Exchange('#Exchange')
             @$form = $('#Upload')
 
-            @previewView = new UI.Scene('Preview')
-            @loadingView = new UI.Scene('Loading')
+            @previewView = new Staircase.Scene('#Preview')
+            @loadingView = new Staircase.Scene('#Loading')
 
             # scene
-            @sceneManager = new UI.SceneManager([
+            @sceneManager = new Staircase.SceneManager([
                 @previewView,
                 @loadingView
             ])
@@ -81,11 +82,6 @@ do (win = window, doc = window.document) ->
             )
 
             @modal.on(Events.MODAL_SHOW, (e) =>
-                # console.log @modal.winHeight, @modal.$el.find('.modal__content').height()
-                # if @modal.winHeight >= @modal.$el.find('.modal__content').height()
-                    # console.log 'window height'
-                    # @modal.$el.height(@modal.winHeight)
-                # else
                 if !@modal.HEIGHT?
                     @modal.HEIGHT = @modal.$el.find('.modal__content').height()
                 @modal.$el.height(@modal.HEIGHT)
@@ -97,8 +93,6 @@ do (win = window, doc = window.document) ->
             @$form.on('submit', (e) =>
                 @exchangeLoading.active().show()
             )
-            # @reUploader.on(Events.REUPLOAD_SUBMIT, (params) =>
-            # )
             @reUploader.on(Events.REUPLOAD_SUCCESS, (e) =>
                 Params.reupload = e.response
                 @processChecker.set(Params.reupload.result_path).start()
@@ -109,11 +103,7 @@ do (win = window, doc = window.document) ->
             )
 
             # Checker
-            # @processChecker.on(Events.CHECK_PROCESS, (res) =>
-            #    console.log 'check processing...', res
-            # )
             @processChecker.on(Events.CHECK_COMPLETE, (res) =>
-                # console.log 'check complete', res
                 @loading.stop()
 
                 switch res.result.face_count
@@ -129,9 +119,6 @@ do (win = window, doc = window.document) ->
                     else
                         break
             )
-            # @processChecker.on(Events.CHECK_ERROR, (err) =>
-            #    console.log 'check error'
-            #)
 
         globalize: () ->
             self = @
@@ -144,7 +131,17 @@ do (win = window, doc = window.document) ->
                 switch CAMERA_or_PHOTO
                     when 'PHOTO'
                         if !self.transformView?
-                            self.transformView = new UI.Transform('#Transform')
+                            self.transformView = new Staircase.Transform(
+                                transform: '#Transform',
+                                transformImageWrap: '.transform__image',
+                                transformDrag: '.transform__touch',
+                                btnUp: '#AdjustUp',
+                                btnDown: '#AdjustDown',
+                                btnLeft: '#AdjustLeft',
+                                btnRight: '#AdjustRight',
+                                btnZoomIn: '#ZoomIn',
+                                btnZoomOut: '#ZoomOut',
+                            )
                         else
                             self.transformView.setImage()
                             self.transformView.reset()
@@ -159,7 +156,7 @@ do (win = window, doc = window.document) ->
                         break
 
             # iframeからJSONを受け取るグローバルメソッド
-            Util.getJSON = (json) ->
+            Util['getJSON'] = (json) ->
                 Util.setResponse(json, 'PHOTO')
 
 

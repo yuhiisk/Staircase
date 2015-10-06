@@ -3,7 +3,6 @@ do (win = window, doc = window.document) ->
     'use strict'
 
     Events = Staircase.Events
-    UI = Staircase.UI
 
     ###
     # PreviewCanvas
@@ -66,7 +65,7 @@ do (win = window, doc = window.document) ->
             @getBlob = getBlob
             @reset   = _reset
 
-    UI.PreviewCanvas = PreviewCanvas
+    Staircase.PreviewCanvas = PreviewCanvas
 
 
     ###
@@ -109,6 +108,6 @@ do (win = window, doc = window.document) ->
             @hide = _hide
             @reset = _reset
 
-    UI.PreviewImage = PreviewImage
+    Staircase.PreviewImage = PreviewImage
 
 

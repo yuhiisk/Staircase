@@ -4,7 +4,6 @@ do (win = window, doc = window.document) ->
 
     Debug = Staircase.Debug
     Events = Staircase.Events
-    UI = Staircase.UI
     Util = Staircase.Util
 
     ###
@@ -73,6 +72,6 @@ do (win = window, doc = window.document) ->
 
             @reset = reset
 
-    UI.Uploader = Uploader
+    Staircase.Uploader = Uploader
 
 

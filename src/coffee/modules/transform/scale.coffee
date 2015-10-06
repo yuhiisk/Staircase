@@ -3,7 +3,6 @@ do (win = window, doc = window.document) ->
     'use strict'
 
     Events = Staircase.Events
-    UI = Staircase.UI
     Util = Staircase.Util
     Params = Staircase.Params
 
@@ -132,5 +131,5 @@ do (win = window, doc = window.document) ->
             @$image.data('baseHeight', null)
 
 
-    UI.Scale = Scale
+    Staircase.Scale = Scale
 

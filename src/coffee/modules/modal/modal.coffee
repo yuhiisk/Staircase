@@ -3,7 +3,6 @@ do (win = window, doc = window.document) ->
     'use strict'
 
     Events = Staircase.Events
-    UI = Staircase.UI
 
     ###
     # Modal
@@ -67,6 +66,6 @@ do (win = window, doc = window.document) ->
             )
             @$win.scrollTop(@currentScroll)
 
-    UI.Modal = Modal
+    Staircase.Modal = Modal
 
 

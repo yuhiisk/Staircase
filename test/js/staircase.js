@@ -1,24 +1,12 @@
 (function(win, doc) {
   'use strict';
   var Staircase;
-  Staircase = (function() {
-    function Staircase(option) {
+  Staircase = {
+    initialize: function(option) {
       this.settings = $.extend(Staircase.defaults, option);
-      Staircase.Params = $.extend(Staircase.Params, this.settings.params);
-      this.initialize();
+      return Staircase.Params = $.extend(Staircase.Params, this.settings.params);
     }
-
-    Staircase.prototype.initialize = function() {};
-
-    Staircase.prototype.eventify = function() {};
-
-    Staircase.prototype.globalize = function() {};
-
-    Staircase.prototype.post = function() {};
-
-    return Staircase;
-
-  })();
+  };
   win.Staircase = Staircase;
   Staircase.defaults = {
     size: 640,
@@ -28,46 +16,8 @@
     trim_height: 236,
     eventNamespace: 'Staircase',
     params: {},
-    modal: '#Modal',
-    modalPage: '.wrapper',
-    camera: '#Video',
-    previewCanvas: '#Canvas',
-    previewContainer: '#PreviewContainer',
-    uploader: '#StartUpload',
     reUploadSize: 640,
-    loading: '#Loading',
-    cameraScene: '#Camera',
-    previewScene: '#Preview',
-    loadingScene: '#Loading',
-    sceneManager: [],
-    btnStartUpload: '#StartUpload',
-    btnStartCamera: '#StartCamera',
-    btnCancelCamera: '#Cancel',
-    btnCaptureCamera: '#Capture',
-    btnRetakeCapture: '#Retake',
-    btnReselect: '#Reselect',
-    btnPostWebCamera: '#PostWebCamera',
-    btnPostPhoto: '#PostPhoto',
-    transform: '#Transform',
-    transformImageWrap: '.transform__image',
-    btnUp: '#AdjustUp',
-    btnDown: '#AdjustDown',
-    btnLeft: '#AdjustLeft',
-    btnRight: '#AdjustRight',
-    btnZoomIn: '#ZoomIn',
-    btnZoomOut: '#ZoomOut',
-    uploadForm: '#Upload',
     debugMode: 'debug'
-  };
-  Staircase.defaults.transformOption = {
-    transform: Staircase.defaults.transform,
-    transformImageWrap: Staircase.defaults.transformImageWrap,
-    btnUp: Staircase.defaults.btnUp,
-    btnDown: Staircase.defaults.btnDown,
-    btnLeft: Staircase.defaults.btnLeft,
-    btnRight: Staircase.defaults.btnRight,
-    btnZoomIn: Staircase.defaults.btnZoomIn,
-    btnZoomOut: Staircase.defaults.btnZoomOut
   };
 
   /*
@@ -204,9 +154,8 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
 
 (function(win, doc) {
   'use strict';
-  var Camera, Events, UI;
+  var Camera, Events;
   Events = Staircase.Events;
-  UI = Staircase.UI;
 
   /*
    * Camera
@@ -272,7 +221,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
     return Camera;
 
   })(EventEmitter2);
-  return UI.Camera = Camera;
+  return Staircase.Camera = Camera;
 })(window, window.document);
 
 var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -280,9 +229,8 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
 
 (function(win, doc) {
   'use strict';
-  var Events, PreviewCanvas, PreviewImage, UI;
+  var Events, PreviewCanvas, PreviewImage;
   Events = Staircase.Events;
-  UI = Staircase.UI;
 
   /*
    * PreviewCanvas
@@ -348,7 +296,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
     return PreviewCanvas;
 
   })(EventEmitter2);
-  UI.PreviewCanvas = PreviewCanvas;
+  Staircase.PreviewCanvas = PreviewCanvas;
 
   /*
    * PreviewImage
@@ -393,7 +341,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
     return PreviewImage;
 
   })(EventEmitter2);
-  return UI.PreviewImage = PreviewImage;
+  return Staircase.PreviewImage = PreviewImage;
 })(window, window.document);
 
 var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -401,9 +349,8 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
 
 (function(win, doc) {
   'use strict';
-  var Events, ProcessChecker, UI;
+  var Events, ProcessChecker;
   Events = Staircase.Events;
-  UI = Staircase.UI;
 
   /*
    * ProcessChecker
@@ -464,7 +411,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
     return ProcessChecker;
 
   })(EventEmitter2);
-  return UI.ProcessChecker = ProcessChecker;
+  return Staircase.ProcessChecker = ProcessChecker;
 })(window, window.document);
 
 var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -540,7 +487,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
     return ReUploader;
 
   })(EventEmitter2);
-  return UI.ReUploader = ReUploader;
+  return Staircase.ReUploader = ReUploader;
 })(window, window.document);
 
 var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -548,10 +495,9 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
 
 (function(win, doc) {
   'use strict';
-  var Debug, Events, UI, Uploader, Util;
+  var Debug, Events, Uploader, Util;
   Debug = Staircase.Debug;
   Events = Staircase.Events;
-  UI = Staircase.UI;
   Util = Staircase.Util;
 
   /*
@@ -619,7 +565,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
     return Uploader;
 
   })(EventEmitter2);
-  return UI.Uploader = Uploader;
+  return Staircase.Uploader = Uploader;
 })(window, window.document);
 
 var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -627,9 +573,170 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
 
 (function(win, doc) {
   'use strict';
-  var Events, Modal, UI;
+  var Events, Exchange, Loading, LoadingSprite;
   Events = Staircase.Events;
-  UI = Staircase.UI;
+
+  /*
+   * Loading
+   * @constructor
+   * @extends EventEmitter2
+   */
+  Loading = (function(superClass) {
+    extend(Loading, superClass);
+
+    function Loading(id) {
+      Loading.__super__.constructor.call(this, id);
+      this.$el = $(id);
+      this.$icon = this.$el.find('.loading__icon');
+      this.initialize();
+      this.eventify();
+    }
+
+    Loading.prototype.initialize = function() {
+      var _start, _stop;
+      _start = (function(_this) {
+        return function() {
+          _this.$icon.addClass('is-active');
+          return _this.emit(Events.LOADING_SHOW);
+        };
+      })(this);
+      _stop = (function(_this) {
+        return function() {
+          _this.$icon.removeClass('is-active');
+          return _this.emit(Events.LOADING_HIDE);
+        };
+      })(this);
+      this.start = _start;
+      return this.stop = _stop;
+    };
+
+    Loading.prototype.eventify = function() {};
+
+    return Loading;
+
+  })(EventEmitter2);
+  Staircase.Loading = Loading;
+
+  /*
+   * LoadingSprite
+   * @constructor
+   * @extends EventEmitter2
+   */
+  LoadingSprite = (function(superClass) {
+    extend(LoadingSprite, superClass);
+
+    function LoadingSprite(el) {
+      LoadingSprite.__super__.constructor.call(this, el);
+      this.$el = $(el);
+      this.$icon = $('.loading__icon', this.$el);
+      this.defaultClass = this.$icon.attr('class');
+      this.initialize();
+      this.eventify();
+    }
+
+    LoadingSprite.prototype.initialize = function() {
+      var _rotate, _start, _stop, count, interval, max, timer;
+      timer = null;
+      interval = 40;
+      count = 0;
+      max = 36;
+      _rotate = (function(_this) {
+        return function() {
+          return timer = setInterval(function() {
+            count++;
+            _this.$icon[0].className = _this.defaultClass + ' loading-n' + count;
+            if (count >= max) {
+              return count = 0;
+            }
+          }, interval);
+        };
+      })(this);
+      _start = (function(_this) {
+        return function() {
+          _this.$el.show();
+          _rotate();
+          return _this.emit(Events.LOADING_START);
+        };
+      })(this);
+      _stop = (function(_this) {
+        return function() {
+          _this.$el.hide();
+          timer = clearInterval(timer);
+          timer = null;
+          return _this.emit(Events.LOADING_STOP);
+        };
+      })(this);
+      this.start = _start;
+      return this.stop = _stop;
+    };
+
+    LoadingSprite.prototype.eventify = function() {};
+
+    return LoadingSprite;
+
+  })(EventEmitter2);
+  Staircase.LoadingSprite = LoadingSprite;
+
+  /*
+   * Exchange
+   * @constructor
+   * @extends EventEmitter2
+   */
+  Exchange = (function(superClass) {
+    extend(Exchange, superClass);
+
+    function Exchange(id) {
+      Exchange.__super__.constructor.call(this, id);
+      this.$el = $(id);
+      this.$icon = this.$el.find('.loading__icon');
+      this.initialize();
+    }
+
+    Exchange.prototype.initialize = function() {
+      var _active, _deactive, _hide, _show;
+      _show = (function(_this) {
+        return function() {
+          _this.$el.removeClass('is-hidden');
+          return _this;
+        };
+      })(this);
+      _hide = (function(_this) {
+        return function() {
+          _this.$el.addClass('is-hidden');
+          return _this;
+        };
+      })(this);
+      _active = (function(_this) {
+        return function() {
+          _this.$icon.addClass('is-active');
+          return _this;
+        };
+      })(this);
+      _deactive = (function(_this) {
+        return function() {
+          _this.$icon.removeClass('is-active');
+          return _this;
+        };
+      })(this);
+      this.show = _show;
+      this.hide = _hide;
+      this.active = _active;
+      return this.deactive = _deactive;
+    };
+
+    return Exchange;
+
+  })(EventEmitter2);
+  return Staircase.Exchange = Exchange;
+})(window, window.document);
+
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
+
+(function(win, doc) {
+  'use strict';
+  var Events, Modal;
+  Events = Staircase.Events;
 
   /*
    * Modal
@@ -704,7 +811,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
     return Modal;
 
   })(EventEmitter2);
-  return UI.Modal = Modal;
+  return Staircase.Modal = Modal;
 })(window, window.document);
 
 var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -712,172 +819,8 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
 
 (function(win, doc) {
   'use strict';
-  var Events, Exchange, Loading, LoadingSprite, UI;
+  var Events, SceneManager;
   Events = Staircase.Events;
-  UI = Staircase.UI;
-
-  /*
-   * Loading
-   * @constructor
-   * @extends EventEmitter2
-   */
-  Loading = (function(superClass) {
-    extend(Loading, superClass);
-
-    function Loading(id) {
-      Loading.__super__.constructor.call(this, id);
-      this.$el = $(id);
-      this.$icon = this.$el.find('.loading__icon');
-      this.initialize();
-      this.eventify();
-    }
-
-    Loading.prototype.initialize = function() {
-      var _start, _stop;
-      _start = (function(_this) {
-        return function() {
-          _this.$icon.addClass('is-active');
-          return _this.emit(Events.LOADING_SHOW);
-        };
-      })(this);
-      _stop = (function(_this) {
-        return function() {
-          _this.$icon.removeClass('is-active');
-          return _this.emit(Events.LOADING_HIDE);
-        };
-      })(this);
-      this.start = _start;
-      return this.stop = _stop;
-    };
-
-    Loading.prototype.eventify = function() {};
-
-    return Loading;
-
-  })(EventEmitter2);
-  UI.Loading = Loading;
-
-  /*
-   * LoadingSprite
-   * @constructor
-   * @extends EventEmitter2
-   */
-  LoadingSprite = (function(superClass) {
-    extend(LoadingSprite, superClass);
-
-    function LoadingSprite(el) {
-      LoadingSprite.__super__.constructor.call(this, el);
-      this.$el = $(el);
-      this.$icon = $('.loading__icon', this.$el);
-      this.defaultClass = this.$icon.attr('class');
-      this.initialize();
-      this.eventify();
-    }
-
-    LoadingSprite.prototype.initialize = function() {
-      var _rotate, _start, _stop, count, interval, max, timer;
-      timer = null;
-      interval = 40;
-      count = 0;
-      max = 36;
-      _rotate = (function(_this) {
-        return function() {
-          return timer = setInterval(function() {
-            count++;
-            _this.$icon[0].className = _this.defaultClass + ' loading-n' + count;
-            if (count >= max) {
-              return count = 0;
-            }
-          }, interval);
-        };
-      })(this);
-      _start = (function(_this) {
-        return function() {
-          _this.$el.show();
-          _rotate();
-          return _this.emit(Events.LOADING_START);
-        };
-      })(this);
-      _stop = (function(_this) {
-        return function() {
-          _this.$el.hide();
-          timer = clearInterval(timer);
-          timer = null;
-          return _this.emit(Events.LOADING_STOP);
-        };
-      })(this);
-      this.start = _start;
-      return this.stop = _stop;
-    };
-
-    LoadingSprite.prototype.eventify = function() {};
-
-    return LoadingSprite;
-
-  })(EventEmitter2);
-  UI.LoadingSprite = LoadingSprite;
-
-  /*
-   * Exchange
-   * @constructor
-   * @extends EventEmitter2
-   */
-  Exchange = (function(superClass) {
-    extend(Exchange, superClass);
-
-    function Exchange(id) {
-      Exchange.__super__.constructor.call(this, id);
-      this.$el = $(id);
-      this.$icon = this.$el.find('.loading__icon');
-      this.initialize();
-    }
-
-    Exchange.prototype.initialize = function() {
-      var _active, _deactive, _hide, _show;
-      _show = (function(_this) {
-        return function() {
-          _this.$el.removeClass('is-hidden');
-          return _this;
-        };
-      })(this);
-      _hide = (function(_this) {
-        return function() {
-          _this.$el.addClass('is-hidden');
-          return _this;
-        };
-      })(this);
-      _active = (function(_this) {
-        return function() {
-          _this.$icon.addClass('is-active');
-          return _this;
-        };
-      })(this);
-      _deactive = (function(_this) {
-        return function() {
-          _this.$icon.removeClass('is-active');
-          return _this;
-        };
-      })(this);
-      this.show = _show;
-      this.hide = _hide;
-      this.active = _active;
-      return this.deactive = _deactive;
-    };
-
-    return Exchange;
-
-  })(EventEmitter2);
-  return UI.Exchange = Exchange;
-})(window, window.document);
-
-var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
-  hasProp = {}.hasOwnProperty;
-
-(function(win, doc) {
-  'use strict';
-  var Events, SceneManager, UI;
-  Events = Staircase.Events;
-  UI = Staircase.UI;
 
   /*
    * SceneManager
@@ -980,7 +923,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
     return SceneManager;
 
   })(EventEmitter2);
-  return UI.SceneManager = SceneManager;
+  return Staircase.SceneManager = SceneManager;
 })(window, window.document);
 
 var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -988,9 +931,8 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
 
 (function(win, doc) {
   'use strict';
-  var Events, Scene, UI;
+  var Events, Scene;
   Events = Staircase.Events;
-  UI = Staircase.UI;
 
   /*
    * Scene
@@ -1045,7 +987,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
     return Scene;
 
   })(EventEmitter2);
-  return UI.Scene = Scene;
+  return Staircase.Scene = Scene;
 })(window, window.document);
 
 var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -1053,9 +995,8 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
 
 (function(win, doc) {
   'use strict';
-  var Events, Params, Scale, UI, Util;
+  var Events, Params, Scale, Util;
   Events = Staircase.Events;
-  UI = Staircase.UI;
   Util = Staircase.Util;
   Params = Staircase.Params;
   if (Util.ua.isMobile) {
@@ -1176,7 +1117,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
     return Scale;
 
   })(EventEmitter2);
-  return UI.Scale = Scale;
+  return Staircase.Scale = Scale;
 })(window, window.document);
 
 var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -1184,9 +1125,8 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
 
 (function(win, doc) {
   'use strict';
-  var Events, Params, Transform, UI, Util;
+  var Events, Params, Transform, Util;
   Events = Staircase.Events;
-  UI = Staircase.UI;
   Util = Staircase.Util;
   Params = Staircase.Params;
   if (Util.ua.isMobile) {
@@ -1212,7 +1152,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
     function Transform(option) {
       Transform.__super__.constructor.call(this, option);
       this.settings = option;
-      this.$el = $(this.settings.el);
+      this.$el = $(this.settings.transform);
       this.isLoaded = false;
       this.initialize();
       this.eventify();
@@ -1223,7 +1163,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
       self = this;
       this.translate = null;
       this.scale = null;
-      this.$dragArea = $('.transform__touch');
+      this.$dragArea = $(this.settings.transformDrag);
       this.$btnUp = $(this.settings.btnUp);
       this.$btnDown = $(this.settings.btnDown);
       this.$btnLeft = $(this.settings.btnLeft);
@@ -1280,12 +1220,12 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
       loaded = (function(_this) {
         return function() {
           if (_this.translate == null) {
-            _this.translate = new UI.Translate();
+            _this.translate = new Staircase.Translate();
           } else {
             _this.translate.initialize();
           }
           if (_this.scale == null) {
-            _this.scale = new UI.Scale();
+            _this.scale = new Staircase.Scale();
           } else {
             _this.scale.initialize();
           }
@@ -1419,7 +1359,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
     return Transform;
 
   })(EventEmitter2);
-  return UI.Transform = Transform;
+  return Staircase.Transform = Transform;
 })(window, window.document);
 
 var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -1427,9 +1367,8 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
 
 (function(win, doc) {
   'use strict';
-  var Events, Params, Translate, UI, Util;
+  var Events, Params, Translate, Util;
   Events = Staircase.Events;
-  UI = Staircase.UI;
   Util = Staircase.Util;
   Params = Staircase.Params;
   if (Util.ua.isMobile) {
@@ -1567,5 +1506,5 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
     return Translate;
 
   })(EventEmitter2);
-  return UI.Translate = Translate;
+  return Staircase.Translate = Translate;
 })(window, window.document);

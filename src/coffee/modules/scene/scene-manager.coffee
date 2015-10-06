@@ -3,7 +3,6 @@ do (win = window, doc = window.document) ->
     'use strict'
 
     Events = Staircase.Events
-    UI = Staircase.UI
 
     ###
     # SceneManager
@@ -88,5 +87,5 @@ do (win = window, doc = window.document) ->
         hasNext: () ->
             return @scenes.length > @current + 1
 
-    UI.SceneManager = SceneManager
+    Staircase.SceneManager = SceneManager
 

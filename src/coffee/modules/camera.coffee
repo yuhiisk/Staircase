@@ -3,7 +3,6 @@ do (win = window, doc = window.document) ->
     'use strict'
 
     Events = Staircase.Events
-    UI = Staircase.UI
 
     ###
     # Camera
@@ -59,6 +58,6 @@ do (win = window, doc = window.document) ->
             @getStatus = _getStatus
             @getVideo = _getVideo
 
-    UI.Camera = Camera
+    Staircase.Camera = Camera
 
 

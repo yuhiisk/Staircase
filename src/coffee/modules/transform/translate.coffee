@@ -3,7 +3,6 @@ do (win = window, doc = window.document) ->
     'use strict'
 
     Events = Staircase.Events
-    UI = Staircase.UI
     Util = Staircase.Util
     Params = Staircase.Params
 
@@ -140,5 +139,5 @@ do (win = window, doc = window.document) ->
             @$imageFrame.height(@imageFrameHeight)
 
 
-    UI.Translate = Translate
+    Staircase.Translate = Translate
 

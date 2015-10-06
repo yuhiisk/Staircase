@@ -3,7 +3,6 @@ do (win = window, doc = window.document) ->
     'use strict'
 
     Events = Staircase.Events
-    UI = Staircase.UI
 
     ###
     # Loading
@@ -40,7 +39,7 @@ do (win = window, doc = window.document) ->
         eventify: () ->
 
 
-    UI.Loading = Loading
+    Staircase.Loading = Loading
 
 
     ###
@@ -92,7 +91,7 @@ do (win = window, doc = window.document) ->
         eventify: () ->
 
 
-    UI.LoadingSprite = LoadingSprite
+    Staircase.LoadingSprite = LoadingSprite
 
 
     ###
@@ -135,5 +134,5 @@ do (win = window, doc = window.document) ->
             @deactive = _deactive
 
 
-    UI.Exchange = Exchange
+    Staircase.Exchange = Exchange
 

@@ -3,7 +3,6 @@ do (win = window, doc = window.document) ->
     'use strict'
 
     Events = Staircase.Events
-    UI = Staircase.UI
 
     ###
     # ProcessChecker
@@ -75,6 +74,6 @@ do (win = window, doc = window.document) ->
             @stop = _stop
             @getStatus = _getStatus
 
-    UI.ProcessChecker = ProcessChecker
+    Staircase.ProcessChecker = ProcessChecker
 
 

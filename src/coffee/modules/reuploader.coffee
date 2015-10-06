@@ -64,6 +64,6 @@ do (win = window, doc = window.document) ->
                 @emit(Events.REUPLOAD_ERROR, e)
             )
 
-    UI.ReUploader = ReUploader
+    Staircase.ReUploader = ReUploader
 
 
