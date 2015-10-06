@@ -9,7 +9,10 @@
   };
   win.Staircase = Staircase;
   Staircase.defaults = {
-    size: 640,
+    size: {
+      width: 640,
+      height: 640
+    },
     trim_offset_top: 176,
     trim_offset_left: 0,
     trim_width: 886,
@@ -84,7 +87,11 @@
     TRANSFORM_MOVE_START: Staircase.defaults.eventNamespace + 'transform_move_start',
     TRANSFORM_MOVE: Staircase.defaults.eventNamespace + 'transform_move',
     TRANSFORM_MOVE_END: Staircase.defaults.eventNamespace + 'transform_move_end',
-    TRANSFORM_SCALE: Staircase.defaults.eventNamespace + 'transform_scale'
+    TRANSFORM_SCALE: Staircase.defaults.eventNamespace + 'transform_scale',
+    DND_LOAD_IMG: Staircase.defaults.eventNamespace + 'draganddrop_img_load',
+    DND_SELECT: Staircase.defaults.eventNamespace + 'draganddrop_select',
+    DND_DROP: Staircase.defaults.eventNamespace + 'draganddrop_droped',
+    DND_READ: Staircase.defaults.eventNamespace + 'draganddrop_read'
   };
 
   /*
@@ -229,6 +236,106 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
 
 (function(win, doc) {
   'use strict';
+  var DragAndDrop, Events, UI;
+  UI = Staircase.UI;
+  Events = Staircase.Events;
+
+  /*
+   * DragAndDrop
+   * @constructor
+   * @extends EventEmitter2
+   * @params {String} DOM id
+   */
+  DragAndDrop = (function(superClass) {
+    extend(DragAndDrop, superClass);
+
+    function DragAndDrop(id) {
+      DragAndDrop.__super__.constructor.call(this, id);
+      this.initialize(id);
+    }
+
+    DragAndDrop.prototype.initialize = function(id) {
+      var _getDragElement, _handleDragOver, _handleDrop, _handleFileReader, _handleFileSelect, _isSupport, drag, input, self;
+      self = this;
+      drag = $(id)[0];
+      input = doc.getElementById('File');
+      _handleFileSelect = function(e) {
+        var file, files, i, len;
+        files = e.target.files;
+        for (i = 0, len = files.length; i < len; i++) {
+          file = files[i];
+          if (!file.type.match('image.*')) {
+            continue;
+          }
+          _handleFileReader(file);
+        }
+        return self.emit(Events.DND_SELECT, files);
+      };
+      _handleDragOver = function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        return e.dataTransfer.dropEffect = 'copy';
+      };
+      _handleDrop = function(e) {
+        var file, files, i, len;
+        e.stopPropagation();
+        e.preventDefault();
+        files = e.dataTransfer.files;
+        for (i = 0, len = files.length; i < len; i++) {
+          file = files[i];
+          if (!file.type.match('image.*')) {
+            continue;
+          }
+          _handleFileReader(file);
+        }
+        return self.emit(Events.DND_DROP, files);
+      };
+      _handleFileReader = function(file) {
+        var _file, image, reader;
+        _file = {};
+        image = new Image();
+        image.onload = function() {
+          return self.emit(Events.DND_LOAD_IMG, this, _file);
+        };
+        reader = new FileReader();
+        reader.onload = (function(theFile) {
+          return function(e) {
+            _file = theFile;
+            image.src = e.target.result;
+            return self.emit(Events.DND_READ, e.target.result, _file);
+          };
+        })(file);
+        return reader.readAsDataURL(file);
+      };
+      _isSupport = (function() {
+        var status;
+        status = (win.File != null) && (win.FileReader != null) && (win.FileList != null) && (win.Blob != null);
+        if (!status) {
+          throw new Error('The File APIs are not fully supported in this browser.');
+        }
+        return status;
+      })();
+      _getDragElement = function() {
+        return draggable;
+      };
+      input.addEventListener('change', _handleFileSelect, false);
+      drag.addEventListener('dragover', _handleDragOver, false);
+      drag.addEventListener('drop', _handleDrop, false);
+      this.isSupport = _isSupport;
+      return this.getDragElement = _getDragElement;
+    };
+
+    return DragAndDrop;
+
+  })(EventEmitter2);
+  return Staircase.DragAndDrop = DragAndDrop;
+})(window, window.document);
+
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
+
+(function(win, doc) {
+  'use strict';
   var Events, PreviewCanvas, PreviewImage;
   Events = Staircase.Events;
 
@@ -270,9 +377,14 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
         return self.emit(Events.PREVIEW_SEND);
       };
       draw = function(src) {
-        canvas.width = src.videoWidth;
-        canvas.height = src.videoHeight;
-        return _ctx.drawImage(src, 0, 0);
+        var height, srcHeight, srcWidth, width;
+        srcWidth = src.videoWidth || src.width;
+        srcHeight = src.videoHeight || src.height;
+        width = Staircase.settings.size.width < srcWidth ? Staircase.settings.size.width : srcWidth;
+        height = Staircase.settings.size.height < srcHeight ? Staircase.settings.size.height : srcHeight;
+        canvas.width = width;
+        canvas.height = height;
+        return _ctx.drawImage(src, 0, 0, width, height);
       };
       getCanvas = function() {
         return canvas;
@@ -735,6 +847,90 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
 
 (function(win, doc) {
   'use strict';
+  var Events, Modal;
+  Events = Staircase.Events;
+
+  /*
+   * Modal
+   * @constructor
+   * @extends EventEmitter2
+   */
+  Modal = (function(superClass) {
+    extend(Modal, superClass);
+
+    function Modal(option) {
+      Modal.__super__.constructor.call(this, option);
+      this.$el = $(option.id);
+      this.$page = $(option.page);
+      this.$win = $(win);
+      this.winHeight = this.$win.height();
+      this.currentScroll = 0;
+      this.initialize();
+      this.eventify();
+    }
+
+    Modal.prototype.initialize = function() {
+      var _hide, _show;
+      _show = (function(_this) {
+        return function() {
+          _this._fixed();
+          _this.$el.show();
+          return _this.emit(Events.MODAL_SHOW);
+        };
+      })(this);
+      _hide = (function(_this) {
+        return function() {
+          _this._static();
+          _this.$el.hide();
+          return _this.emit(Events.MODAL_HIDE);
+        };
+      })(this);
+      this.show = _show;
+      return this.hide = _hide;
+    };
+
+    Modal.prototype.eventify = function() {
+      return this.$el.on('click', '.modal__bg, .modal__close', (function(_this) {
+        return function(e) {
+          return _this.hide();
+        };
+      })(this));
+    };
+
+    Modal.prototype._fixed = function() {
+      var scrollTop;
+      scrollTop = this.$win.scrollTop() * -1;
+      this.currentScroll = this.$win.scrollTop();
+      this.$page.addClass('is-fixed').css('top', scrollTop);
+      this.$el.css({
+        position: 'relative',
+        height: this.winHeight
+      });
+      return this.$win.scrollTop(0);
+    };
+
+    Modal.prototype._static = function() {
+      var scrollTop;
+      scrollTop = this.$win.scrollTop() * -1;
+      this.$page.removeClass('is-fixed').css('top', '');
+      this.$el.css({
+        position: '',
+        height: 'auto'
+      });
+      return this.$win.scrollTop(this.currentScroll);
+    };
+
+    return Modal;
+
+  })(EventEmitter2);
+  return Staircase.Modal = Modal;
+})(window, window.document);
+
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
+
+(function(win, doc) {
+  'use strict';
   var Events, SceneManager;
   Events = Staircase.Events;
 
@@ -904,90 +1100,6 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
 
   })(EventEmitter2);
   return Staircase.Scene = Scene;
-})(window, window.document);
-
-var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
-  hasProp = {}.hasOwnProperty;
-
-(function(win, doc) {
-  'use strict';
-  var Events, Modal;
-  Events = Staircase.Events;
-
-  /*
-   * Modal
-   * @constructor
-   * @extends EventEmitter2
-   */
-  Modal = (function(superClass) {
-    extend(Modal, superClass);
-
-    function Modal(option) {
-      Modal.__super__.constructor.call(this, option);
-      this.$el = $(option.id);
-      this.$page = $(option.page);
-      this.$win = $(win);
-      this.winHeight = this.$win.height();
-      this.currentScroll = 0;
-      this.initialize();
-      this.eventify();
-    }
-
-    Modal.prototype.initialize = function() {
-      var _hide, _show;
-      _show = (function(_this) {
-        return function() {
-          _this._fixed();
-          _this.$el.show();
-          return _this.emit(Events.MODAL_SHOW);
-        };
-      })(this);
-      _hide = (function(_this) {
-        return function() {
-          _this._static();
-          _this.$el.hide();
-          return _this.emit(Events.MODAL_HIDE);
-        };
-      })(this);
-      this.show = _show;
-      return this.hide = _hide;
-    };
-
-    Modal.prototype.eventify = function() {
-      return this.$el.on('click', '.modal__bg, .modal__close', (function(_this) {
-        return function(e) {
-          return _this.hide();
-        };
-      })(this));
-    };
-
-    Modal.prototype._fixed = function() {
-      var scrollTop;
-      scrollTop = this.$win.scrollTop() * -1;
-      this.currentScroll = this.$win.scrollTop();
-      this.$page.addClass('is-fixed').css('top', scrollTop);
-      this.$el.css({
-        position: 'relative',
-        height: this.winHeight
-      });
-      return this.$win.scrollTop(0);
-    };
-
-    Modal.prototype._static = function() {
-      var scrollTop;
-      scrollTop = this.$win.scrollTop() * -1;
-      this.$page.removeClass('is-fixed').css('top', '');
-      this.$el.css({
-        position: '',
-        height: 'auto'
-      });
-      return this.$win.scrollTop(this.currentScroll);
-    };
-
-    return Modal;
-
-  })(EventEmitter2);
-  return Staircase.Modal = Modal;
 })(window, window.document);
 
 var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },

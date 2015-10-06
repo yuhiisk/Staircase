@@ -142,7 +142,8 @@ $modal-height: 480px;
 }
 
 %reversal {
-    transform: scale(-2.2, 2.2);
+    //transform: scale(-2.2, 2.2);
+    transform: scale(-1, 1);
     filter: FlipH;
     -ms-filter: "FlipH";
 }
@@ -175,6 +176,12 @@ $modal-height: 480px;
     left: 0;
     @extend %reversal;
 }
+.preview__canvas-file {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 
 // transform
 .transform {

@@ -43,9 +43,16 @@ do (win = window, doc = window.document) ->
                 self.emit(Events.PREVIEW_SEND)
 
             draw = (src) ->
-                canvas.width  = src.videoWidth
-                canvas.height = src.videoHeight
-                _ctx.drawImage(src, 0, 0)
+                srcWidth = src.videoWidth || src.width
+                srcHeight = src.videoHeight || src.height
+                width = if Staircase.settings.size.width < srcWidth then Staircase.settings.size.width else srcWidth
+                height = if Staircase.settings.size.height < srcHeight then Staircase.settings.size.height else srcHeight
+                canvas.width  = width
+                canvas.height = height
+                _ctx.drawImage(src, 0, 0, width, height)
+                # canvas.width  = src.videoWidth
+                # canvas.height = src.videoHeight
+                # _ctx.drawImage(src, 0, 0)
 
             getCanvas = () ->
                 return canvas

@@ -85,14 +85,8 @@ config =
             "fnBind"
         ]
         tests: [
-            "csstransitions",
-            "opacity",
             "canvas",
-            "webgl",
-            "es5undefined",
-            "es5function",
-            "es5syntax",
-            "es6math",
+            "filereader",
         ]
 
 module.exports = config

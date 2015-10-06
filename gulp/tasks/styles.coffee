@@ -15,7 +15,7 @@ if config.sass.lib
 gulp.task 'styles', () ->
     # For best performance, don't add Sass partials to `gulp.src`
     return gulp.src([
-        config.path.scss + '*.{sass,scss}'
+        config.path.scss + 'pc/*.{sass,scss}'
     ])
         .pipe($.plumber())
         .pipe($.changed('styles', { extension: '.{sass,scss}' }))

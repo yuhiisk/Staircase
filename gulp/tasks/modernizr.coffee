@@ -52,5 +52,5 @@ gulp.task 'modernizr', () ->
             "customTests": []
         ))
         .pipe($.uglify({ preserveComments: 'some' }))
-        .pipe(gulp.dest(config.path.js + "lib/"))
+        .pipe(gulp.dest(config.path.js + "vendor/"))
         .pipe($.size({ title: 'modernizr' }))

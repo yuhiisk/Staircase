@@ -1,0 +1,1724 @@
+@charset "UTF-8";
+/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+/**
+* 1. Set default font family to sans-serif.
+* 2. Prevent iOS and IE text size adjust after device orientation change,
+*    without disabling user zoom.
+*/
+html {
+  font-family: sans-serif;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+}
+
+/**
+* Remove default margin.
+*/
+body {
+  margin: 0;
+}
+
+/* HTML5 display definitions
+========================================================================== */
+/**
+* Correct `block` display not defined for any HTML5 element in IE 8/9.
+* Correct `block` display not defined for `details` or `summary` in IE 10/11
+* and Firefox.
+* Correct `block` display not defined for `main` in IE 11.
+*/
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+
+/**
+* 1. Correct `inline-block` display not defined in IE 8/9.
+* 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+*/
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  /* 1 */
+  vertical-align: baseline;
+  /* 2 */
+}
+
+/**
+* Prevent modern browsers from displaying `audio` without controls.
+* Remove excess height in iOS 5 devices.
+*/
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+/**
+* Address `[hidden]` styling not present in IE 8/9/10.
+* Hide the `template` element in IE 8/9/10/11, Safari, and Firefox < 22.
+*/
+[hidden],
+template {
+  display: none;
+}
+
+/* Links
+========================================================================== */
+/**
+* Remove the gray background color from active links in IE 10.
+*/
+a {
+  background-color: transparent;
+}
+
+/**
+* Improve readability of focused elements when they are also in an
+* active/hover state.
+*/
+a:active,
+a:hover {
+  outline: 0;
+}
+
+/* Text-level semantics
+========================================================================== */
+/**
+* Address styling not present in IE 8/9/10/11, Safari, and Chrome.
+*/
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+/**
+* Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
+*/
+b,
+strong {
+  font-weight: bold;
+}
+
+/**
+* Address styling not present in Safari and Chrome.
+*/
+dfn {
+  font-style: italic;
+}
+
+/**
+* Address variable `h1` font-size and margin within `section` and `article`
+* contexts in Firefox 4+, Safari, and Chrome.
+*/
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/**
+* Address styling not present in IE 8/9.
+*/
+mark {
+  background: #ff0;
+  color: #000;
+}
+
+/**
+* Address inconsistent and variable font size in all browsers.
+*/
+small {
+  font-size: 80%;
+}
+
+/**
+* Prevent `sub` and `sup` affecting `line-height` in all browsers.
+*/
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+/* Embedded content
+========================================================================== */
+/**
+* Remove border when inside `a` element in IE 8/9/10.
+*/
+img {
+  border: 0;
+}
+
+/**
+* Correct overflow not hidden in IE 9/10/11.
+*/
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/* Grouping content
+========================================================================== */
+/**
+* Address margin not present in IE 8/9 and Safari.
+*/
+figure {
+  margin: 1em 40px;
+}
+
+/**
+* Address differences between Firefox and other browsers.
+*/
+hr {
+  box-sizing: content-box;
+  height: 0;
+}
+
+/**
+* Contain overflow in all browsers.
+*/
+pre {
+  overflow: auto;
+}
+
+/**
+* Address odd `em`-unit font size rendering in all browsers.
+*/
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+/* Forms
+========================================================================== */
+/**
+* Known limitation: by default, Chrome and Safari on OS X allow very limited
+* styling of `select`, unless a `border` property is set.
+*/
+/**
+* 1. Correct color not being inherited.
+*    Known issue: affects color of disabled elements.
+* 2. Correct font properties not being inherited.
+* 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
+*/
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+  margin: 0;
+  /* 3 */
+}
+
+/**
+* Address `overflow` set to `hidden` in IE 8/9/10/11.
+*/
+button {
+  overflow: visible;
+}
+
+/**
+* Address inconsistent `text-transform` inheritance for `button` and `select`.
+* All other form control elements do not inherit `text-transform` values.
+* Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
+* Correct `select` style inheritance in Firefox.
+*/
+button,
+select {
+  text-transform: none;
+}
+
+/**
+* 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+*    and `video` controls.
+* 2. Correct inability to style clickable `input` types in iOS.
+* 3. Improve usability and consistency of cursor style between image-type
+*    `input` and others.
+*/
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */
+}
+
+/**
+* Re-set default cursor for disabled elements.
+*/
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+/**
+* Remove inner padding and border in Firefox 4+.
+*/
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/**
+* Address Firefox 4+ setting `line-height` on `input` using `!important` in
+* the UA stylesheet.
+*/
+input {
+  line-height: normal;
+}
+
+/**
+* It's recommended that you don't attempt to style these elements.
+* Firefox's implementation doesn't respect box-sizing, padding, or width.
+*
+* 1. Address box sizing set to `content-box` in IE 8/9/10.
+* 2. Remove excess padding in IE 8/9/10.
+*/
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+* Fix the cursor style for Chrome's increment/decrement buttons. For certain
+* `font-size` values of the `input`, it causes the cursor style of the
+* decrement button to change from `default` to `text`.
+*/
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+* 1. Address `appearance` set to `searchfield` in Safari and Chrome.
+* 2. Address `box-sizing` set to `border-box` in Safari and Chrome.
+*/
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  box-sizing: content-box;
+  /* 2 */
+}
+
+/**
+* Remove inner padding and search cancel button in Safari and Chrome on OS X.
+* Safari (but not Chrome) clips the cancel button when the search input has
+* padding (and `textfield` appearance).
+*/
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+* Define consistent border, margin, and padding.
+*/
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+* 1. Correct `color` not being inherited in IE 8/9/10/11.
+* 2. Remove padding so people aren't caught out if they zero out fieldsets.
+*/
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+* Remove default vertical scrollbar in IE 8/9/10/11.
+*/
+textarea {
+  overflow: auto;
+}
+
+/**
+* Don't inherit the `font-weight` (applied by a rule above).
+* NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
+*/
+optgroup {
+  font-weight: bold;
+}
+
+/* Tables
+========================================================================== */
+/**
+* Remove most spacing between table cells.
+*/
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+/* ==========================================================================
+   Reset
+   ========================================================================== */
+/* HTML5 display definitions
+   ========================================================================== */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, main, menu, nav,
+section, summary {
+  display: block;
+}
+
+audio, canvas, progress, video {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+/* Resetting default margin and padding
+   ========================================================================== */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* HTML, Body, Anchor
+   ========================================================================== */
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  line-height: 1;
+}
+
+body {
+  min-width: 0;
+  background-color: #fff;
+  color: #000;
+  font-size: 14px;
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", sans-serif;
+  line-height: 1.5;
+}
+
+/* Font-size (base: 14px) */
+a {
+  color: #0072ff;
+  outline: 0;
+  text-decoration: none;
+}
+
+a:link, a:visited {
+  outline: 0;
+}
+
+a:hover, a:active {
+  color: #0072ff;
+  text-decoration: underline;
+}
+
+/* Paragraph
+   ========================================================================== */
+p {
+  margin-bottom: 0;
+}
+
+/* List
+   ========================================================================== */
+ol, ul {
+  list-style: none;
+}
+
+/* Table
+   ========================================================================== */
+table {
+  font-size: inherit;
+  font-family: inherit;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  padding: 0;
+  text-align: left;
+  font-weight: normal;
+  vertical-align: top;
+}
+
+/* Form
+   ========================================================================== */
+fieldset {
+  border: none;
+}
+
+input, textarea, select, label {
+  vertical-align: middle;
+}
+
+textarea {
+  overflow: auto;
+}
+
+legend {
+  display: none;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+}
+
+/* Embedded
+   ========================================================================== */
+img {
+  vertical-align: bottom;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -moz-user-drag: none;
+  -ms-user-drag: none;
+}
+
+a img {
+  border: none;
+}
+
+object {
+  vertical-align: middle;
+  outline: none;
+}
+
+audio,
+canvas,
+video {
+  vertical-align: middle;
+}
+
+/* Other
+   ========================================================================== */
+em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+abbr {
+  border: none;
+  font-variant: normal;
+}
+
+q, blockquote {
+  quotes: none;
+}
+
+q:before,
+q:after,
+blockquote:before,
+blockquote:after {
+  content: "";
+  content: none;
+}
+
+address, caption, cite, code, dfn, var {
+  font-weight: normal;
+  font-style: normal;
+}
+
+code, pre {
+  font-family: monospace;
+}
+
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+*/
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+/* clearfix */
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+
+.is-hidden {
+  display: none;
+}
+
+.is-fixed {
+  position: fixed;
+  width: 100%;
+}
+
+body {
+  background: url(../img/sp/bg_body.png) repeat;
+  background-size: 50px 50px;
+}
+
+.global-header {
+  position: relative;
+  z-index: 3;
+  padding: 15px 0 0;
+}
+
+.global-header__logo {
+  margin: 0 16px;
+}
+.global-header__logo a {
+  display: block;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 110%;
+  line-height: 1;
+  background-image: url(../img/spr-smartphone.png);
+  background-position: -429px -227px;
+  width: 86.5px;
+  height: 14.5px;
+  background-size: 521px 409.5px;
+}
+
+.global-header__title {
+  position: relative;
+  margin-bottom: 22px;
+  text-align: center;
+}
+
+.global-footer {
+  padding: 34px 0 20px;
+  color: #00a29a;
+  background-color: rgba(255, 255, 0, 0.5);
+  font-size: 86%;
+  text-align: center;
+}
+
+.global-footer__sns {
+  width: 185px;
+  margin: 0 auto 43px;
+}
+.global-footer__sns:before, .global-footer__sns:after {
+  content: " ";
+  display: table;
+}
+.global-footer__sns:after {
+  clear: both;
+}
+
+.global-footer__sns--fb {
+  float: left;
+  margin-right: 10px;
+}
+
+.global-footer__sns--tw {
+  float: left;
+  margin-right: 10px;
+}
+
+.global-footer__sns--line {
+  float: left;
+}
+
+.global-footer__support {
+  margin-bottom: 10px;
+}
+
+.global-footer__caution {
+  margin-bottom: 20px;
+}
+
+.global-footer__links li {
+  display: inline-block;
+  line-height: 1.3em;
+  border-left: 1px solid #00a29a;
+}
+.global-footer__links li:first-child {
+  border: 0;
+}
+.global-footer__links li a {
+  color: #00a29a;
+  padding: 0 5px 0 7px;
+  text-decoration: none;
+}
+
+.global-footer__copyright {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.main-visual {
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  z-index: 1;
+  margin-top: -29.5px;
+  margin-bottom: 35px;
+}
+.main-visual img {
+  width: 100%;
+  height: auto;
+}
+
+.main-visual__inner {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 375px;
+  height: 125px;
+  margin-left: -187.5px;
+}
+@media only screen and (min-width: 375px) {
+  .main-visual__inner {
+    position: static;
+    width: 100%;
+    height: auto;
+    margin-left: 0;
+  }
+}
+
+.main-visual__image {
+  width: 100%;
+  height: auto;
+}
+
+.btn {
+  text-align: center;
+}
+
+.btn__item {
+  display: inline-block;
+  position: relative;
+}
+
+.btn__item--arrow, .btn__item--upload, .btn__item--about, .btn__item--about-small, .btn__item--zoomin, .btn__item--zoomout, .btn__item--facebook, .btn__item--twitter, .btn__item--line, .btn__item--entry, .btn__item--retry, .btn__item--challenge, .btn__item--back, .btn__item--forward, .btn__item--error, .btn__item--apply, .btn__item--top {
+  display: block;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 110%;
+  line-height: 1;
+}
+
+.btn__item--arrow {
+  background-image: url(../img/spr-smartphone.png);
+  background-position: -226px -202.5px;
+  width: 40px;
+  height: 40px;
+  background-size: 521px 409.5px;
+}
+
+.btn__item--upload {
+  background-image: url(../img/spr-smartphone.png);
+  background-position: 0px -202.5px;
+  width: 225px;
+  height: 50px;
+  background-size: 521px 409.5px;
+}
+
+.btn__item--about {
+  background-image: url(../img/spr-smartphone.png);
+  background-position: -296px -90px;
+  width: 225px;
+  height: 44px;
+  background-size: 521px 409.5px;
+}
+
+.btn__item--about-small {
+  background-image: url(../img/spr-smartphone.png);
+  background-position: -296px 0px;
+  width: 225px;
+  height: 44px;
+  background-size: 521px 409.5px;
+}
+
+.btn__item--down {
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.btn__item--left {
+  -webkit-transform: rotate(270deg);
+      -ms-transform: rotate(270deg);
+          transform: rotate(270deg);
+}
+
+.btn__item--right {
+  -webkit-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.btn__item--zoomin {
+  background-image: url(../img/spr-smartphone.png);
+  background-position: -292px -299.5px;
+  width: 35px;
+  height: 35px;
+  background-size: 521px 409.5px;
+}
+
+.btn__item--zoomout {
+  background-image: url(../img/spr-smartphone.png);
+  background-position: -328px -299.5px;
+  width: 35px;
+  height: 35px;
+  background-size: 521px 409.5px;
+}
+
+.btn__item--facebook {
+  background-image: url(../img/spr-smartphone.png);
+  background-position: -296px -135px;
+  width: 194px;
+  height: 45px;
+  background-size: 521px 409.5px;
+}
+
+.btn__item--twitter {
+  background-image: url(../img/spr-smartphone.png);
+  background-position: 0px -253.5px;
+  width: 194px;
+  height: 45px;
+  background-size: 521px 409.5px;
+}
+
+.btn__item--line {
+  background-image: url(../img/spr-smartphone.png);
+  background-position: -296px -181px;
+  width: 194px;
+  height: 45px;
+  background-size: 521px 409.5px;
+}
+
+.btn__item--entry {
+  background-image: url(../img/spr-smartphone.png);
+  background-position: 0px 0px;
+  width: 295px;
+  height: 54px;
+  background-size: 521px 409.5px;
+}
+
+.btn__item--retry {
+  background-image: url(../img/spr-smartphone.png);
+  background-position: 0px -157.5px;
+  width: 295px;
+  height: 44px;
+  background-size: 521px 409.5px;
+}
+
+.btn__item--challenge {
+  background-image: url(../img/spr-smartphone.png);
+  background-position: 0px -55px;
+  width: 295px;
+  height: 50.5px;
+  background-size: 521px 409.5px;
+}
+
+.btn__item--back {
+  background-image: url(../img/spr-smartphone.png);
+  background-position: -146px -299.5px;
+  width: 145px;
+  height: 50px;
+  background-size: 521px 409.5px;
+}
+
+.btn__item--forward {
+  background-image: url(../img/spr-smartphone.png);
+  background-position: 0px -299.5px;
+  width: 145px;
+  height: 50px;
+  background-size: 521px 409.5px;
+}
+
+.btn__item--error {
+  background-image: url(../img/spr-smartphone.png);
+  background-position: 0px -106.5px;
+  width: 295px;
+  height: 50px;
+  background-size: 521px 409.5px;
+}
+
+.btn__item--apply {
+  background-image: url(../img/spr-smartphone.png);
+  background-position: -195px -253.5px;
+  width: 140px;
+  height: 30px;
+  background-size: 521px 409.5px;
+}
+
+.btn__item--top {
+  background-image: url(../img/spr-smartphone.png);
+  background-position: -296px -45px;
+  width: 225px;
+  height: 44px;
+  background-size: 521px 409.5px;
+}
+
+.btn__item--input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 226px;
+  height: 51px;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.btn__item--text {
+  display: inline-block;
+  width: 275px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 4.5px;
+  background-color: #ffff00;
+  color: #000;
+}
+
+.btn--start {
+  margin-bottom: 3px;
+}
+.btn--start label {
+  cursor: pointer;
+}
+
+.contents-description {
+  margin-bottom: 35px;
+  color: #00a29a;
+  font-size: 86%;
+  font-weight: bold;
+  text-align: center;
+}
+.contents-description span {
+  font-size: 92%;
+  font-weight: normal;
+}
+
+.btn--about {
+  margin-bottom: 30px;
+}
+
+.diagnosis-note {
+  margin: 0 10px 25px;
+  padding: 25px 20px 30px;
+  background-color: #fff;
+}
+
+.diagnosis-note__heading {
+  margin-bottom: 10px;
+  color: #00a29a;
+  font-size: 100%;
+  font-weight: bold;
+}
+
+.diagnosis-note__text {
+  font-size: 93%;
+}
+
+.diagnosis-note__list {
+  padding: 0 30.5px;
+}
+.diagnosis-note__list:before, .diagnosis-note__list:after {
+  content: " ";
+  display: table;
+}
+.diagnosis-note__list:after {
+  clear: both;
+}
+
+.diagnosis-note__item {
+  margin-top: 22px;
+}
+.diagnosis-note__item img {
+  width: 100%;
+  height: auto;
+}
+
+.contents-info {
+  width: 25em;
+  margin: 30px auto 20px;
+  padding: 6px;
+  background-color: #e1f4f3;
+  color: #00a29a;
+  font-size: 86%;
+  text-align: center;
+}
+.contents-info a {
+  color: #00a29a;
+  text-decoration: none;
+}
+
+.contents-info__inner {
+  padding: 12px 0;
+  border: 1px solid #00a29a;
+  background-color: #fff;
+}
+
+.flash-message {
+  color: red;
+  text-align: center;
+}
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+}
+
+.modal__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.modal__content {
+  position: relative;
+  z-index: 10;
+  width: 320px;
+  margin: auto;
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.modal__close {
+  position: absolute;
+  top: 15px;
+  right: 14px;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.scene {
+  position: relative;
+  padding: 185px 0 40px;
+}
+
+.scene__field {
+  position: relative;
+  width: 276px;
+  height: 212px;
+  margin: 0 auto 78px;
+  border: 2.5px solid rgba(255, 255, 0, 0.5);
+  border-radius: 2.5px;
+  background-color: #fff;
+}
+
+.scene__cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 15;
+}
+
+.scene__text {
+  position: absolute;
+  top: 83px;
+  left: 0;
+  z-index: 20;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+}
+
+.transform {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -moz-user-drag: none;
+  -ms-user-drag: none;
+}
+.transform .btn--retake {
+  margin-top: 24px;
+}
+.transform .btn--retake a {
+  color: #fff;
+}
+
+.transform__preview {
+  position: relative;
+  width: 276px;
+  height: 212px;
+}
+
+.transform__wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  overflow: hidden;
+  width: 276px;
+  height: 212px;
+}
+
+.transform__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 276px;
+  height: 212px;
+}
+
+.transform__touch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  cursor: move;
+}
+
+.transform__control {
+  position: relative;
+  z-index: 110;
+}
+.transform__control li {
+  position: absolute;
+  cursor: pointer;
+}
+.transform__control .btn__item--up {
+  top: -20px;
+  left: 50%;
+  margin-left: -20px;
+}
+.transform__control .btn__item--down {
+  top: 192.5px;
+  left: 50%;
+  margin-left: -20px;
+}
+.transform__control .btn__item--left {
+  top: 82.5px;
+  left: -20px;
+}
+.transform__control .btn__item--right {
+  top: 82.5px;
+  left: 255.5px;
+}
+.transform__control .btn__item--zoomin {
+  top: 235px;
+  left: 203px;
+}
+.transform__control .btn__item--zoomout {
+  top: 235px;
+  left: 243px;
+}
+
+.loading__icon {
+  position: absolute;
+  top: 63px;
+  left: 50%;
+  z-index: 100;
+  margin-left: -29.5px;
+  display: inline-block;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 110%;
+  line-height: 1;
+  background-image: url(../img/spr-smartphone.png);
+  background-position: 0px -350.5px;
+  width: 59px;
+  height: 59px;
+  background-size: 521px 409.5px;
+}
+.loading__icon.is-active {
+  -webkit-animation: loading 0.9s cubic-bezier(0.250, 0.250, 0.750, 0.750) 0s infinite;
+          animation: loading 0.9s cubic-bezier(0.250, 0.250, 0.750, 0.750) 0s infinite;
+}
+
+@-webkit-keyframes loading {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes loading {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+.loading__text {
+  position: absolute;
+  top: 135px;
+  left: 50%;
+  z-index: 100;
+  margin-left: -40px;
+  display: inline-block;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 110%;
+  line-height: 1;
+  background-image: url(../img/spr-smartphone.png);
+  background-position: -336px -253.5px;
+  width: 98.5px;
+  height: 10px;
+  background-size: 521px 409.5px;
+}
+
+.loading__image {
+  overflow: hidden;
+  width: 276px;
+  height: 212px;
+}
+.loading__image img {
+  width: 100%;
+  height: auto;
+}
+
+.exchange {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.exchange .loading__icon {
+  top: 50%;
+  margin-top: -29.5px;
+}
+
+.wrapper--result {
+  background-image: url(../img/sp/bg_body2.png);
+  background-size: 50px 50px;
+}
+.wrapper--result .global-header {
+  margin-bottom: 18px;
+}
+
+.diagnosis {
+  width: 296px;
+  margin: 23px auto 0;
+}
+.diagnosis:before, .diagnosis:after {
+  content: " ";
+  display: table;
+}
+.diagnosis:after {
+  clear: both;
+}
+
+.diagnosis__block {
+  background-color: #fff;
+}
+
+.diagnosis__header {
+  margin-bottom: 5px;
+  padding: 15px 30px 15px 32px;
+}
+
+.diagnosis__image {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 80px;
+  margin-bottom: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  background-color: #f5f5f5;
+}
+.diagnosis__image:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 110%;
+  line-height: 1;
+  background-image: url(../img/spr-smartphone.png);
+  background-position: -447.5px -253.5px;
+  width: 10px;
+  height: 10px;
+  background-size: 521px 409.5px;
+  margin: -5px 0 0 -5px;
+}
+
+.diagnosis__image-processed {
+  overflow: hidden;
+  width: 296px;
+  height: 80px;
+}
+.diagnosis__image-processed:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 296px;
+  height: 80px;
+  background-color: #f5f5f5;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  -webkit-transition: -webkit-transform 3s ease;
+          transition: transform 3s ease;
+}
+.diagnosis__image-processed.is-start:after {
+  -webkit-transform: translate3d(476px, 0, 0);
+          transform: translate3d(476px, 0, 0);
+}
+.diagnosis__image-processed img {
+  width: 296px;
+  height: 80px;
+}
+
+.diagnosis__image-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 296px;
+  height: 80px;
+  background: url(../img/sp/bg_cover.png) repeat;
+  background-size: 2px 2px;
+}
+
+.diagnosis__image-effect {
+  position: absolute;
+  top: 0;
+  left: -180px;
+  width: 180px;
+  height: 80px;
+  background: url(../img/img_effect.png) no-repeat;
+  background-size: 180px 80px;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  -webkit-transition: -webkit-transform 3s ease;
+          transition: transform 3s ease;
+}
+.diagnosis__image-effect.is-start {
+  -webkit-transform: translate3d(476px, 0, 0);
+          transform: translate3d(476px, 0, 0);
+}
+
+.diagnosis__comment {
+  margin-bottom: 5px;
+  padding: 20px 12.5px 17.5px;
+}
+
+.diagnosis__comment-heading {
+  display: block;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 110%;
+  line-height: 1;
+  background-image: url(../img/spr-smartphone.png);
+  background-position: -296px -227px;
+  width: 132px;
+  height: 17px;
+  background-size: 521px 409.5px;
+  margin-bottom: 15px;
+}
+
+.diagnosis__comment-title {
+  margin-bottom: 15px;
+  font-size: 200%;
+  line-height: 1.26;
+}
+
+.diagnosis__comment-text {
+  font-size: 100%;
+  line-height: 1.6;
+}
+
+.diagnosis__data {
+  margin-bottom: 25px;
+}
+.diagnosis__data:before, .diagnosis__data:after {
+  content: " ";
+  display: table;
+}
+.diagnosis__data:after {
+  clear: both;
+}
+
+.diagnosis__score {
+  position: relative;
+  float: left;
+  width: 90px;
+  height: 114px;
+  padding: 11px 28.5px 20px 27.5px;
+  text-align: center;
+}
+
+.diagnosis__score-graph {
+  position: absolute;
+  top: 35px;
+  left: 27.5px;
+  width: 89px;
+  height: 89px;
+  background: url(../img/sp/bg_score.png) no-repeat center center;
+  background-size: 89px 89px;
+}
+
+.diagnosis__score-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.diagnosis__score-value {
+  margin-top: 26px;
+}
+.diagnosis__score-value:before, .diagnosis__score-value:after {
+  content: " ";
+  display: table;
+}
+.diagnosis__score-value:after {
+  clear: both;
+}
+
+.diagnosis__score-text {
+  margin: 0 0 6px -18px;
+}
+
+.diagnosis__score-space {
+  display: inline-block;
+  width: 19px;
+  height: 19px;
+  margin-right: 16px;
+  vertical-align: bottom;
+}
+
+.diagnosis__score-number {
+  margin-right: 2px;
+  vertical-align: bottom;
+}
+
+.diagnosis__score-point {
+  display: inline-block;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 110%;
+  line-height: 1;
+  background-image: url(../img/spr-smartphone.png);
+  background-position: -435.5px -253.5px;
+  width: 11px;
+  height: 10px;
+  background-size: 521px 409.5px;
+  vertical-align: bottom;
+}
+
+.diagnosis__graph {
+  float: right;
+  width: 130.5px;
+  height: 111px;
+  padding: 16px 6px 18px 8.5px;
+  background: url(../img/sp/bg_graph.png) no-repeat center center #fff;
+  background-size: 144px 113px;
+}
+
+.diagnosis__canvas {
+  position: relative;
+  top: 1px;
+  left: -12px;
+}
+
+.mode-share .diagnosis__share {
+  display: none;
+}
+
+.diagnosis__share-btn {
+  width: 194px;
+  margin: 0 auto;
+  padding: 0 0 25px;
+}
+.diagnosis__share-btn li {
+  margin-top: 15px;
+}
+.diagnosis__share-btn li:first-child {
+  margin-top: 0;
+}
+
+.diagnosis__entry {
+  margin-bottom: 22px;
+  text-align: center;
+}
+.diagnosis__entry .caution {
+  margin-top: 5px;
+  color: #333;
+  font-size: 72%;
+}
+.mode-share .diagnosis__entry {
+  display: none;
+}
+
+.diagnosis__challenge {
+  display: none;
+  margin-bottom: 5px;
+}
+.mode-share .diagnosis__challenge {
+  display: block;
+}
+
+.diagnosis__about {
+  margin-bottom: 25px;
+}
+
+.icon-n0, .icon-n1, .icon-n2, .icon-n3, .icon-n4, .icon-n5, .icon-n6, .icon-n7, .icon-n8, .icon-n9 {
+  display: inline-block;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 110%;
+  line-height: 1;
+}
+
+.icon-n0 {
+  background-image: url(../img/spr-smartphone.png);
+  background-position: -491px -135px;
+  width: 20px;
+  height: 36px;
+  background-size: 521px 409.5px;
+}
+
+.icon-n1 {
+  background-image: url(../img/spr-smartphone.png);
+  background-position: -491px -181px;
+  width: 20px;
+  height: 36px;
+  background-size: 521px 409.5px;
+}
+
+.icon-n2 {
+  background-image: url(../img/spr-smartphone.png);
+  background-position: -267px -202.5px;
+  width: 20px;
+  height: 36px;
+  background-size: 521px 409.5px;
+}
+
+.icon-n3 {
+  background-image: url(../img/spr-smartphone.png);
+  background-position: -60px -350.5px;
+  width: 20px;
+  height: 36px;
+  background-size: 521px 409.5px;
+}
+
+.icon-n4 {
+  background-image: url(../img/spr-smartphone.png);
+  background-position: -81px -350.5px;
+  width: 20px;
+  height: 36px;
+  background-size: 521px 409.5px;
+}
+
+.icon-n5 {
+  background-image: url(../img/spr-smartphone.png);
+  background-position: -102px -350.5px;
+  width: 20px;
+  height: 36px;
+  background-size: 521px 409.5px;
+}
+
+.icon-n6 {
+  background-image: url(../img/spr-smartphone.png);
+  background-position: -123px -350.5px;
+  width: 20px;
+  height: 36px;
+  background-size: 521px 409.5px;
+}
+
+.icon-n7 {
+  background-image: url(../img/spr-smartphone.png);
+  background-position: -144px -350.5px;
+  width: 20px;
+  height: 36px;
+  background-size: 521px 409.5px;
+}
+
+.icon-n8 {
+  background-image: url(../img/spr-smartphone.png);
+  background-position: -165px -350.5px;
+  width: 20px;
+  height: 36px;
+  background-size: 521px 409.5px;
+}
+
+.icon-n9 {
+  background-image: url(../img/spr-smartphone.png);
+  background-position: -186px -350.5px;
+  width: 20px;
+  height: 36px;
+  background-size: 521px 409.5px;
+}
+
+.download-preview {
+  width: 295px;
+  margin: 0 auto;
+}
+
+.download-preview__image {
+  margin: 50px 0 27px;
+}
+.download-preview__image img {
+  width: 100%;
+  height: auto;
+}
+
+.download-preview__text {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 108%;
+}
+
+.download-preview__btn {
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.download-preview__about {
+  margin-bottom: 85px;
+}
+
+.error {
+  padding: 123px 0 83px;
+  text-align: center;
+}
+
+.error__text {
+  margin-bottom: 20px;
+  color: #009999;
+  font-size: 129%;
+  font-weight: bold;
+}
+
+.error__description {
+  margin-bottom: 38px;
+  color: #333;
+  font-size: 108%;
+}
+
+.btn-about--error {
+  margin-bottom: 20px;
+}
+
+.error-system {
+  padding: 73px 0 40px;
+  text-align: center;
+}
+.error-system .btn {
+  margin-bottom: 10px;
+}
+
+.error-system__title {
+  margin-bottom: 20px;
+}
+
+.error-system__text {
+  margin-bottom: 16px;
+  color: #009999;
+  font-size: 122%;
+  font-weight: bold;
+}
+
+.error-system__description {
+  width: 295px;
+  margin: 0 auto 25px;
+  font-size: 108%;
+  text-align: left;
+}

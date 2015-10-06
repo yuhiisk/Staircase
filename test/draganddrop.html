@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja" class="no-js">
+    <head prefix="og: http://ogp.me/ns# fb: http://www.facebook.com/2008/fbml">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Draganddrop - Staircase</title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta property="og:title" content="">
+        <meta property="og:type" content="">
+        <meta property="og:url" content="">
+        <meta property="og:image" content="">
+        <meta property="og:site_name" content="">
+        <meta property="og:description" content="">
+        <meta property="fb:app_id" content="">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="">
+        <link rel="shortcut icon" href="/favicon.ico">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="js/vendor/modernizr.min.js"></script>
+    </head>
+    <body>
+        <header class="global-header">
+            <div class="container">
+                <h1 style="text-align: center; font-size: 24px; font-weight: bold;">DragAndDrop::Template</h1>
+            </div>
+        </header>
+
+        <main class="contents">
+            <div id="DragAndDrop" class="scene draganddrop">
+                <div class="scene__field">
+                    <div id="List"></div>
+                    <img class="scene__cover" src="img/img_eye_overlay.png" alt="" width="640" height="480">
+                    <div class="scene__wrap" style="border: red; z-index: 100;"></div>
+                </div>
+                <div class="btn">
+                    <form id="Upload" method="post" action="/api/***">
+                        <!-- <div class="btn__item"><a href="#" id="Capture" class="btn__item--capture">撮影する</a></div> -->
+                        <input type="file" name="drag" id="File">
+                    </form>
+                </div>
+            </div>
+
+            <div id="Preview" class="scene preview is-hidden">
+                <div id="PreviewContainer">
+                    <div class="canvas scene__field">
+                        <h3 class="scene__text"><span class="scene__text--sprite">この画像で診断しますか?</span></h3>
+                        <div class="scene__wrap">
+                            <canvas id="Canvas" class="preview__canvas-file"></canvas>
+                        </div>
+                        <img class="scene__cover" src="img/img_guide_overlay.png" alt="" width="640" height="480">
+                    </div>
+                    <ul class="btn preview__btns">
+                        <li class="btn__item"><a href="#" id="Retake" class="btn__item--retake">撮り直す</a></li>
+                        <li class="btn__item"><a href="#" id="PostWebCamera" class="btn__item--post">診断する</a></li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <footer class="global-footer">
+            <div class="container">
+                <p class="copyright"><small>Copyright &copy; Youhei Isokawa All rights reserved.</small></p>
+            </div>
+        </footer>
+
+        <script src="/js/vendor/eventemitter2.js"></script>
+        <script src="/js/vendor/jquery.min.js"></script>
+
+        <script src="/js/staircase.js"></script>
+        <script src="/js/draganddrop.js"></script>
+
+    </body>
+</html>

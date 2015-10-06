@@ -11,7 +11,9 @@ do (win = window, doc = window.document) ->
 
     Staircase.defaults =
         # image size
-        size: 640,
+        size:
+            width: 640
+            height: 640
         # trim size
         trim_offset_top: 176,
         trim_offset_left: 0,
@@ -96,6 +98,11 @@ do (win = window, doc = window.document) ->
         TRANSFORM_MOVE       : Staircase.defaults.eventNamespace + 'transform_move'
         TRANSFORM_MOVE_END   : Staircase.defaults.eventNamespace + 'transform_move_end'
         TRANSFORM_SCALE      : Staircase.defaults.eventNamespace + 'transform_scale'
+        # DragAndDrop
+        DND_LOAD_IMG : Staircase.defaults.eventNamespace + 'draganddrop_img_load'
+        DND_SELECT   : Staircase.defaults.eventNamespace + 'draganddrop_select'
+        DND_DROP     : Staircase.defaults.eventNamespace + 'draganddrop_droped'
+        DND_READ     : Staircase.defaults.eventNamespace + 'draganddrop_read'
 
 
     ###

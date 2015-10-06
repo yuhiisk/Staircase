@@ -1618,9 +1618,9 @@ body {
 }
 
 .camera video, .preview__canvas {
-  -webkit-transform: scale(-1, 1);
-      -ms-transform: scale(-1, 1);
-          transform: scale(-1, 1);
+  -webkit-transform: scale(-2.2, 2.2);
+      -ms-transform: scale(-2.2, 2.2);
+          transform: scale(-2.2, 2.2);
   -webkit-filter: FlipH;
           filter: FlipH;
   -ms-filter: "FlipH";
@@ -1657,6 +1657,9 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+  -webkit-filter: FlipH;
+          filter: FlipH;
+  -ms-filter: "FlipH";
 }
 
 .transform {
