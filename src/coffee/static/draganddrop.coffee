@@ -54,17 +54,18 @@ do (win = window, doc = document) ->
 
         eventify: ->
             # DragAndDrop
-            @dnd.on(Events.DND_SELECT, (files) ->
-                console.log files
+            @dnd.on(Events.DND_SELECT, (e, files) ->
+                console.log e, files
             )
-            @dnd.on(Events.DND_DROP, (files) ->
-                console.log files
+            @dnd.on(Events.DND_DROP, (e, files) ->
+                console.log e, files
             )
-            @dnd.on(Events.DND_LOAD_IMG, (result, file) =>
+            @dnd.on(Events.DND_LOAD_IMG, (e, image, file) =>
+                console.log e, image, file
                 if file.size >= 2097152
                     alert('アップロードサイズ上限を超えています。')
 
-                @previewCanvas.draw(result)
+                @previewCanvas.draw(image)
                 @previewImage.show()
 
                 $('#DragAndDrop').hide()

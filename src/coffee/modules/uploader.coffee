@@ -23,6 +23,7 @@ do (win = window, doc = window.document) ->
             self = @
             $input  = @$el.find('input[type="file"]')
             $iframe = @$el.find('iframe')
+            img = null
 
             # change
             _handleFileChange = (e) ->
@@ -33,15 +34,14 @@ do (win = window, doc = window.document) ->
                 reader.readAsDataURL(file)
 
             _handleReaderLoad = (e) ->
-                self.emit(Events.UPLOAD_READER)
+                self.emit(Events.UPLOAD_READER, e)
 
                 img = new Image()
-
                 img.onload = _handleImgLoad
                 img.src    = e.target.result
 
             _handleImgLoad = (e) ->
-                self.emit(Events.UPLOAD_LOAD_IMG)
+                self.emit(Events.UPLOAD_LOAD_IMG, e, img)
 
             _onChangeHandler = (e) ->
 

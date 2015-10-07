@@ -51,20 +51,20 @@ do (win = window, doc = window.document) ->
                     if !file.type.match('image.*') then continue
                     _handleFileReader(file)
 
-                self.emit(Events.DND_DROP, files)
+                self.emit(Events.DND_DROP, e, files)
 
             _handleFileReader = (file) ->
                 _file = {}
                 image = new Image()
-                image.onload = () ->
-                    self.emit(Events.DND_LOAD_IMG, @, _file)
+                image.onload = (e) ->
+                    self.emit(Events.DND_LOAD_IMG, e, @, _file)
 
                 reader = new FileReader()
                 reader.onload = do (theFile = file) ->
                     return (e) ->
                         _file = theFile
                         image.src = e.target.result
-                        self.emit(Events.DND_READ, e.target.result, _file)
+                        self.emit(Events.DND_READ, e, e.target.result, _file)
 
                 reader.readAsDataURL(file)
 
@@ -76,7 +76,8 @@ do (win = window, doc = window.document) ->
             _getDragElement = () ->
                 return draggable
 
-            input.addEventListener('change', _handleFileSelect, false)
+            if input?
+                input.addEventListener('change', _handleFileSelect, false)
             drag.addEventListener('dragover', _handleDragOver, false)
             drag.addEventListener('drop', _handleDrop, false)
 

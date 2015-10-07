@@ -36,18 +36,19 @@
     };
 
     Main.prototype.eventify = function() {
-      this.dnd.on(Events.DND_SELECT, function(files) {
-        return console.log(files);
+      this.dnd.on(Events.DND_SELECT, function(e, files) {
+        return console.log(e, files);
       });
-      this.dnd.on(Events.DND_DROP, function(files) {
-        return console.log(files);
+      this.dnd.on(Events.DND_DROP, function(e, files) {
+        return console.log(e, files);
       });
       this.dnd.on(Events.DND_LOAD_IMG, (function(_this) {
-        return function(result, file) {
+        return function(e, image, file) {
+          console.log(e, image, file);
           if (file.size >= 2097152) {
             alert('アップロードサイズ上限を超えています。');
           }
-          _this.previewCanvas.draw(result);
+          _this.previewCanvas.draw(image);
           _this.previewImage.show();
           $('#DragAndDrop').hide();
           return $('#Preview').show();

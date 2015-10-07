@@ -30,7 +30,8 @@ do (win = window, doc = window.document) ->
                 video.play()
 
                 @powerOff = ->
-                    localMediaStream.stop()
+                    track = localMediaStream.getTracks()[0]
+                    track.stop()
                     status = false
 
                 @emit(Events.CAMERA_SUCCESS, localMediaStream)

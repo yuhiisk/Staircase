@@ -65,7 +65,7 @@
         };
       })(this));
       this.uploader.on(Events.UPLOAD_LOAD_IMG, (function(_this) {
-        return function(e) {
+        return function(e, image) {
           return _this.$form.submit();
         };
       })(this));
@@ -106,7 +106,6 @@
       self = this;
       Util.setResponse = function(res, CAMERA_or_PHOTO) {
         Params.upload = res.response;
-        console.log(res);
         switch (CAMERA_or_PHOTO) {
           case 'CAMERA':
             self.processChecker.set(Params.upload.result_path).start();

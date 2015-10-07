@@ -42,11 +42,16 @@ do (win = window, doc = window.document) ->
             wrap = () ->
                 self.emit(Events.PREVIEW_SEND)
 
-            draw = (src) ->
-                srcWidth = src.videoWidth || src.width
-                srcHeight = src.videoHeight || src.height
-                width = if Staircase.settings.size.width < srcWidth then Staircase.settings.size.width else srcWidth
-                height = if Staircase.settings.size.height < srcHeight then Staircase.settings.size.height else srcHeight
+            draw = (src, w, h) ->
+                if w? or h?
+                    width = w
+                    height = h
+                else
+                    srcWidth = src.videoWidth || src.width
+                    srcHeight = src.videoHeight || src.height
+                    width = if Staircase.settings.size.width < srcWidth then Staircase.settings.size.width else srcWidth
+                    height = if Staircase.settings.size.height < srcHeight then Staircase.settings.size.height else srcHeight
+
                 canvas.width  = width
                 canvas.height = height
                 _ctx.drawImage(src, 0, 0, width, height)

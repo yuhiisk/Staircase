@@ -76,7 +76,7 @@ do (win = window, doc = window.document, Staircase = window.Staircase) ->
             )
 
             # Uploader
-            @uploader.on(Events.UPLOAD_LOAD_IMG, (e) =>
+            @uploader.on(Events.UPLOAD_LOAD_IMG, (e, image) =>
                 @$form.submit()
             )
 
@@ -113,7 +113,6 @@ do (win = window, doc = window.document, Staircase = window.Staircase) ->
             # JSONを受け取って処理する
             Util.setResponse = (res, CAMERA_or_PHOTO) ->
                 Params.upload = res.response
-                console.log res
                 # self.modal.show()
 
                 switch CAMERA_or_PHOTO

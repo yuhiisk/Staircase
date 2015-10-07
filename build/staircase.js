@@ -189,7 +189,9 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
           video.src = window.URL.createObjectURL(localMediaStream);
           video.play();
           _this.powerOff = function() {
-            localMediaStream.stop();
+            var track;
+            track = localMediaStream.getTracks()[0];
+            track.stop();
             return status = false;
           };
           return _this.emit(Events.CAMERA_SUCCESS, localMediaStream);
@@ -288,21 +290,21 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
           }
           _handleFileReader(file);
         }
-        return self.emit(Events.DND_DROP, files);
+        return self.emit(Events.DND_DROP, e, files);
       };
       _handleFileReader = function(file) {
         var _file, image, reader;
         _file = {};
         image = new Image();
-        image.onload = function() {
-          return self.emit(Events.DND_LOAD_IMG, this, _file);
+        image.onload = function(e) {
+          return self.emit(Events.DND_LOAD_IMG, e, this, _file);
         };
         reader = new FileReader();
         reader.onload = (function(theFile) {
           return function(e) {
             _file = theFile;
             image.src = e.target.result;
-            return self.emit(Events.DND_READ, e.target.result, _file);
+            return self.emit(Events.DND_READ, e, e.target.result, _file);
           };
         })(file);
         return reader.readAsDataURL(file);
@@ -318,7 +320,9 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
       _getDragElement = function() {
         return draggable;
       };
-      input.addEventListener('change', _handleFileSelect, false);
+      if (input != null) {
+        input.addEventListener('change', _handleFileSelect, false);
+      }
       drag.addEventListener('dragover', _handleDragOver, false);
       drag.addEventListener('drop', _handleDrop, false);
       this.isSupport = _isSupport;
@@ -376,12 +380,17 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
       wrap = function() {
         return self.emit(Events.PREVIEW_SEND);
       };
-      draw = function(src) {
+      draw = function(src, w, h) {
         var height, srcHeight, srcWidth, width;
-        srcWidth = src.videoWidth || src.width;
-        srcHeight = src.videoHeight || src.height;
-        width = Staircase.settings.size.width < srcWidth ? Staircase.settings.size.width : srcWidth;
-        height = Staircase.settings.size.height < srcHeight ? Staircase.settings.size.height : srcHeight;
+        if ((w != null) || (h != null)) {
+          width = w;
+          height = h;
+        } else {
+          srcWidth = src.videoWidth || src.width;
+          srcHeight = src.videoHeight || src.height;
+          width = Staircase.settings.size.width < srcWidth ? Staircase.settings.size.width : srcWidth;
+          height = Staircase.settings.size.height < srcHeight ? Staircase.settings.size.height : srcHeight;
+        }
         canvas.width = width;
         canvas.height = height;
         return _ctx.drawImage(src, 0, 0, width, height);
@@ -627,10 +636,11 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
     }
 
     Uploader.prototype.initialize = function(els) {
-      var $iframe, $input, _handleFileChange, _handleImgLoad, _handleReaderLoad, _onChangeHandler, reset, self;
+      var $iframe, $input, _handleFileChange, _handleImgLoad, _handleReaderLoad, _onChangeHandler, img, reset, self;
       self = this;
       $input = this.$el.find('input[type="file"]');
       $iframe = this.$el.find('iframe');
+      img = null;
       _handleFileChange = function(e) {
         var file, reader;
         reader = new FileReader();
@@ -639,14 +649,13 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
         return reader.readAsDataURL(file);
       };
       _handleReaderLoad = function(e) {
-        var img;
-        self.emit(Events.UPLOAD_READER);
+        self.emit(Events.UPLOAD_READER, e);
         img = new Image();
         img.onload = _handleImgLoad;
         return img.src = e.target.result;
       };
       _handleImgLoad = function(e) {
-        return self.emit(Events.UPLOAD_LOAD_IMG);
+        return self.emit(Events.UPLOAD_LOAD_IMG, e, img);
       };
       _onChangeHandler = function(e) {
         if (Debug) {
