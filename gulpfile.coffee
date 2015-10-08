@@ -28,7 +28,7 @@ gulp.task 'serve', () ->
         # Note: this uses an unsigned certificate which on first access
         #       will present a certificate warning in the browser.
         # https: true,
-        # host: '192.168.0.0',
+        host: '172.21.33.241',
         server: [config.path.htdocs]
     )
 

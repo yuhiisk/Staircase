@@ -67,7 +67,7 @@ do (win = window, doc = window.document) ->
                 $input.val('')
                 $input.off('change')
                 $input.parent().html($input.parent().html())
-                $input = @$el.find('input[type="file"]')
+                $input = self.$el.find('input[type="file"]')
                 $input.on('change', _onChangeHandler)
 
             @reset = reset

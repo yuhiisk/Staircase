@@ -54,6 +54,16 @@ config =
             src + "coffee/config.coffee",
             src + "coffee/utilities.coffee",
             src + "coffee/modules/**/*.coffee"
+        ],
+        "test"   : [
+            'bower_components/eventemitter2/lib/eventemitter2.js',
+            'bower_components/jquery/dist/jquery.js',
+
+            'src/coffee/*.coffee',
+            'src/coffee/modules/*.coffee',
+
+            'spec/fixture/*.html'
+            'spec/*.coffee'
         ]
 
     # entry point

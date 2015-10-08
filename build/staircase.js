@@ -312,9 +312,6 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
       _isSupport = (function() {
         var status;
         status = (win.File != null) && (win.FileReader != null) && (win.FileList != null) && (win.Blob != null);
-        if (!status) {
-          throw new Error('The File APIs are not fully supported in this browser.');
-        }
         return status;
       })();
       _getDragElement = function() {

@@ -29,7 +29,6 @@ do (win = window, doc = window.document) ->
                 # FileList object
                 files = e.target.files
 
-                # output = []
                 for file in files
                     if !file.type.match('image.*') then continue
                     _handleFileReader(file)
@@ -70,7 +69,6 @@ do (win = window, doc = window.document) ->
 
             _isSupport = do () ->
                 status = (win.File? && win.FileReader? && win.FileList? && win.Blob?)
-                if !status then throw new Error('The File APIs are not fully supported in this browser.')
                 return status
 
             _getDragElement = () ->
