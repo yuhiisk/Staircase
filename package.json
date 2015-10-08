@@ -82,7 +82,6 @@
     "publish": "gulp publish",
     "server": "gulp serve",
     "sprite": "gulp sprite",
-    "modern": "gulp modernizr",
-    "test": "gulp stylestats && gulp coffeelint"
+    "test": "gulp karma"
   }
 }
